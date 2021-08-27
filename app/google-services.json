@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "256949598718",
+    "project_id": "answerwin-2782c",
+    "storage_bucket": "answerwin-2782c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:256949598718:android:0b3c1a2649943daec4a8af",
+        "android_client_info": {
+          "package_name": "com.osama.answerwin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "256949598718-asefrhuu46b08hgkoerlch9m70q6eort.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.osama.answerwin",
+            "certificate_hash": "559acf779ff6574733174e039558777401e12b2b"
+          }
+        },
+        {
+          "client_id": "256949598718-usf7g52447o2fn9octrvak2u1qr8hnlu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDftPBtSDzbo4MeX1y_j7Xy7jcXQiT7hJw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "256949598718-usf7g52447o2fn9octrvak2u1qr8hnlu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
