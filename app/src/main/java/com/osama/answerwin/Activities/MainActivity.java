@@ -1,7 +1,9 @@
-package com.osama.answerwin;
+package com.osama.answerwin.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.osama.answerwin.R;
 
 public class MainActivity extends AppCompatActivity {
 
