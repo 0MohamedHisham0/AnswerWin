@@ -10,6 +10,6 @@
 
     <color name="purple_color">#892794</color>
     <color name="green_color">#75FFC9</color>
-
+    <color name="rippleColor">#42ffffff</color>
 
 </resources>

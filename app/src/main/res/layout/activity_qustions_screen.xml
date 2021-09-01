@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background2"
+    android:padding="20dp"
+    tools:context=".Activities.Questions_Screen">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:src="@drawable/main_toolbar_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/TXT_CurrentQuestionNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="2/20"
+        android:textColor="@color/green_color"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <carbon.widget.FrameLayout
+        android:id="@+id/frameLayout_Question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/green_color"
+        android:minWidth="150dp"
+        android:padding="15dp"
+        app:carbon_cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TXT_CurrentQuestionNumber">
+
+        <TextView
+            android:id="@+id/TXT_MainQuestion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ellipsize="end"
+            android:maxLines="4"
+            android:textColor="@color/purple_color"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+    </carbon.widget.FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout_Question"
+        tools:ignore="MissingConstraints">
+
+        <carbon.widget.FrameLayout
+            android:id="@+id/frameLayoutAnswer1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/purple_color"
+            android:clickable="true"
+            android:focusable="true"
+            android:minWidth="150dp"
+            android:padding="10dp"
+            app:carbon_cornerRadius="20dp"
+            app:layout_constraintEnd_toStartOf="@+id/frameLayoutAnswer2"
+            app:layout_constraintHorizontal_bias="0.233"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout_Question"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:id="@+id/TXT_Answer1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text=""
+                android:textColor="@color/green_color"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </carbon.widget.FrameLayout>
+
+        <carbon.widget.FrameLayout
+            android:id="@+id/frameLayoutAnswer2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/purple_color"
+            android:clickable="true"
+            android:focusable="true"
+            android:minWidth="150dp"
+            android:padding="10dp"
+            app:carbon_cornerRadius="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout_Question"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:id="@+id/TXT_Answer2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ellipsize="end"
+
+                android:maxLines="1"
+                android:text=""
+                android:textColor="@color/green_color"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </carbon.widget.FrameLayout>
+
+        <carbon.widget.FrameLayout
+            android:id="@+id/frameLayoutAnswer3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/purple_color"
+            android:clickable="true"
+            android:focusable="true"
+            android:minWidth="150dp"
+            android:padding="10dp"
+            app:carbon_cornerRadius="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayoutAnswer2"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:id="@+id/TXT_Answer3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/green_color"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </carbon.widget.FrameLayout>
+
+        <carbon.widget.FrameLayout
+            android:id="@+id/frameLayoutAnswer4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@color/purple_color"
+            android:clickable="true"
+            android:focusable="true"
+            android:minWidth="150dp"
+            android:padding="10dp"
+            app:carbon_cornerRadius="20dp"
+            app:layout_constraintEnd_toStartOf="@+id/frameLayoutAnswer3"
+            app:layout_constraintHorizontal_bias="0.233"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayoutAnswer1"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:id="@+id/TXT_Answer4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/green_color"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </carbon.widget.FrameLayout>
+    </LinearLayout>
+
+    <carbon.widget.FrameLayout
+        android:id="@+id/frameLayout_BtnNext"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/purple_color"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="15dp"
+        app:carbon_cornerRadius="20dp"
+        app:carbon_rippleColor="@color/rippleColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="التالي"
+                android:textColor="@color/green_color"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/icon_next" />
+
+
+        </LinearLayout>
+    </carbon.widget.FrameLayout>
+
+    <carbon.widget.FrameLayout
+        android:id="@+id/frameLayoutBtnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@color/green_color"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="15dp"
+        app:carbon_cornerRadius="20dp"
+        app:carbon_rippleColor="@color/rippleColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/BtnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="عوده للرئيسية"
+            android:textColor="@color/purple_color"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+    </carbon.widget.FrameLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
