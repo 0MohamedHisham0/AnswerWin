@@ -16,5 +16,11 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        buLogin.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+            finishAffinity()
+        }
+
     }
 }
