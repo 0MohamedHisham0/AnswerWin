@@ -166,10 +166,14 @@ public class Questions_Screen extends AppCompatActivity {
         Frame_BtnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (CheckIFAnswerIsTrue())
-                    Score++;
-                DataToViews();
-                DefaultColorViews();
+                if (ClickedAnswer != null) {
+                    if (CheckIFAnswerIsTrue())
+                        Score++;
+                    DataToViews();
+                    DefaultColorViews();
+                } else {
+                    Toast.makeText(Questions_Screen.this, "اختر اجابتك اولا", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

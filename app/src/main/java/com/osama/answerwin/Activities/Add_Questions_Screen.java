@@ -29,13 +29,14 @@ public class Add_Questions_Screen extends AppCompatActivity {
     }
 
     private void AddNewQuestion(String main_q, String t_answer_1, String f_answer_2, String f_answer_3, String f_answer_4) {
-        Map<String, String> Question = new HashMap<>();
+        Map<String, Object> Question = new HashMap<>();
 
         Question.put("main_question", main_q);
         Question.put("t_answer_1", t_answer_1);
         Question.put("f_answer_2", f_answer_2);
         Question.put("f_answer_3", f_answer_3);
         Question.put("f_answer_4", f_answer_4);
+
 
         Constants.GetFireStoneDb().collection("Questions")
                 .add(Question)
