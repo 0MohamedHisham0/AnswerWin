@@ -3,6 +3,8 @@
     package="com.osama.answerwin">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -10,32 +12,29 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AnswerWin">
-
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
-            android:name=".Activities.Add_Questions_Screen"
-            android:exported="true">
-
-        </activity>
-
+            android:name=".Activities.RegisterActivity"
+            android:exported="true" />
         <activity
-            android:name=".Activities.Questions_Screen"
+            android:name=".Activities.LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.SplashScreen"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:exported="true" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-4475284696301186~1660020975" />
-
+            android:value="ca-app-pub-4347201915048498~6120388314" />
     </application>
 
 </manifest>
