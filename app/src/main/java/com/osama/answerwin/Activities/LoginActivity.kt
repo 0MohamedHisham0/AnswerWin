@@ -17,5 +17,9 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        buLogin.setOnClickListener {
+            startActivity(Intent(this, HomeActivity::class.java))
+        }
+
     }
 }

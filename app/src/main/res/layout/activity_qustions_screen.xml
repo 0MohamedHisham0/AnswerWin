@@ -8,6 +8,20 @@
     android:padding="20dp"
     tools:context=".Activities.Questions_Screen">
 
+
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/spin_kit_QS"
+        style="@style/SpinKitView.Large.Circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:SpinKit_Color="@color/purple_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
@@ -20,7 +34,6 @@
         android:id="@+id/TXT_CurrentQuestionNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
         android:text="2/20"
         android:textColor="@color/green_color"
         android:textSize="20sp"
@@ -37,6 +50,7 @@
         android:background="@color/green_color"
         android:minWidth="150dp"
         android:padding="15dp"
+        android:visibility="gone"
         app:carbon_cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,12 +69,13 @@
     </carbon.widget.FrameLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/linearLayout_Answers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:gravity="center"
         android:orientation="vertical"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout_Question"

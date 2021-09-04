@@ -1,16 +1,19 @@
 package com.osama.answerwin.Activities;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -30,6 +33,8 @@ public class Questions_Screen extends AppCompatActivity {
     //Views
     TextView TXT_QuestionNumber, TXT_QuestionMain, TXT_Answer1, TXT_Answer2, TXT_Answer3, TXT_Answer4;
     FrameLayout Frame_QuestionMain, Frame_Answer1, Frame_Answer2, Frame_Answer3, Frame_Answer4, Frame_BtnNext, Frame_BtnBackHome;
+    SpinKitView spin_kit_QS;
+    LinearLayout linearLayout_Answers;
 
     //Var
     private Map<String, Object> Question = new HashMap<>();
@@ -38,6 +43,7 @@ public class Questions_Screen extends AppCompatActivity {
     private List<Integer> UsedQuList = new ArrayList<>();
     private Questions_Model CurrentModel;
     public int Score = 0;
+    private int CurrentQuNumber = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,30 +54,6 @@ public class Questions_Screen extends AppCompatActivity {
         GetQuFromFB();
 
 
-    }
-
-
-
-
-    private void DataToViews() {
-        if (Questions_List != null) {
-            int randN = getRandomNumber(0, Questions_List.size());
-
-            if (!UsedQuList.contains(randN)) {
-                CurrentModel = Questions_List.get(randN);
-                ModelToView(Questions_List.get(randN));
-                UsedQuList.add(randN);
-            } else {
-                //MaxQuestions
-                if (Questions_List.size() == UsedQuList.size()) {
-                    Toast.makeText(Questions_Screen.this, "انت جاوبت علي جميع الاسائله المتاحه الان", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(Questions_Screen.this, "Your Score : " + Score, Toast.LENGTH_SHORT).show();
-                } else
-                    //Go To Next Question
-                    DataToViews();
-            }
-
-        }
     }
 
     private void initViews() {
@@ -91,6 +73,12 @@ public class Questions_Screen extends AppCompatActivity {
         Frame_Answer4 = findViewById(R.id.frameLayoutAnswer4);
         Frame_BtnNext = findViewById(R.id.frameLayout_BtnNext);
         Frame_BtnBackHome = findViewById(R.id.frameLayoutBtnBack);
+
+        spin_kit_QS = findViewById(R.id.spin_kit_QS);
+
+        linearLayout_Answers = findViewById(R.id.linearLayout_Answers);
+
+        TXT_QuestionNumber.setText(CurrentQuNumber + "/" + "20");
 
         //ClicksListener
         Frame_Answer1.setOnClickListener(new View.OnClickListener() {
@@ -172,6 +160,7 @@ public class Questions_Screen extends AppCompatActivity {
                 if (ClickedAnswer != null) {
                     if (CheckIFAnswerIsTrue())
                         Score++;
+                    ClickedAnswer = null;
                     DataToViews();
                     DefaultColorViews();
                 } else {
@@ -180,6 +169,39 @@ public class Questions_Screen extends AppCompatActivity {
             }
         });
 
+        Frame_BtnBackHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Questions_Screen.this, HomeActivity.class));
+            }
+        });
+
+    }
+
+    private void DataToViews() {
+
+        if (Questions_List != null) {
+            int randN = getRandomNumber(0, Questions_List.size());
+
+            if (!UsedQuList.contains(randN)) {
+                TXT_QuestionNumber.setText(CurrentQuNumber + "/" + "20");
+
+                CurrentQuNumber++;
+                CurrentModel = Questions_List.get(randN);
+                ModelToView(Questions_List.get(randN));
+                UsedQuList.add(randN);
+            } else {
+                //MaxQuestions
+                if (Questions_List.size() == UsedQuList.size()) {
+                    CurrentQuNumber = 0;
+                    Toast.makeText(Questions_Screen.this, "انت جاوبت علي جميع الاسائله المتاحه الان", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Questions_Screen.this, "Your Score : " + Score, Toast.LENGTH_SHORT).show();
+                } else
+                    //Go To Next Question
+                    DataToViews();
+            }
+
+        }
     }
 
     private void GetQuFromFB() {
@@ -190,6 +212,10 @@ public class Questions_Screen extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+                            spin_kit_QS.setVisibility(View.GONE);
+
+                            linearLayout_Answers.setVisibility(View.VISIBLE);
+                            Frame_QuestionMain.setVisibility(View.VISIBLE);
                             for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
 
                                 Question = document.getData();

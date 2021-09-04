@@ -17,8 +17,6 @@ import java.util.Map;
 
 public class Add_Questions_Screen extends AppCompatActivity {
 
-    private static final String TAG = "RESULT";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

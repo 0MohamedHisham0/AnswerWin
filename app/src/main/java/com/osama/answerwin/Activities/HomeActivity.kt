@@ -1,5 +1,6 @@
 package com.osama.answerwin.Activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.osama.answerwin.R
@@ -11,6 +12,8 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
         //Home
 
-
+        buAnsAndWin.setOnClickListener {
+            startActivity(Intent(this, Questions_Screen::class.java))
+        }
     }
 }

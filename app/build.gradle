@@ -50,5 +50,8 @@ dependencies {
     //Carbon https://github.com/ZieIony/Carbon
     implementation 'tk.zielony:carbon:0.16.0.1'
 
+    //circular Progressbar https://github.com/ybq/Android-SpinKit
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+
 
 }
