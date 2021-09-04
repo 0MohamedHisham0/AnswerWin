@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background2"
     tools:context=".Activities.HomeActivity">
-
+<!--        Home-->
     <ImageView
         android:id="@+id/ivToolbarLogo"
         android:layout_width="wrap_content"
