@@ -50,6 +50,9 @@ public class Questions_Screen extends AppCompatActivity {
 
     }
 
+
+
+
     private void DataToViews() {
         if (Questions_List != null) {
             int randN = getRandomNumber(0, Questions_List.size());
