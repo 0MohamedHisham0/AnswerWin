@@ -74,6 +74,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/buEnterToWin" />
 
+    <carbon.widget.Button
+        android:id="@+id/buLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/green_color"
+        android:paddingStart="35dp"
+        android:paddingEnd="35dp"
+        android:text="تسجيل خروج"
+        android:textColor="@color/purple_color"
+        android:textStyle="bold"
+        app:carbon_cornerRadius="25dp"
+        app:carbon_rippleColor="@color/rippleColor"
+        app:carbon_stroke="@color/purple_color"
+        app:carbon_strokeWidth="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buStore" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clJsAndPs"
         android:layout_width="match_parent"

@@ -7,6 +7,37 @@
     android:background="@drawable/background2"
     tools:context=".Activities.RegisterActivity">
 
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:id="@+id/spin_kit_QS"
+            style="@style/SpinKitView.Large.Circle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            app:SpinKit_Color="@color/purple_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clRegister"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/ivBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/back_jewel_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:paddingStart="10dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="5dp"/>
+
             <TextView
                 android:id="@+id/tvUsername"
                 android:layout_width="wrap_content"
@@ -18,7 +49,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="40dp"/>
+                android:layout_marginTop="50dp"/>
 
             <EditText
                 android:id="@+id/etUsername"
@@ -180,5 +211,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
