@@ -64,10 +64,16 @@ class LoginActivity : BaseActivity() {
                         }
                     }
         }else if (TextUtils.isEmpty(email)){
+            spin_kit_QS.visibility = View.GONE
+            clLogin.visibility = View.VISIBLE
             Toast.makeText(this, "أدخل بريدك الالكتروني.", Toast.LENGTH_SHORT).show()
         }else if (TextUtils.isEmpty(password)){
+            spin_kit_QS.visibility = View.GONE
+            clLogin.visibility = View.VISIBLE
             Toast.makeText(this, "أدخل كلمة مرورك.", Toast.LENGTH_SHORT).show()
         }else{
+            spin_kit_QS.visibility = View.GONE
+            clLogin.visibility = View.VISIBLE
             Toast.makeText(this, "أدخل البيانات الناقصة.", Toast.LENGTH_SHORT).show()
         }
     }
