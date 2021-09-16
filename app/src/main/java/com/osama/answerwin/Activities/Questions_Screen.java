@@ -2,6 +2,7 @@ package com.osama.answerwin.Activities;
 
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,6 +48,7 @@ public class Questions_Screen extends AppCompatActivity {
     private Questions_Model CurrentModel;
     public int Score = 0;
     private int CurrentQuNumber = 1;
+    private String IntentResult = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,15 @@ public class Questions_Screen extends AppCompatActivity {
     }
 
     private void initViews() {
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            IntentResult = extras.getString("path");
+            //The key argument here must match that used in the other activity
+        } else {
+            Constants.openWelcomeDialog(this);
+        }
+
         //TextViews
         TXT_QuestionNumber = findViewById(R.id.TXT_CurrentQuestionNumber);
         TXT_QuestionMain = findViewById(R.id.TXT_MainQuestion);
@@ -196,8 +207,19 @@ public class Questions_Screen extends AppCompatActivity {
             } else {
                 //MaxQuestions
                 if (Questions_List.size() == UsedQuList.size()) {
-                    CurrentQuNumber = 0;
-                    openDialogDetail();
+
+                    //Check What is incoming he is in bool or in QuAndWin
+                    if (IntentResult.equals("Bool")) {
+                        //Bool
+                        if (Score > 2) {
+                            openDialogYouEnteredBool();
+                        }
+
+                    } else {
+                        //Qu and win
+                        CurrentQuNumber = 0;
+                        openDialogWinPoints();
+                    }
                 } else
                     //Go To Next Question
                     DataToViews();
@@ -205,6 +227,7 @@ public class Questions_Screen extends AppCompatActivity {
 
         }
     }
+
 
     private void GetQuFromFB() {
         Constants.GetFireStoneDb().collection("Questions")
@@ -297,7 +320,29 @@ public class Questions_Screen extends AppCompatActivity {
         TXT_Answer4.setTextColor(getResources().getColor(R.color.green_color));
     }
 
-    private void openDialogDetail() {
+    private void openDialogYouEnteredBool() {
+        Dialog dialog = new Dialog(this); // Context, this, etc.
+        dialog.setContentView(R.layout.dialog_entered_bool);
+
+        Button button = dialog.findViewById(R.id.bu_dialogBool);
+        //Edit User Status to pending
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Go to profile Screen
+                dialog.dismiss();
+                startActivity(new Intent(Questions_Screen.this, HomeActivity.class));
+            }
+        });
+
+        dialog.setTitle("EnteredBool");
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(true);
+
+    }
+
+    private void openDialogWinPoints() {
         Dialog dialog = new Dialog(this); // Context, this, etc.
         dialog.setContentView(R.layout.dialog_points_win);
 
@@ -309,6 +354,7 @@ public class Questions_Screen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
+                startActivity(new Intent(Questions_Screen.this, HomeActivity.class));
             }
         });
 

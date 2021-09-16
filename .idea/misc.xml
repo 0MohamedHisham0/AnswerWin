@@ -16,7 +16,10 @@
         <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/layout/activity_qustions_screen.xml" value="0.264" />
         <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/layout/activity_register.xml" value="0.25905797101449274" />
         <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/layout/activity_splash_screen.xml" value="0.25905797101449274" />
+        <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/layout/dialog_Entered_Bool.xml" value="0.2" />
+        <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/layout/dialog_enter_bool.xml" value="0.259375" />
         <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/layout/dialog_points_win.xml" value="0.259375" />
+        <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/layout/dialog_welcome.xml" value="0.259375" />
       </map>
     </option>
   </component>
