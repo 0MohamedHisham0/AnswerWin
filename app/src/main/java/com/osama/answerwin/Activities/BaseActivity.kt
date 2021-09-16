@@ -10,8 +10,10 @@ open class BaseActivity: AppCompatActivity() {
     var mDatabaseReference: DatabaseReference? = null
     var mDatabase: FirebaseDatabase? = null
     var mAuth: FirebaseAuth? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mAuth = FirebaseAuth.getInstance()
     }
+
 }

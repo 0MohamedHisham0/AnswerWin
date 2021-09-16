@@ -1,10 +1,12 @@
 package com.osama.answerwin.Activities;
 
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -30,6 +32,7 @@ import java.util.Objects;
 
 public class Questions_Screen extends AppCompatActivity {
     private static final String TAG = "RandN";
+
     //Views
     TextView TXT_QuestionNumber, TXT_QuestionMain, TXT_Answer1, TXT_Answer2, TXT_Answer3, TXT_Answer4;
     FrameLayout Frame_QuestionMain, Frame_Answer1, Frame_Answer2, Frame_Answer3, Frame_Answer4, Frame_BtnNext, Frame_BtnBackHome;
@@ -51,8 +54,8 @@ public class Questions_Screen extends AppCompatActivity {
         setContentView(R.layout.activity_qustions_screen);
 
         initViews();
-        GetQuFromFB();
 
+        GetQuFromFB();
 
     }
 
@@ -194,8 +197,7 @@ public class Questions_Screen extends AppCompatActivity {
                 //MaxQuestions
                 if (Questions_List.size() == UsedQuList.size()) {
                     CurrentQuNumber = 0;
-                    Toast.makeText(Questions_Screen.this, "انت جاوبت علي جميع الاسائله المتاحه الان", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(Questions_Screen.this, "Your Score : " + Score, Toast.LENGTH_SHORT).show();
+                    openDialogDetail();
                 } else
                     //Go To Next Question
                     DataToViews();
@@ -205,7 +207,6 @@ public class Questions_Screen extends AppCompatActivity {
     }
 
     private void GetQuFromFB() {
-
         Constants.GetFireStoneDb().collection("Questions")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -213,7 +214,6 @@ public class Questions_Screen extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             spin_kit_QS.setVisibility(View.GONE);
-
                             linearLayout_Answers.setVisibility(View.VISIBLE);
                             Frame_QuestionMain.setVisibility(View.VISIBLE);
                             for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
@@ -296,4 +296,28 @@ public class Questions_Screen extends AppCompatActivity {
         TXT_Answer3.setTextColor(getResources().getColor(R.color.green_color));
         TXT_Answer4.setTextColor(getResources().getColor(R.color.green_color));
     }
+
+    private void openDialogDetail() {
+        Dialog dialog = new Dialog(this); // Context, this, etc.
+        dialog.setContentView(R.layout.dialog_points_win);
+
+        TextView textView = dialog.findViewById(R.id.tv_score_dialogWin);
+        Button button = dialog.findViewById(R.id.bu_dialogWin);
+
+        textView.setText(Score + "");
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.setTitle("winPoints");
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(true);
+
+
+    }
+
+
 }
