@@ -78,6 +78,11 @@ class RegisterActivity : BaseActivity() {
                             val currentUserDb = mDatabaseReference!!.child(userId)
                             currentUserDb.child("name").setValue(name)
                             currentUserDb.child("phone").setValue(phone)
+                            currentUserDb.child("role").setValue("user")
+                            currentUserDb.child("points").setValue("0")
+                            currentUserDb.child("jewels").setValue("0")
+                            currentUserDb.child("status").setValue("خارج السحب")
+                            currentUserDb.child("prize").setValue("0")
                             spin_kit_QS.visibility = View.GONE
                             clRegister.visibility = View.VISIBLE
                             updateUserInfoAndUI()
