@@ -1,7 +1,7 @@
 package com.osama.answerwin.Models;
 
 public class UserModel {
-    String userName;
+    String name;
     String phone;
     String email;
     String points;
@@ -10,8 +10,8 @@ public class UserModel {
     String prize;
     String role;
 
-    public UserModel(String userName, String phone, String email, String points, String jewels, String status, String prize, String role) {
-        this.userName = userName;
+    public UserModel(String name, String phone, String email, String points, String jewels, String status, String prize, String role) {
+        this.name = name;
         this.phone = phone;
         this.email = email;
         this.points = points;
@@ -25,11 +25,11 @@ public class UserModel {
     }
 
     public String getUserName() {
-        return userName;
+        return name;
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.name = userName;
     }
 
     public String getPhone() {

@@ -2,7 +2,6 @@ package com.osama.answerwin.Activities;
 
 
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -49,6 +48,7 @@ public class Questions_Screen extends AppCompatActivity {
     public int Score = 0;
     private int CurrentQuNumber = 1;
     private String IntentResult = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -218,6 +218,7 @@ public class Questions_Screen extends AppCompatActivity {
                     } else {
                         //Qu and win
                         CurrentQuNumber = 0;
+
                         openDialogWinPoints();
                     }
                 } else
@@ -227,7 +228,6 @@ public class Questions_Screen extends AppCompatActivity {
 
         }
     }
-
 
     private void GetQuFromFB() {
         Constants.GetFireStoneDb().collection("Questions")
@@ -349,6 +349,8 @@ public class Questions_Screen extends AppCompatActivity {
         TextView textView = dialog.findViewById(R.id.tv_score_dialogWin);
         Button button = dialog.findViewById(R.id.bu_dialogWin);
 
+//        Constants.GetRef().child("Users").child(userId).child("points").setValue(Score + "");
+        Constants.AddValueTOPoints(Score, getApplicationContext());
         textView.setText(Score + "");
         button.setOnClickListener(new View.OnClickListener() {
             @Override
