@@ -26,7 +26,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
     <ImageView
         android:id="@+id/ivProfileActionBar"
         android:layout_width="wrap_content"
@@ -163,7 +162,6 @@
             tools:text="300"
             android:textColor="@color/green_color"
             android:textSize="17dp"
-            android:layout_marginBottom="5dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

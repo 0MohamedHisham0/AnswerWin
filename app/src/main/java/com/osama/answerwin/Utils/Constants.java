@@ -40,7 +40,6 @@ public class Constants {
                 UserModel userModel = dataSnapshot.getValue(UserModel.class);
             }
         });
-
     }
 
 
