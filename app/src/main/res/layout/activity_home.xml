@@ -38,11 +38,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+        <carbon.widget.Button
+            android:id="@+id/buProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:background="@color/green_color"
+            android:paddingStart="40dp"
+            android:paddingEnd="40dp"
+            android:text="الصفحة الشخصية"
+            android:textColor="@color/purple_color"
+            android:textStyle="bold"
+            app:carbon_cornerRadius="25dp"
+            app:carbon_rippleColor="@color/rippleColor"
+            app:carbon_stroke="@color/purple_color"
+            app:carbon_strokeWidth="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivToolbarLogo" />
+
     <carbon.widget.Button
         android:id="@+id/buAnsAndWin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="10dp"
         android:background="@color/green_color"
         android:paddingStart="56dp"
         android:paddingEnd="56dp"
@@ -55,7 +74,7 @@
         app:carbon_strokeWidth="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivToolbarLogo" />
+        app:layout_constraintTop_toBottomOf="@id/buProfile" />
 
     <carbon.widget.Button
         android:id="@+id/buEnterToWin"

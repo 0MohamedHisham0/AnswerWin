@@ -43,23 +43,6 @@ class HomeActivity : BaseActivity() {
 
         mDatabaseReference = FirebaseDatabase.getInstance().reference
 
-//        mDatabaseReference?.child("Users")?.child(userId)?.get()?.addOnSuccessListener {
-//
-//            tvJewels.text = it.child("jewels").value.toString()
-//            tvPoints.text = it.child("points").value.toString()
-//
-//            spin_kit_QS.visibility = View.GONE
-//            clHome.visibility = View.VISIBLE
-//
-//        }?.addOnFailureListener {
-//            Toast.makeText(
-//                this, "فشل استقبال البيانات.",
-//                Toast.LENGTH_SHORT
-//            ).show()
-//            spin_kit_QS.visibility = View.GONE
-//            clHome.visibility = View.VISIBLE
-//        }
-
         mDatabaseReference?.child("Users")?.child(userId)
             ?.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -95,6 +78,10 @@ class HomeActivity : BaseActivity() {
 
         buEnterToWin.setOnClickListener {
             openDialogDetail()
+        }
+
+        buProfile.setOnClickListener {
+            startActivity(Intent(this, ProfileActivity::class.java))
         }
 
     }
