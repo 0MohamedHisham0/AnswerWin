@@ -76,6 +76,7 @@ class RegisterActivity : BaseActivity() {
                             verifyEmail()
                             //update user profile information
                             val currentUserDb = mDatabaseReference!!.child(userId)
+                            currentUserDb.child("email").setValue(email)
                             currentUserDb.child("name").setValue(name)
                             currentUserDb.child("phone").setValue(phone)
                             currentUserDb.child("role").setValue("user")

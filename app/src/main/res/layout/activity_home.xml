@@ -7,6 +7,27 @@
     android:background="@drawable/background2"
     tools:context=".Activities.HomeActivity">
     <!--        Home-->
+
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/spin_kit_QS_home"
+        style="@style/SpinKitView.Large.Circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        app:SpinKit_Color="@color/purple_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clHome"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
     <ImageView
         android:id="@+id/ivToolbarLogo"
         android:layout_width="wrap_content"
@@ -96,7 +117,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clJsAndPs"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginBottom="35dp"
         android:background="@color/purple_color"
         android:padding="8dp"
@@ -107,7 +128,7 @@
         <ImageView
             android:id="@+id/ivJewels"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginStart="60dp"
             android:src="@drawable/jewel_purple"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -119,9 +140,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="4"
+            tools:text="4"
             android:textColor="@color/green_color"
-            android:textSize="25dp"
+            android:textSize="17dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivJewels"
@@ -140,11 +161,12 @@
         <TextView
             android:id="@+id/tvPoints"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginEnd="60dp"
-            android:text="300"
+            tools:text="300"
             android:textColor="@color/green_color"
-            android:textSize="25dp"
+            android:textSize="17dp"
+            android:layout_marginBottom="5dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -180,5 +202,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </carbon.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
