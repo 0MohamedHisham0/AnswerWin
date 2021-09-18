@@ -124,7 +124,7 @@ class HomeActivity : BaseActivity() {
 
                             } else {
                                 //You don't have enough jewels to go
-                                toast("You don't have enough jewels to go !!")
+                                toast("انت لا تمتلك جواهر كافيه")
                             }
                         }
                     }

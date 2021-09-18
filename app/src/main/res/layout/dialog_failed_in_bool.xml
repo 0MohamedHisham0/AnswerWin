@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="300dp"
-    android:layout_height="250dp"
+    android:layout_height="200dp"
     android:background="@color/white">
 
     <TextView
@@ -13,7 +13,7 @@
         android:layout_margin="20dp"
         android:gravity="center"
         android:padding="20dp"
-        android:text="لقد قمت بالاجابة علي الاسئلة .. انت الان داخل السحب انتظر نتائج عملية السحب و التي ستظهر في "
+        android:text="حاول مره اخري انت لم تجتاز اسأله دخول السحب"
         android:textColor="@color/purple_color"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -22,13 +22,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <carbon.widget.Button
-        android:id="@+id/bu_dialogBool"
+        android:id="@+id/bu_dialogFailedBool"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/purple_color"
-        android:padding="15dp"
-        android:text="ملفك الشخصي"
+        android:text="تم"
         android:textColor="@color/green_color"
+
         android:textStyle="bold"
         app:carbon_cornerRadius="25dp"
         app:carbon_rippleColor="@color/rippleColor"

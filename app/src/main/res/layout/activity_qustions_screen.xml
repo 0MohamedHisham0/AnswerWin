@@ -64,7 +64,7 @@
             android:ellipsize="end"
             android:maxLines="4"
             android:textColor="@color/purple_color"
-            android:textSize="25sp"
+            android:textSize="22sp"
             android:textStyle="bold" />
     </carbon.widget.FrameLayout>
 
@@ -72,10 +72,11 @@
         android:id="@+id/linearLayout_Answers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:gravity="center"
         android:orientation="vertical"
         android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/frameLayoutBtnBack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout_Question"
@@ -107,7 +108,7 @@
                 android:maxLines="1"
                 android:text=""
                 android:textColor="@color/green_color"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
         </carbon.widget.FrameLayout>
@@ -138,7 +139,7 @@
                 android:maxLines="1"
                 android:text=""
                 android:textColor="@color/green_color"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
         </carbon.widget.FrameLayout>
@@ -167,7 +168,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textColor="@color/green_color"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
         </carbon.widget.FrameLayout>
@@ -176,7 +177,7 @@
             android:id="@+id/frameLayoutAnswer4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:background="@color/purple_color"
             android:clickable="true"
             android:focusable="true"
@@ -198,7 +199,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textColor="@color/green_color"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
         </carbon.widget.FrameLayout>

@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -62,6 +63,7 @@ public class Questions_Screen extends AppCompatActivity {
     }
 
     private void initViews() {
+
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -193,7 +195,6 @@ public class Questions_Screen extends AppCompatActivity {
     }
 
     private void DataToViews() {
-
         if (Questions_List != null) {
             int randN = getRandomNumber(0, Questions_List.size());
 
@@ -211,14 +212,18 @@ public class Questions_Screen extends AppCompatActivity {
                     //Check What is incoming he is in bool or in QuAndWin
                     if (IntentResult.equals("Bool")) {
                         //Bool
-                        if (Score > 2) {
-                            openDialogYouEnteredBool();
+                        if (Score > 1) {
+                            //Winner
+                            AddBoolUsers(Constants.GetAuth().getCurrentUser().getUid());
+
+                        } else {
+                            //Losers
+                            openDialogFailedBool();
                         }
 
                     } else {
                         //Qu and win
                         CurrentQuNumber = 0;
-
                         openDialogWinPoints();
                     }
                 } else
@@ -363,6 +368,42 @@ public class Questions_Screen extends AppCompatActivity {
         dialog.setTitle("winPoints");
         dialog.show();
         dialog.setCanceledOnTouchOutside(true);
+
+
+    }
+
+    private void openDialogFailedBool() {
+        Dialog dialog = new Dialog(this); // Context, this, etc.
+        dialog.setContentView(R.layout.dialog_failed_in_bool);
+
+        TextView textView = dialog.findViewById(R.id.tv_score_dialogWin);
+        Button button = dialog.findViewById(R.id.bu_dialogFailedBool);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                startActivity(new Intent(Questions_Screen.this, HomeActivity.class));
+            }
+        });
+
+        dialog.setTitle("FailedBool");
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(true);
+
+
+    }
+
+    private void AddBoolUsers(String UserId) {
+        Map<String, Object> usersID = new HashMap<>();
+        usersID.put("UserID", UserId);
+
+        Constants.GetFireStoneDb().collection("BoolUsers").document(UserId).set(usersID).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                openDialogYouEnteredBool();
+            }
+        });
 
 
     }
