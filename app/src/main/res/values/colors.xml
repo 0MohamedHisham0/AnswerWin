@@ -10,7 +10,10 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="purple_color">#892794</color>
-    <color name="green_color">#75FFC9</color>
+    <color name="green_color">#ECD0E4</color>
     <color name="rippleColor">#42ffffff</color>
+
+    <color name="GreenColor">#24D13C</color>
+    <color name="RedColor">#BF1D30</color>
 
 </resources>

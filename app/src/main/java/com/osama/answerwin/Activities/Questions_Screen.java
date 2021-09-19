@@ -102,16 +102,14 @@ public class Questions_Screen extends AppCompatActivity {
             public void onClick(View view) {
                 ClickedAnswer = TXT_Answer1;
 
-                Frame_Answer1.setBackground(getDrawable(R.color.green_color));
-                TXT_Answer1.setTextColor(getResources().getColor(R.color.purple_color));
+                if (CheckIFAnswerIsTrue()) {
+                    Score++;
+                    Frame_Answer1.setBackground(getDrawable(R.color.GreenColor));
+                } else {
+                    TrueQu(Frame_Answer1, Frame_Answer2, Frame_Answer3, Frame_Answer4, TXT_Answer1, TXT_Answer2, TXT_Answer3, TXT_Answer4);
 
-                Frame_Answer2.setBackground(getDrawable(R.color.purple_color));
-                Frame_Answer3.setBackground(getDrawable(R.color.purple_color));
-                Frame_Answer4.setBackground(getDrawable(R.color.purple_color));
+                }
 
-                TXT_Answer2.setTextColor(getResources().getColor(R.color.green_color));
-                TXT_Answer3.setTextColor(getResources().getColor(R.color.green_color));
-                TXT_Answer4.setTextColor(getResources().getColor(R.color.green_color));
 
             }
         });
@@ -121,16 +119,16 @@ public class Questions_Screen extends AppCompatActivity {
             public void onClick(View view) {
                 ClickedAnswer = TXT_Answer2;
 
-                Frame_Answer2.setBackground(getDrawable(R.color.green_color));
-                TXT_Answer2.setTextColor(getResources().getColor(R.color.purple_color));
+                if (CheckIFAnswerIsTrue()) {
+                    Score++;
+                    Frame_Answer2.setBackground(getDrawable(R.color.GreenColor));
 
-                Frame_Answer1.setBackground(getDrawable(R.color.purple_color));
-                Frame_Answer3.setBackground(getDrawable(R.color.purple_color));
-                Frame_Answer4.setBackground(getDrawable(R.color.purple_color));
+                } else {
+                    TrueQu(Frame_Answer1, Frame_Answer2, Frame_Answer3, Frame_Answer4, TXT_Answer1, TXT_Answer2, TXT_Answer3, TXT_Answer4);
 
-                TXT_Answer1.setTextColor(getResources().getColor(R.color.green_color));
-                TXT_Answer3.setTextColor(getResources().getColor(R.color.green_color));
-                TXT_Answer4.setTextColor(getResources().getColor(R.color.green_color));
+                }
+
+
             }
         });
 
@@ -139,16 +137,16 @@ public class Questions_Screen extends AppCompatActivity {
             public void onClick(View view) {
                 ClickedAnswer = TXT_Answer3;
 
-                Frame_Answer3.setBackground(getDrawable(R.color.green_color));
-                TXT_Answer3.setTextColor(getResources().getColor(R.color.purple_color));
+                if (CheckIFAnswerIsTrue()) {
+                    Score++;
+                    Frame_Answer3.setBackground(getDrawable(R.color.GreenColor));
 
-                Frame_Answer2.setBackground(getDrawable(R.color.purple_color));
-                Frame_Answer1.setBackground(getDrawable(R.color.purple_color));
-                Frame_Answer4.setBackground(getDrawable(R.color.purple_color));
+                } else {
+                    TrueQu(Frame_Answer1, Frame_Answer2, Frame_Answer3, Frame_Answer4, TXT_Answer1, TXT_Answer2, TXT_Answer3, TXT_Answer4);
 
-                TXT_Answer2.setTextColor(getResources().getColor(R.color.green_color));
-                TXT_Answer1.setTextColor(getResources().getColor(R.color.green_color));
-                TXT_Answer4.setTextColor(getResources().getColor(R.color.green_color));
+                }
+
+
             }
         });
 
@@ -157,16 +155,16 @@ public class Questions_Screen extends AppCompatActivity {
             public void onClick(View view) {
                 ClickedAnswer = TXT_Answer4;
 
-                Frame_Answer4.setBackground(getDrawable(R.color.green_color));
-                TXT_Answer4.setTextColor(getResources().getColor(R.color.purple_color));
+                if (CheckIFAnswerIsTrue()) {
+                    Score++;
+                    Frame_Answer4.setBackground(getDrawable(R.color.GreenColor));
 
-                Frame_Answer2.setBackground(getDrawable(R.color.purple_color));
-                Frame_Answer3.setBackground(getDrawable(R.color.purple_color));
-                Frame_Answer1.setBackground(getDrawable(R.color.purple_color));
+                } else {
+                    TrueQu(Frame_Answer1, Frame_Answer2, Frame_Answer3, Frame_Answer4, TXT_Answer1, TXT_Answer2, TXT_Answer3, TXT_Answer4);
 
-                TXT_Answer2.setTextColor(getResources().getColor(R.color.green_color));
-                TXT_Answer3.setTextColor(getResources().getColor(R.color.green_color));
-                TXT_Answer1.setTextColor(getResources().getColor(R.color.green_color));
+                }
+
+
             }
         });
 
@@ -174,11 +172,9 @@ public class Questions_Screen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (ClickedAnswer != null) {
-                    if (CheckIFAnswerIsTrue())
-                        Score++;
-                    ClickedAnswer = null;
-                    DataToViews();
                     DefaultColorViews();
+                    DataToViews();
+                    ClickedAnswer = null;
                 } else {
                     Toast.makeText(Questions_Screen.this, "اختر اجابتك اولا", Toast.LENGTH_SHORT).show();
                 }
@@ -234,6 +230,22 @@ public class Questions_Screen extends AppCompatActivity {
         }
     }
 
+
+    // Firebase
+    private void AddBoolUsers(String UserId) {
+        Map<String, Object> usersID = new HashMap<>();
+        usersID.put("UserID", UserId);
+
+        Constants.GetFireStoneDb().collection("BoolUsers").document(UserId).set(usersID).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                openDialogYouEnteredBool();
+            }
+        });
+
+
+    }
+
     private void GetQuFromFB() {
         Constants.GetFireStoneDb().collection("Questions")
                 .get()
@@ -266,8 +278,13 @@ public class Questions_Screen extends AppCompatActivity {
                 });
     }
 
-    public int getRandomNumber(int min, int max) {
-        return (int) ((Math.random() * (max - min)) + min);
+    //Small Fun
+    public Boolean CheckIFAnswerIsTrue() {
+        return ClickedAnswer.getText().toString().equals(CurrentModel.getT_answer_1());
+    }
+
+    public Boolean CheckIFBuIsTrueOrFalse(TextView textView) {
+        return textView.getText().toString().equals(CurrentModel.getT_answer_1());
     }
 
     public void ModelToView(Questions_Model model) {
@@ -309,10 +326,6 @@ public class Questions_Screen extends AppCompatActivity {
 
     }
 
-    public Boolean CheckIFAnswerIsTrue() {
-        return ClickedAnswer.getText().toString().equals(CurrentModel.getT_answer_1());
-    }
-
     public void DefaultColorViews() {
         Frame_Answer1.setBackground(getDrawable(R.color.purple_color));
         Frame_Answer2.setBackground(getDrawable(R.color.purple_color));
@@ -323,8 +336,52 @@ public class Questions_Screen extends AppCompatActivity {
         TXT_Answer2.setTextColor(getResources().getColor(R.color.green_color));
         TXT_Answer3.setTextColor(getResources().getColor(R.color.green_color));
         TXT_Answer4.setTextColor(getResources().getColor(R.color.green_color));
+
+        Frame_Answer1.setClickable(true);
+        Frame_Answer2.setClickable(true);
+        Frame_Answer3.setClickable(true);
+        Frame_Answer4.setClickable(true);
     }
 
+    public int getRandomNumber(int min, int max) {
+        return (int) ((Math.random() * (max - min)) + min);
+    }
+
+    public void TrueQu(FrameLayout Qu1, FrameLayout Qu2, FrameLayout Qu3, FrameLayout Qu4, TextView TxtQu1, TextView TxtQu2, TextView TxtQu3, TextView TxtQu4) {
+        if (CheckIFBuIsTrueOrFalse(TxtQu1)) {
+            Qu1.setBackground(getDrawable(R.color.GreenColor));
+            Qu2.setBackground(getDrawable(R.color.RedColor));
+            Qu3.setBackground(getDrawable(R.color.RedColor));
+            Qu4.setBackground(getDrawable(R.color.RedColor));
+        }
+        if (CheckIFBuIsTrueOrFalse(TxtQu2)) {
+            Qu1.setBackground(getDrawable(R.color.RedColor));
+            Qu2.setBackground(getDrawable(R.color.GreenColor));
+            Qu3.setBackground(getDrawable(R.color.RedColor));
+            Qu4.setBackground(getDrawable(R.color.RedColor));
+        }
+        if (CheckIFBuIsTrueOrFalse(TxtQu3)) {
+            Qu1.setBackground(getDrawable(R.color.RedColor));
+            Qu2.setBackground(getDrawable(R.color.RedColor));
+            Qu3.setBackground(getDrawable(R.color.GreenColor));
+            Qu4.setBackground(getDrawable(R.color.RedColor));
+        }
+        if (CheckIFBuIsTrueOrFalse(TxtQu4)) {
+            Qu1.setBackground(getDrawable(R.color.RedColor));
+            Qu2.setBackground(getDrawable(R.color.RedColor));
+            Qu3.setBackground(getDrawable(R.color.RedColor));
+            Qu4.setBackground(getDrawable(R.color.GreenColor));
+        }
+
+        Qu1.setClickable(false);
+        Qu2.setClickable(false);
+        Qu3.setClickable(false);
+        Qu4.setClickable(false);
+
+    }
+
+
+    //Dialogs
     private void openDialogYouEnteredBool() {
         Dialog dialog = new Dialog(this); // Context, this, etc.
         dialog.setContentView(R.layout.dialog_entered_bool);
@@ -394,19 +451,10 @@ public class Questions_Screen extends AppCompatActivity {
 
     }
 
-    private void AddBoolUsers(String UserId) {
-        Map<String, Object> usersID = new HashMap<>();
-        usersID.put("UserID", UserId);
-
-        Constants.GetFireStoneDb().collection("BoolUsers").document(UserId).set(usersID).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                openDialogYouEnteredBool();
-            }
-        });
-
-
+    @Override
+    protected void onPause() {
+        super.onPause();
+        startActivity(new Intent(Questions_Screen.this, HomeActivity.class));
+        finishAffinity();
     }
-
-
 }

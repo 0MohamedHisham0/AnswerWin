@@ -3,7 +3,9 @@ package com.osama.answerwin.Activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.text.TextUtils
+import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
@@ -29,6 +31,38 @@ class LoginActivity : BaseActivity() {
             startActivity(intent)
             finish()
         }
+        etEmail.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                message_loginIn.visibility = View.GONE
+
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+
+            }
+
+        })
+
+        etPassword.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                message_loginIn.visibility = View.GONE
+
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+
+            }
+
+        })
+
 
     }
 
@@ -41,6 +75,7 @@ class LoginActivity : BaseActivity() {
             spin_kit_QS.visibility = View.VISIBLE
             loginUser()
         }
+
     }
 
     private fun loginUser() {
@@ -48,30 +83,33 @@ class LoginActivity : BaseActivity() {
         password = etPassword.text.toString()
         if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
             mAuth!!.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this) { task ->
-                        if (task.isSuccessful) {
-                            spin_kit_QS.visibility = View.GONE
-                            // Sign in success, update UI with signed-in user's information
-                            Toast.makeText(this, "تم تسجيل الدخول بنجاح.",
-                                    Toast.LENGTH_SHORT).show()
-                            updateUI()
-                        }else {
-                            spin_kit_QS.visibility = View.GONE
-                            clLogin.visibility = View.VISIBLE
-                            // If sign in fails, display a message to the user.
-                            Toast.makeText(this, "فشل تسجيل الدخول.",
-                                    Toast.LENGTH_SHORT).show()
-                        }
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        spin_kit_QS.visibility = View.GONE
+                        // Sign in success, update UI with signed-in user's information
+                        Toast.makeText(
+                            this, "تم تسجيل الدخول بنجاح.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        updateUI()
+                    } else {
+                        spin_kit_QS.visibility = View.GONE
+                        clLogin.visibility = View.VISIBLE
+                        // If sign in fails, display a message to the user.
+                        message_loginIn.text =
+                            "* البريد الالكتروني او كلمه المرور التي ادخلتهم غير صحيحه, من فضل اعد الادخل."
+                        message_loginIn.visibility = View.VISIBLE
                     }
-        }else if (TextUtils.isEmpty(email)){
+                }
+        } else if (TextUtils.isEmpty(email)) {
             spin_kit_QS.visibility = View.GONE
             clLogin.visibility = View.VISIBLE
             Toast.makeText(this, "أدخل بريدك الالكتروني.", Toast.LENGTH_SHORT).show()
-        }else if (TextUtils.isEmpty(password)){
+        } else if (TextUtils.isEmpty(password)) {
             spin_kit_QS.visibility = View.GONE
             clLogin.visibility = View.VISIBLE
             Toast.makeText(this, "أدخل كلمة مرورك.", Toast.LENGTH_SHORT).show()
-        }else{
+        } else {
             spin_kit_QS.visibility = View.GONE
             clLogin.visibility = View.VISIBLE
             Toast.makeText(this, "أدخل البيانات الناقصة.", Toast.LENGTH_SHORT).show()
