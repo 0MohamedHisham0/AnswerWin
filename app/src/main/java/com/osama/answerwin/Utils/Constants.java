@@ -4,16 +4,26 @@ import android.app.Dialog;
 import android.content.Context;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.osama.answerwin.Models.BooledUsers;
 import com.osama.answerwin.Models.UserModel;
 import com.osama.answerwin.R;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Constants {
@@ -22,6 +32,9 @@ public class Constants {
     private static FirebaseDatabase dbReal;
     private static DatabaseReference databaseReference;
     private static FirebaseAuth mAut;
+
+    //Text
+
     private static final String userId = Objects.requireNonNull(Objects.requireNonNull(Constants.GetAuth()).getCurrentUser()).getUid();
 
     public static FirebaseAuth GetAuth() {
@@ -42,7 +55,6 @@ public class Constants {
         });
     }
 
-
     public static FirebaseFirestore GetFireStoneDb() {
 
         if (db == null)
@@ -59,6 +71,34 @@ public class Constants {
 
 
         return databaseReference;
+    }
+
+    public static void GetSortedQ(String startAt, String endAt, Context context) {
+        GetFireStoneDb().collection("BoolUsers").orderBy("date", com.google.firebase.firestore.Query.Direction.ASCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                List<BooledUsers> list = new ArrayList<>();
+                ;
+
+                if (task.isSuccessful()) {
+                    list.clear();
+
+
+                    for (DocumentSnapshot documentSnapshot : Objects.requireNonNull(task.getResult())) {
+                        BooledUsers user = documentSnapshot.toObject(BooledUsers.class);
+                        list.add(user);
+                    }
+                    Toast.makeText(context, "" + list.size(), Toast.LENGTH_SHORT).show();
+
+                } else {
+                    Toast.makeText(context, "" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
+
+
+
     }
 
     public static void AddValueTOPoints(Integer value, Context context) {
@@ -78,7 +118,7 @@ public class Constants {
             @Override
             public void onSuccess(DataSnapshot dataSnapshot) {
                 String jewels = dataSnapshot.child("jewels").getValue(String.class);
-                GetRef().child("Users").child(userId).child("jewels").setValue(( Integer.parseInt(jewels) - 1 ) + "");
+                GetRef().child("Users").child(userId).child("jewels").setValue((Integer.parseInt(jewels) - 1) + "");
             }
         });
     }

@@ -35,7 +35,6 @@ public class Add_Questions_Screen extends AppCompatActivity {
         Question.put("f_answer_3", f_answer_3);
         Question.put("f_answer_4", f_answer_4);
 
-
         Constants.GetFireStoneDb().collection("Questions")
                 .add(Question)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
