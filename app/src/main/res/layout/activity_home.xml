@@ -206,7 +206,7 @@
             android:background="@color/purple_color"
             android:clickable="true"
             android:focusable="true"
-            android:padding="10dp"
+            android:padding="8dp"
             app:carbon_cornerRadius="10dp"
             app:carbon_rippleColor="@color/rippleColor"
             app:layout_constraintStart_toStartOf="parent"
