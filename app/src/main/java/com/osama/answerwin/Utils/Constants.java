@@ -98,7 +98,6 @@ public class Constants {
         });
 
 
-
     }
 
     public static void AddValueTOPoints(Integer value, Context context) {
@@ -117,8 +116,12 @@ public class Constants {
         GetRef().child("Users").child(Objects.requireNonNull(GetAuth().getCurrentUser()).getUid()).get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
             @Override
             public void onSuccess(DataSnapshot dataSnapshot) {
-                String jewels = dataSnapshot.child("jewels").getValue(String.class);
-                GetRef().child("Users").child(userId).child("jewels").setValue((Integer.parseInt(jewels) - 1) + "");
+
+                if (dataSnapshot != null) {
+                    int jewels = dataSnapshot.child("jewels").getValue(Integer.class);
+                    GetRef().child("Users").child(userId).child("jewels").setValue(jewels - 1 );
+                }
+
             }
         });
     }

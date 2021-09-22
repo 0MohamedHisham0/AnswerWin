@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background2"
-    tools:context=".Activities.ProfileActivity">
+    tools:context=".Activities.StoreActivity">
 
     <com.github.ybq.android.spinkit.SpinKitView
         android:id="@+id/spin_kit_QS_profile"
@@ -31,19 +31,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:src="@drawable/profile_toolbar_logo"
+            android:src="@drawable/store"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/ivBackP"
+            android:id="@+id/ivBackP_Store"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:clickable="true"
             android:focusable="true"
+            android:padding="10dp"
             android:src="@drawable/back_jewel_icon"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -70,53 +71,73 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
-                android:id="@+id/tvName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/green_color"
-                android:textSize="22dp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ivJewel"
-                tools:text="Asem El-Sayed Ammar" />
-
-            <TextView
-                android:id="@+id/tvEmail"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:textColor="@color/white"
-                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvName"
-                tools:text="AsemAmmar@gmail.com" />
+                app:layout_constraintTop_toBottomOf="@+id/ivJewel">
 
-            <TextView
-                android:id="@+id/tvPhone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/white"
-                android:textSize="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvEmail"
-                tools:text="01117716297" />
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="استبدال 60"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tvStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="6dp"
+                    android:text="ب 1 "
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toStartOf="@+id/ivPoints2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/ivJewel2"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="6dp"
+                    android:src="@drawable/jewel_purple"
+                    app:layout_constraintEnd_toStartOf="@+id/textView3"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/ivPoints2"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="6dp"
+                    android:src="@drawable/point_icon"
+                    app:layout_constraintEnd_toStartOf="@+id/textView2"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <carbon.widget.Button
+                android:id="@+id/bu_UseThisPlan"
+                android:layout_width="130dp"
+                android:layout_height="30dp"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/white"
-                android:textSize="20dp"
+                android:layout_marginBottom="40dp"
+                android:background="@color/Main_green_color"
+                android:text="استخدام هذه الخطة"
+                android:textColor="@color/purple_color"
+                android:textStyle="bold"
+                app:carbon_cornerRadius="15dp"
+                app:carbon_rippleColor="@color/rippleColor"
+                app:layout_constraintBottom_toTopOf="@+id/ivPoints"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvPhone"
-                tools:text="الحالة: خارج السحب" />
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
             <ImageView
                 android:id="@+id/ivJewels"
@@ -130,7 +151,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tvStatus" />
 
             <TextView
-                android:id="@+id/tvJewelsP"
+                android:id="@+id/tvJewelsP_Store"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -151,21 +172,20 @@
                 android:layout_marginEnd="10dp"
                 android:src="@drawable/point_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/tvPointsP"
+                app:layout_constraintEnd_toStartOf="@id/tvPointsP_Store"
                 app:layout_constraintTop_toBottomOf="@id/tvStatus" />
 
             <TextView
-                android:id="@+id/tvPointsP"
+                android:id="@+id/tvPointsP_Store"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginTop="30dp"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
+                android:layout_marginBottom="3dp"
                 android:textColor="@color/green_color"
                 android:textSize="17dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvStatus"
                 tools:text="300" />
 
         </carbon.widget.ConstraintLayout>

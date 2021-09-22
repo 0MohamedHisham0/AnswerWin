@@ -90,6 +90,13 @@ class HomeActivity : BaseActivity() {
             startActivity(Intent(this, ProfileActivity::class.java))
         }
 
+        buStore.setOnClickListener {
+            intent = Intent(this, StoreActivity::class.java)
+            intent.putExtra("points", tvPoints.text.toString())
+            intent.putExtra("jewels", tvJewels.text.toString())
+            startActivity(intent)
+        }
+
     }
 
     private fun openDialogDetail() {
@@ -102,7 +109,7 @@ class HomeActivity : BaseActivity() {
                 Constants.GetRef().child("Users").child(it).get()
                     .addOnSuccessListener { dataSnapshot ->
                         var userModel = dataSnapshot.getValue(UserModel::class.java)
-                        var jewels: String? = userModel?.jewels
+                        var jewels: String? = userModel?.jewels.toString()
                         var jewelsInt: Int? = jewels?.toInt()
 
                         if (jewelsInt != null) {

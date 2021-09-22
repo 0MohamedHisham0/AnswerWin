@@ -34,8 +34,8 @@ class ProfileActivity : BaseActivity() {
         Constants.GetRef().child("Users").child(userId).get().addOnSuccessListener { dataSnapshot ->
             val userModel = dataSnapshot.getValue(UserModel::class.java)
             if (userModel != null) {
-                tvJewelsP.text = userModel.jewels
-                tvPointsP.text = userModel.points
+                tvJewelsP.text = userModel.jewels.toString()
+                tvPointsP.text = userModel.points.toString()
                 tvName.text = userModel.name
                 tvEmail.text = userModel.email
                 tvPhone.text = userModel.phone
@@ -56,32 +56,6 @@ class ProfileActivity : BaseActivity() {
 
         }
 
-//        mDatabaseReference?.child("Users")?.child(userId)
-//            ?.addValueEventListener(object : ValueEventListener {
-//                override fun onDataChange(snapshot: DataSnapshot) {
-//
-//
-////                    tvJewelsP.text = snapshot.child("jewels").value.toString()
-////                    tvPointsP.text = snapshot.child("points").value.toString()
-////                    tvName.text = snapshot.child("name").value.toString()
-////                    tvEmail.text = snapshot.child("email").value.toString()
-////                    tvPhone.text = snapshot.child("phone").value.toString()
-////                    tvStatus.text = "الحالة: " + snapshot.child("status").value.toString()
-////
-//                    spin_kit_QS.visibility = View.GONE
-//                    clProfile.visibility = View.VISIBLE
-//                }
-//
-//                override fun onCancelled(error: DatabaseError) {
-//                    Toast.makeText(
-//                        applicationContext, "فشل استقبال البيانات.",
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                    spin_kit_QS.visibility = View.GONE
-//                    clProfile.visibility = View.VISIBLE
-//
-//                }
-//            })
 
         ivBackP.setOnClickListener {
             startActivity(Intent(this, HomeActivity::class.java))

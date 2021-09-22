@@ -4,13 +4,13 @@ public class UserModel {
     String name;
     String phone;
     String email;
-    String points;
-    String jewels;
+    int points;
+    int jewels;
     String status;
     String prize;
     String role;
 
-    public UserModel(String name, String phone, String email, String points, String jewels, String status, String prize, String role) {
+    public UserModel(String name, String phone, String email, int points, int jewels, String status, String prize, String role) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -48,19 +48,19 @@ public class UserModel {
         this.email = email;
     }
 
-    public String getPoints() {
+    public int getPoints() {
         return points;
     }
 
-    public void setPoints(String points) {
+    public void setPoints(int points) {
         this.points = points;
     }
 
-    public String getJewels() {
+    public int getJewels() {
         return jewels;
     }
 
-    public void setJewels(String jewels) {
+    public void setJewels(int jewels) {
         this.jewels = jewels;
     }
 
