@@ -7,13 +7,17 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.drawerlayout.widget.DrawerLayout
 import com.github.ybq.android.spinkit.SpinKitView
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.OnSuccessListener
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -32,6 +36,7 @@ import java.util.*
 
 class HomeActivity : BaseActivity() {
 
+    private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var spin_kit_QS: SpinKitView
     //Var
 
@@ -39,6 +44,26 @@ class HomeActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         //Home
+
+        val drawerLayout: DrawerLayout = findViewById(R.id.drawer)
+        val navigationView: NavigationView = findViewById(R.id.navView)
+
+        toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        navigationView.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.howToPlay -> openWelcomeDialog(this)
+                R.id.winners -> Toast.makeText(applicationContext, "w", Toast.LENGTH_LONG).show()
+                R.id.prizes -> Toast.makeText(applicationContext, "p", Toast.LENGTH_LONG).show()
+                R.id.facebookPage -> Toast.makeText(applicationContext, "f", Toast.LENGTH_LONG)
+                    .show()
+            }
+            true
+        }
         val userId = mAuth!!.currentUser!!.uid
 
         spin_kit_QS = findViewById(R.id.spin_kit_QS_home)
@@ -178,5 +203,21 @@ class HomeActivity : BaseActivity() {
             }
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (toggle.onOptionsItemSelected(item)) {
+            return true
+        }
+        return true
+    }
+
+    fun openWelcomeDialog(context: Context?) {
+        val dialog = Dialog(context!!) // Context, this, etc.
+        dialog.setContentView(R.layout.dialog_welcome)
+        val button = dialog.findViewById<Button>(R.id.bu_dialog_welcome)
+        button.setOnClickListener { dialog.dismiss() }
+        dialog.setTitle("Welcome")
+        dialog.show()
+        dialog.setCanceledOnTouchOutside(true)
+    }
 
 }
