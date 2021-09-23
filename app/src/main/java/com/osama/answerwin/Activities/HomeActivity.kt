@@ -60,7 +60,7 @@ class HomeActivity : BaseActivity() {
             when (it.itemId) {
                 R.id.howToPlay -> openWelcomeDialog(this)
                 R.id.winners -> Toast.makeText(applicationContext, "w", Toast.LENGTH_LONG).show()
-                R.id.prizes -> Toast.makeText(applicationContext, "p", Toast.LENGTH_LONG).show()
+                R.id.prizes -> startActivity(Intent(this, MyPrize::class.java))
                 R.id.facebookPage -> Toast.makeText(applicationContext, "f", Toast.LENGTH_LONG)
                     .show()
             }
