@@ -7,12 +7,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.github.ybq.android.spinkit.SpinKitView
 import com.google.android.gms.tasks.OnCompleteListener
@@ -64,6 +66,11 @@ class HomeActivity : BaseActivity() {
             }
             true
         }
+
+        ivmenu.setOnClickListener {
+            drawerLayout.openDrawer(GravityCompat.END)
+        }
+
         val userId = mAuth!!.currentUser!!.uid
 
         spin_kit_QS = findViewById(R.id.spin_kit_QS_home)
