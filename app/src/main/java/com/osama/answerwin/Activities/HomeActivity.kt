@@ -122,6 +122,7 @@ class HomeActivity : BaseActivity() {
             startActivity(intent)
         }
 
+
     }
 
     private fun openDialogDetail() {
