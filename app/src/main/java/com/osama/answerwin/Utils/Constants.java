@@ -2,6 +2,7 @@ package com.osama.answerwin.Utils;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -23,7 +24,9 @@ import com.osama.answerwin.Models.UserModel;
 import com.osama.answerwin.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 public class Constants {
@@ -119,7 +122,7 @@ public class Constants {
 
                 if (dataSnapshot != null) {
                     int jewels = dataSnapshot.child("jewels").getValue(Integer.class);
-                    GetRef().child("Users").child(userId).child("jewels").setValue(jewels - 1 );
+                    GetRef().child("Users").child(userId).child("jewels").setValue(jewels - 1);
                 }
 
             }
@@ -145,5 +148,12 @@ public class Constants {
 
     }
 
+    public static String getDate(String time) {
+        long timeInt = Long.parseLong(time);
+        Calendar cal = Calendar.getInstance(Locale.ENGLISH);
+        cal.setTimeInMillis(timeInt * 1000);
+        String date = DateFormat.format("dd-MM-yyyy", cal).toString();
+        return date;
+    }
 
 }

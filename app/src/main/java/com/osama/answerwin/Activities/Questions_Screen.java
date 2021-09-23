@@ -234,7 +234,9 @@ public class Questions_Screen extends AppCompatActivity {
     // Firebase
     private void AddBoolUsers(String UserId) {
         Map<String, Object> usersID = new HashMap<>();
+        Long tsLong = System.currentTimeMillis()/1000;
         usersID.put("UserID", UserId);
+        usersID.put("date", tsLong);
 
         Constants.GetFireStoneDb().collection("BoolUsers").document(UserId).set(usersID).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
