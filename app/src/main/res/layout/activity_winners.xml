@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background2"
-    tools:context=".Activities.MyPrize">
-
+    tools:context=".Activities.WinnersActivity">
 
     <com.github.ybq.android.spinkit.SpinKitView
-        android:id="@+id/pb_MyPrize"
+        android:id="@+id/pb_Winners"
         style="@style/SpinKitView.Large.Circle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,7 +23,7 @@
         tools:ignore="MissingConstraints" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_MyPrize"
+        android:id="@+id/cl_winners"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
@@ -33,7 +31,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/ivBackP_MyPrize"
+            android:id="@+id/ivBackP_Winners"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -46,7 +44,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <carbon.widget.ImageView
-            android:id="@+id/ivProfileActionBar"
+            android:id="@+id/ivWinnersActionBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -56,12 +54,13 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_MyPrize"
+            android:id="@+id/rv_Winners"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivProfileActionBar" />
+            app:layout_constraintTop_toBottomOf="@id/ivWinnersActionBar" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

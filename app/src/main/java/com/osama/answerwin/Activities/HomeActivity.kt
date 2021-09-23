@@ -59,7 +59,7 @@ class HomeActivity : BaseActivity() {
         navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.howToPlay -> openWelcomeDialog(this)
-                R.id.winners -> Toast.makeText(applicationContext, "w", Toast.LENGTH_LONG).show()
+                R.id.winners -> startActivity(Intent(this, WinnersActivity::class.java))
                 R.id.prizes -> startActivity(Intent(this, MyPrize::class.java))
                 R.id.facebookPage -> Toast.makeText(applicationContext, "f", Toast.LENGTH_LONG)
                     .show()
