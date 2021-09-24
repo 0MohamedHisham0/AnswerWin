@@ -1,5 +1,6 @@
 package com.osama.answerwin.Activities
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,7 +11,12 @@ import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import carbon.widget.Button
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.osama.answerwin.R
+import com.osama.answerwin.Utils.Constants
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -91,7 +97,7 @@ class LoginActivity : BaseActivity() {
                             this, "تم تسجيل الدخول بنجاح.",
                             Toast.LENGTH_SHORT
                         ).show()
-                        updateUI()
+                        updateUI(this)
                     } else {
                         spin_kit_QS.visibility = View.GONE
                         clLogin.visibility = View.VISIBLE
@@ -116,9 +122,31 @@ class LoginActivity : BaseActivity() {
         }
     }
 
-    private fun updateUI() {
-        val intent = Intent(this, HomeActivity::class.java)
-        startActivity(intent)
-        finishAffinity()
+    private fun updateUI(context: Context) {
+        Constants.GetAuth().currentUser?.let {
+            mDatabaseReference?.child("Users")?.child(it.uid)
+                ?.addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if(snapshot.child("role").value.toString() == "admin"){
+                            val intent = Intent(context, AdminHomeActivity::class.java)
+                            startActivity(intent)
+                            finishAffinity()
+                        }else{
+                            val intent = Intent(context, HomeActivity::class.java)
+                            startActivity(intent)
+                            finishAffinity()
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        Toast.makeText(
+                            applicationContext, "فشل استقبال البيانات.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+
+                })
+        };
     }
 }

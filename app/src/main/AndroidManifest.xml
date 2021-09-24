@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
+            android:name=".Activities.AdminHomeActivity"
+            android:exported="true" />
+        <activity
             android:name=".Activities.WinnersActivity"
             android:exported="true" />
         <activity
