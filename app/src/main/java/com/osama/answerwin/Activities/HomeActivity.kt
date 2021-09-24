@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -61,8 +62,7 @@ class HomeActivity : BaseActivity() {
                 R.id.howToPlay -> openWelcomeDialog(this)
                 R.id.winners -> startActivity(Intent(this, WinnersActivity::class.java))
                 R.id.prizes -> startActivity(Intent(this, MyPrize::class.java))
-                R.id.facebookPage -> Toast.makeText(applicationContext, "f", Toast.LENGTH_LONG)
-                    .show()
+                R.id.facebookPage -> facebookPage()
             }
             true
         }
@@ -226,6 +226,12 @@ class HomeActivity : BaseActivity() {
         dialog.setTitle("Welcome")
         dialog.show()
         dialog.setCanceledOnTouchOutside(true)
+    }
+
+    fun facebookPage(){
+        val uriUrl = Uri.parse("https://www.facebook.com/%D8%AC%D8%A7%D9%88%D8%A8-%D9%88%D8%A7%D8%B1%D8%A8%D8%AD-101808732270696/")
+        val launchBrowser = Intent(Intent.ACTION_VIEW, uriUrl)
+        startActivity(launchBrowser)
     }
 
 }
