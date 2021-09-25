@@ -11,7 +11,6 @@ import com.osama.answerwin.R
 import com.osama.answerwin.Utils.Constants
 import kotlinx.android.synthetic.main.activity_my_prize.*
 import java.util.*
-import kotlin.collections.ArrayList
 
 class MyPrize : AppCompatActivity() {
 

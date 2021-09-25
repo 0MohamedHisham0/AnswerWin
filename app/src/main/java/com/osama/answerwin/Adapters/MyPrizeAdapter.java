@@ -39,7 +39,7 @@ public class MyPrizeAdapter extends RecyclerView.Adapter<VH> {
         myPrizeModel model = list.get(position);
 
         holder.tv_Prize.setText(model.getPrize());
-        holder.tv_Date.setText(Constants.getDate(model.getDate()));
+        holder.tv_Date.setText(Constants.convertToDate(model.getDate()));
 
     }
 

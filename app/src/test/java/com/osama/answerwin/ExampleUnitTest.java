@@ -1,8 +1,11 @@
 package com.osama.answerwin;
 
+import com.google.common.collect.Lists;
+
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import java.util.List;
+import java.util.Random;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -11,7 +14,22 @@ import static org.junit.Assert.*;
  */
 public class ExampleUnitTest {
     @Test
-    public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
+    public void getRandomWinners() {
+        Random rand = new Random();
+        List<String> givenList = Lists.newArrayList("one", "two", "three", "four");
+
+        int numberOfElements = 2;
+
+        for (int i = 0; i < numberOfElements; i++) {
+            int randomIndex = rand.nextInt(givenList.size());
+            String randomElement = givenList.get(randomIndex);
+            givenList.remove(randomIndex);
+
+            System.out.println(randomElement);
+        }
     }
+
+
+
+
 }

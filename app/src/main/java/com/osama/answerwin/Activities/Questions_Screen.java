@@ -19,9 +19,11 @@ import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.osama.answerwin.Models.Questions_Model;
+import com.osama.answerwin.Models.UserModel;
 import com.osama.answerwin.R;
 import com.osama.answerwin.Utils.Constants;
 
@@ -49,7 +51,6 @@ public class Questions_Screen extends AppCompatActivity {
     public int Score = 0;
     private int CurrentQuNumber = 1;
     private String IntentResult = "";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -210,7 +211,7 @@ public class Questions_Screen extends AppCompatActivity {
                         //Bool
                         if (Score > 1) {
                             //Winner
-                            AddBoolUsers(Constants.GetAuth().getCurrentUser().getUid());
+                            GetUserData(Constants.GetAuth().getCurrentUser().getUid());
 
                         } else {
                             //Losers
@@ -232,22 +233,6 @@ public class Questions_Screen extends AppCompatActivity {
 
 
     // Firebase
-    private void AddBoolUsers(String UserId) {
-        Map<String, Object> usersID = new HashMap<>();
-        Long tsLong = System.currentTimeMillis()/1000;
-        usersID.put("UserID", UserId);
-        usersID.put("date", tsLong);
-
-        Constants.GetFireStoneDb().collection("BoolUsers").document(UserId).set(usersID).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                openDialogYouEnteredBool();
-            }
-        });
-
-
-    }
-
     private void GetQuFromFB() {
         Constants.GetFireStoneDb().collection("Questions")
                 .get()
@@ -278,6 +263,31 @@ public class Questions_Screen extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    public void GetUserData(String userId) {
+        Constants.GetRef().child("Users").child(userId).get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+            @Override
+            public void onSuccess(DataSnapshot dataSnapshot) {
+                UserModel userModel = dataSnapshot.getValue(UserModel.class);
+
+                //Add boolUsers Var
+                Map<String, Object> MapUser = new HashMap<>();
+                Long tsLong = System.currentTimeMillis() / 1000;
+
+                MapUser.put("userName", userModel.getName());
+                MapUser.put("date", tsLong);
+
+                //AddBoolUsers
+
+                Constants.GetFireStoneDb().collection("BoolUsers").document(userId).set(MapUser).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        openDialogYouEnteredBool();
+                    }
+                });
+            }
+        });
     }
 
     //Small Fun
