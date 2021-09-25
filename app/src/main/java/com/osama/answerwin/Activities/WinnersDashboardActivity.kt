@@ -25,7 +25,7 @@ import java.util.HashMap
 class WinnersDashboardActivity : BaseActivity() {
     private var pWinners: Map<String, Any> = HashMap()
     private val pWinnersList = mutableListOf<WinnersDashModel>()
-    lateinit var  recyclerView: RecyclerView
+    lateinit var recyclerView: RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_winners_dashboard)
@@ -49,6 +49,7 @@ class WinnersDashboardActivity : BaseActivity() {
                             var model: WinnersDashModel = WinnersDashModel()
                             var userID = pWinners.get("UserID").toString()
 
+                            Toast.makeText(this, "" + userID, Toast.LENGTH_SHORT).show()
 
                             mDatabaseReference = FirebaseDatabase.getInstance().reference
 
@@ -56,7 +57,7 @@ class WinnersDashboardActivity : BaseActivity() {
                                 ?.addValueEventListener(object : ValueEventListener {
                                     override fun onDataChange(snapshot: DataSnapshot) {
 
-                                        model.name =snapshot.child("name").value.toString()
+                                        model.name = snapshot.child("name").value.toString()
                                         model.phone = snapshot.child("phone").value.toString()
                                         model.points = snapshot.child("points").value.toString()
                                         model.jewels = snapshot.child("jewels").value.toString()
@@ -74,9 +75,10 @@ class WinnersDashboardActivity : BaseActivity() {
 
                                 });
 
-
                         }
+
                         initWDRV(pWinnersList)
+
                     } else {
                         Toast.makeText(
                             this,
@@ -90,15 +92,10 @@ class WinnersDashboardActivity : BaseActivity() {
     }
 
     private fun initWDRV(pWinnersList: MutableList<WinnersDashModel>) {
-        recyclerView = findViewById(R.id.rv_WinnersDash)
-        recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        rv_WinnersDash.adapter = WinnersDashAdapter(pWinnersList, this)
 
-
-        recyclerView.adapter = WinnersDashAdapter(pWinnersList, this)
-
-        cl_winnersDash.visibility = View.VISIBLE
-        pb_WinnersDash.visibility = View.INVISIBLE
+//        cl_winnersDash.visibility = View.VISIBLE
+//        pb_WinnersDash.visibility = View.INVISIBLE
 
     }
 

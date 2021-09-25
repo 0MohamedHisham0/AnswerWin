@@ -5,22 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background2"
-
     android:orientation="vertical"
     tools:context=".Activities.BoolUsersActivity">
 
-    <TextView
-        android:id="@+id/textView4"
+    <ImageView
+        android:id="@+id/ivToolbarLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:text="المستخدمين الداخلين في السحب"
-        android:textColor="@color/green_color"
-        android:textSize="25sp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/text_pink"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
@@ -40,8 +37,8 @@
             android:background="@color/Main_green_color"
             android:clickable="true"
             android:focusable="true"
-            android:inputType="text"
             android:hint="من يوم"
+            android:inputType="text"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
             android:paddingRight="20dp"
@@ -61,9 +58,9 @@
             android:layout_marginEnd="30dp"
             android:background="@color/Main_green_color"
             android:clickable="true"
-            android:inputType="text"
             android:focusable="true"
             android:hint="حتي يوم"
+            android:inputType="text"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
             android:paddingRight="20dp"
