@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background2"
-    tools:context=".Activities.BoolUsers">
+
+    android:orientation="vertical"
+    tools:context=".Activities.BoolUsersActivity">
 
     <TextView
         android:id="@+id/textView4"
@@ -24,6 +26,7 @@
         android:id="@+id/constraintLayout3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,13 +39,14 @@
             android:layout_height="wrap_content"
             android:background="@color/Main_green_color"
             android:clickable="true"
-            android:text="01-01-2021"
             android:focusable="true"
+            android:inputType="text"
             android:hint="من يوم"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
             android:paddingRight="20dp"
             android:paddingBottom="10dp"
+            android:text="01-01-2021"
             android:textColor="@color/purple_color"
             app:carbon_cornerRadius="10dp"
             app:carbon_rippleColor="@color/rippleColor"
@@ -54,16 +58,17 @@
             android:id="@+id/et_pickEnd_boolUsers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="01-01-2022"
             android:layout_marginEnd="30dp"
             android:background="@color/Main_green_color"
             android:clickable="true"
+            android:inputType="text"
             android:focusable="true"
             android:hint="حتي يوم"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
             android:paddingRight="20dp"
             android:paddingBottom="10dp"
+            android:text="01-01-2022"
             android:textColor="@color/purple_color"
             app:carbon_cornerRadius="10dp"
             app:carbon_rippleColor="@color/rippleColor"
@@ -100,8 +105,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_1"
         android:layout_width="wrap_content"
-        android:layout_marginLeft="15dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -113,6 +119,7 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:hint="ادخل عدد الفائزين"
+            android:inputType="number"
             android:padding="15dp"
             app:carbon_cornerRadius="20dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -143,15 +150,18 @@
         </carbon.widget.FrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_BoolUsers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
+        android:overScrollMode="never"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cl_1" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

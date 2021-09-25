@@ -4,7 +4,6 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Freelance/AnswerAndWin/AnswerWin/app/src/main/res/drawable/roundedcorner.xml" value="0.19375" />
-        <entry key="..\:/Freelance/AnswerAndWin/AnswerWin/app/src/main/res/layout/activity_admin_home.xml" value="0.22" />
         <entry key="..\:/Freelance/AnswerAndWin/AnswerWin/app/src/main/res/layout/activity_home.xml" value="0.22" />
         <entry key="..\:/Freelance/AnswerAndWin/AnswerWin/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Freelance/AnswerAndWin/AnswerWin/app/src/main/res/layout/activity_profile.xml" value="0.1" />
@@ -14,6 +13,7 @@
         <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.15104166666666666" />
         <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/drawable/icon_next.xml" value="0.15104166666666666" />
         <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/drawable/roundedcorner.xml" value="0.146875" />
+        <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/layout/activity_admin_home.xml" value="0.259375" />
         <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/layout/activity_bool_users.xml" value="0.264" />
         <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/layout/activity_home.xml" value="0.264" />
         <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/layout/activity_login.xml" value="0.264" />
@@ -31,8 +31,10 @@
         <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/layout/dialog_failed_in_bool.xml" value="0.259375" />
         <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/layout/dialog_points_win.xml" value="0.259375" />
         <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/layout/dialog_welcome.xml" value="0.259375" />
+        <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/layout/item_bool_users.xml" value="0.4" />
         <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/layout/item_my_prize.xml" value="0.4" />
         <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/layout/item_winners.xml" value="0.259375" />
+        <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/layout/nav_header.xml" value="0.259375" />
         <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.15104166666666666" />
         <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.15104166666666666" />
       </map>

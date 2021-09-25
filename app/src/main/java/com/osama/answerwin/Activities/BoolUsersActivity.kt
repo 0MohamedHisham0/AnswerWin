@@ -4,13 +4,17 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.google.common.collect.Lists
+import com.osama.answerwin.Adapters.BoolUsersAdapter
+import com.osama.answerwin.Adapters.MyPrizeAdapter
 import com.osama.answerwin.Models.BooledModel
 import com.osama.answerwin.R
 import com.osama.answerwin.Utils.Constants
 import kotlinx.android.synthetic.main.activity_bool_users.*
+import kotlinx.android.synthetic.main.activity_my_prize.*
 import java.util.*
 
-class BoolUsers : AppCompatActivity() {
+class BoolUsersActivity : AppCompatActivity() {
     val winnersList: MutableList<BooledModel?> = ArrayList()
     val boolUsers: MutableList<BooledModel> = ArrayList()
 
@@ -38,10 +42,10 @@ class BoolUsers : AppCompatActivity() {
             if (!et_EnterWinnerNum.isEmpty) {
                 if (et_EnterWinnerNum.text.toString().toInt() <= boolUsers.size) {
                     getRandomNumFromList(et_EnterWinnerNum.text.toString().toInt())
-
+                    addWinners(winnersList)
                     Toast.makeText(
                         this,
-                        "لثد اخترت عدد " + winnersList.size + " فائزين ",
+                        "لقد اخترت عدد " + winnersList.size + " فائزين ",
                         Toast.LENGTH_SHORT
                     ).show()
 
@@ -56,9 +60,9 @@ class BoolUsers : AppCompatActivity() {
                 Toast.makeText(this, "من فضلك ادخل عدد الفائزين!", Toast.LENGTH_SHORT).show()
             }
         }
-
     }
 
+    //FireBase
     private fun getSortedQ(context: Context?, start: Long, end: Long) {
         Constants.GetFireStoneDb().collection("BoolUsers")
             .whereGreaterThanOrEqualTo("date", start).whereLessThanOrEqualTo("date", end)
@@ -69,7 +73,8 @@ class BoolUsers : AppCompatActivity() {
                         val user = documentSnapshot.toObject(BooledModel::class.java)
                         boolUsers.add(user)
                     }
-                    Toast.makeText(context, "" + boolUsers.size, Toast.LENGTH_SHORT).show()
+                    rv_BoolUsers.adapter = BoolUsersAdapter(boolUsers, this)
+                    rv_BoolUsers.isNestedScrollingEnabled = false;
 
 
                 } else {
@@ -79,6 +84,16 @@ class BoolUsers : AppCompatActivity() {
             }
     }
 
+    fun addWinners(list: MutableList<BooledModel?>) {
+        for (i in list) {
+            if (i != null) {
+                Constants.GetFireStoneDb().collection("WinnerUsers").document(i.userID).set(i)
+            }
+        }
+
+    }
+
+
     private fun getRandomNumFromList(numberOfWinners: Int) {
         val rand = Random()
         winnersList.clear()
@@ -86,11 +101,9 @@ class BoolUsers : AppCompatActivity() {
 
         for (i in 0 until numberOfWinners) {
 
-            if (list.size > 1) {
-                val randomIndex = rand.nextInt(list.size)
-                winnersList.add(list[randomIndex])
-                list.removeAt(randomIndex)
-            }
+            val randomIndex = rand.nextInt(list.size)
+            winnersList.add(list[randomIndex])
+            list.removeAt(randomIndex)
 
         }
     }
@@ -98,5 +111,6 @@ class BoolUsers : AppCompatActivity() {
     fun toast(message: String) {
         Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()
     }
+
 
 }
