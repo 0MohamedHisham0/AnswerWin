@@ -47,10 +47,13 @@ class StoreActivity : BaseActivity() {
                 tvJewelsP_Store.text = userModel.jewels.toString()
 
                 if (userModel.points.toInt() > 60) {
+                    // - 60 Form points
                     Constants.GetRef().child("Users").child(userId).child("points")
-                        .setValue((userModel.points.toInt() - 60))
+                        .setValue(((userModel.points.toInt() - 60).toString()))
+
+                    // 1 +  jewels
                     Constants.GetRef().child("Users").child(userId).child("jewels")
-                        .setValue((userModel.jewels.toInt() + 1))
+                        .setValue((userModel.jewels.toInt() + 1).toString())
 
                     tvPointsP_Store.text = (userModel.points.toInt() - 60).toString()
                     tvJewelsP_Store.text = (userModel.jewels.toInt() + 1).toString()

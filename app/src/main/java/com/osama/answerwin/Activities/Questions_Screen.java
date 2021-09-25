@@ -246,7 +246,6 @@ public class Questions_Screen extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
 
                                 Question = document.getData();
-
                                 Questions_Model questions_model = new Questions_Model(
                                         Question.get("main_question").toString(),
                                         Question.get("t_answer_1").toString(),

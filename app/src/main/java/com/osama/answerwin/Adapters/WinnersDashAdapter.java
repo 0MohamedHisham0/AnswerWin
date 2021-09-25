@@ -9,19 +9,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.osama.answerwin.Models.WinnersDashModel;
-import com.osama.answerwin.Models.WinnersModel;
+import com.osama.answerwin.Models.UserModel;
 import com.osama.answerwin.R;
 
 import java.util.List;
 
 public class WinnersDashAdapter extends RecyclerView.Adapter<WDVH> {
 
-    private List<WinnersDashModel> list;
+    private List<UserModel> list;
     private Context context;
     private View viewD;
 
-    public WinnersDashAdapter(List<WinnersDashModel> list, Context context) {
+    public WinnersDashAdapter(List<UserModel> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -36,12 +35,12 @@ public class WinnersDashAdapter extends RecyclerView.Adapter<WDVH> {
 
     @Override
     public void onBindViewHolder(@NonNull WDVH holder, int position) {
-        WinnersDashModel model = list.get(position);
+        UserModel model = list.get(position);
 
         holder.tv_Name.setText(model.getName());
         holder.tv_Phone.setText(model.getPhone());
-        holder.tv_Points.setText(model.getPoints());
-        holder.tv_Jewels.setText(model.getJewels());
+        holder.tv_Points.setText(model.getPoints()+"");
+        holder.tv_Jewels.setText(model.getJewels()+"");
 
     }
 

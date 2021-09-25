@@ -87,12 +87,14 @@ class BoolUsersActivity : AppCompatActivity() {
     fun addWinners(list: MutableList<BooledModel?>) {
         for (i in list) {
             if (i != null) {
-                Constants.GetFireStoneDb().collection("WinnerUsers").document(i.userID).set(i)
+                val userData_ = mutableMapOf<String, String>()
+                userData_["UserID"] = i.userID.toString()
+                Constants.GetFireStoneDb().collection("PendingUsers").document(i.userID)
+                    .set(userData_)
             }
         }
 
     }
-
 
     private fun getRandomNumFromList(numberOfWinners: Int) {
         val rand = Random()

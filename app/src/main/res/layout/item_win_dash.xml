@@ -112,6 +112,7 @@
         android:hint="مثال: 20 ج.م"
         android:layout_marginTop="3dp"
         android:padding="7dp"
+        android:inputType="text"
         android:background="@drawable/roundedcorner"
         android:layout_marginStart="10dp"
         android:textDirection="rtl"
