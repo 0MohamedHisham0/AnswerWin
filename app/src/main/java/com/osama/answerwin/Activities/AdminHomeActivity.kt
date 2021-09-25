@@ -18,5 +18,9 @@ class AdminHomeActivity : BaseActivity() {
             finishAffinity()
         }
 
+        buWinDash.setOnClickListener {
+            startActivity(Intent(this, WinnersDashboardActivity::class.java))
+        }
+
     }
 }
