@@ -163,8 +163,11 @@ public class Constants {
     public static Long convertToTimestamp(String timeInDate) throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         long ts = dateFormat.parse(timeInDate).getTime() / 1000;
-        return ts ;
+        return ts;
     }
 
-
+    public static Long getCurrentTimestamp() {
+        Long tsLong = System.currentTimeMillis() / 1000;
+        return tsLong;
+    }
 }
