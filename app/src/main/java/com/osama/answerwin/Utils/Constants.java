@@ -19,10 +19,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.osama.answerwin.Models.BooledUsers;
+import com.osama.answerwin.Models.BooledModel;
 import com.osama.answerwin.Models.UserModel;
 import com.osama.answerwin.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -54,6 +56,8 @@ public class Constants {
             @Override
             public void onSuccess(DataSnapshot dataSnapshot) {
                 UserModel userModel = dataSnapshot.getValue(UserModel.class);
+
+
             }
         });
     }
@@ -80,7 +84,7 @@ public class Constants {
         GetFireStoneDb().collection("BoolUsers").orderBy("date", com.google.firebase.firestore.Query.Direction.ASCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                List<BooledUsers> list = new ArrayList<>();
+                List<BooledModel> list = new ArrayList<>();
                 ;
 
                 if (task.isSuccessful()) {
@@ -88,7 +92,7 @@ public class Constants {
 
 
                     for (DocumentSnapshot documentSnapshot : Objects.requireNonNull(task.getResult())) {
-                        BooledUsers user = documentSnapshot.toObject(BooledUsers.class);
+                        BooledModel user = documentSnapshot.toObject(BooledModel.class);
                         list.add(user);
                     }
                     Toast.makeText(context, "" + list.size(), Toast.LENGTH_SHORT).show();
@@ -148,12 +152,19 @@ public class Constants {
 
     }
 
-    public static String getDate(String time) {
+    public static String convertToDate(String time) {
         long timeInt = Long.parseLong(time);
         Calendar cal = Calendar.getInstance(Locale.ENGLISH);
         cal.setTimeInMillis(timeInt * 1000);
         String date = DateFormat.format("dd-MM-yyyy", cal).toString();
         return date;
     }
+
+    public static Long convertToTimestamp(String timeInDate) throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        long ts = dateFormat.parse(timeInDate).getTime() / 1000;
+        return ts ;
+    }
+
 
 }

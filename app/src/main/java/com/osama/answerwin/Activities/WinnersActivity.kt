@@ -44,6 +44,7 @@ class WinnersActivity : AppCompatActivity() {
                         for (document in task.result!!) {
                             winners = document.data
 
+
                             var model: WinnersModel = WinnersModel()
                             model.name = winners.get("userName").toString()
                             model.prize = winners.get("prize").toString()

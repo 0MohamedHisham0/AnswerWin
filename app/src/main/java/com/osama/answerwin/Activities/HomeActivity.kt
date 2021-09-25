@@ -1,41 +1,28 @@
 package com.osama.answerwin.Activities
 
 import android.app.Dialog
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.github.ybq.android.spinkit.SpinKitView
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.Query
-import com.google.firebase.firestore.QuerySnapshot
-import com.osama.answerwin.Models.BooledUsers
 import com.osama.answerwin.Models.UserModel
 import com.osama.answerwin.R
 import com.osama.answerwin.Utils.Constants
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.dialog_enter_bool.*
-import kotlinx.android.synthetic.main.dialog_points_win.*
-import java.util.*
 
 class HomeActivity : BaseActivity() {
 
@@ -183,33 +170,7 @@ class HomeActivity : BaseActivity() {
         Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()
     }
 
-    //Test
-    fun GetSortedQ(context: Context?) {
 
-        //Long tsLong = System.currentTimeMillis()/1000;
-        Constants.GetFireStoneDb().collection("BoolUsers")
-            .orderBy("date", Query.Direction.ASCENDING).get().addOnCompleteListener { task ->
-                val list: MutableList<BooledUsers?> = ArrayList()
-                if (task.isSuccessful) {
-                    list.clear()
-                    for (documentSnapshot in Objects.requireNonNull(task.result)!!) {
-                        val user = documentSnapshot.toObject(BooledUsers::class.java)
-                        list.add(user)
-                    }
-                    Toast.makeText(context, "" + list.size, Toast.LENGTH_SHORT).show()
-                    Toast.makeText(
-                        context,
-                        "" + list.get(0)?.userID + "\n" + list.get(1)?.userID,
-                        Toast.LENGTH_SHORT
-                    ).show()
-
-
-                } else {
-                    Toast.makeText(context, "" + task.exception!!.message, Toast.LENGTH_SHORT)
-                        .show()
-                }
-            }
-    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (toggle.onOptionsItemSelected(item)) {

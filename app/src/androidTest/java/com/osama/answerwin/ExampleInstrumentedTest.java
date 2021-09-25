@@ -1,13 +1,16 @@
 package com.osama.answerwin;
 
-import android.content.Context;
-import androidx.test.platform.app.InstrumentationRegistry;
+import android.text.format.DateFormat;
+
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.junit.Assert.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -17,9 +20,22 @@ import static org.junit.Assert.*;
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
     @Test
-    public void useAppContext() {
-        // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.osama.answerwin", appContext.getPackageName());
+    public void Test() {
+        long timeInt = Long.parseLong("1632336906");
+        Calendar cal = Calendar.getInstance(Locale.ENGLISH);
+        cal.setTimeInMillis(timeInt * 1000);
+        String date = DateFormat.format("dd-MM-yyyy", cal).toString();
+        System.out.println("---------------------------------");
+        System.out.println(date);
+
     }
+
+    @Test
+    public void Test2() throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        long ts = dateFormat.parse("22-10-2021").getTime() / 1000;
+        System.out.println(ts);
+    }
+
+
 }
