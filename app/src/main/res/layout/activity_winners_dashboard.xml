@@ -7,6 +7,21 @@
     android:background="@drawable/background2"
     tools:context=".Activities.WinnersDashboardActivity">
 
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/pb_WinnersDash"
+        style="@style/SpinKitView.Large.Circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:SpinKit_Color="@color/purple_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499"
+        tools:ignore="MissingConstraints" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_winnersDash"
         android:layout_width="match_parent"
