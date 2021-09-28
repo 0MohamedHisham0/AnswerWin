@@ -37,6 +37,7 @@
             android:background="@color/Main_green_color"
             android:clickable="true"
             android:focusable="true"
+            android:textSize="13sp"
             android:hint="من يوم"
             android:inputType="text"
             android:paddingLeft="20dp"
@@ -57,6 +58,7 @@
             android:layout_marginEnd="30dp"
             android:background="@color/Main_green_color"
             android:clickable="true"
+            android:textSize="13sp"
             android:focusable="true"
             android:hint="حتي يوم"
             android:inputType="text"
@@ -77,7 +79,9 @@
             android:layout_width="60dp"
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
-            android:background="@color/Main_green_color"
+            android:background="@color/green_color"
+            app:carbon_stroke="@color/purple_color"
+            app:carbon_strokeWidth="1.5dp"
             android:clickable="true"
             android:focusable="true"
             app:carbon_cornerRadius="10dp"
@@ -92,7 +96,7 @@
                 android:gravity="center"
                 android:text="بحث"
                 android:textColor="@color/purple_color"
-                android:textSize="18sp" />
+                android:textSize="13sp" />
         </carbon.widget.FrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -110,9 +114,10 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:background="@color/white"
+            android:textSize="12sp"
             android:hint="ادخل عدد الفائزين"
             android:inputType="number"
-            android:padding="15dp"
+            android:padding="12dp"
             app:carbon_cornerRadius="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -122,10 +127,12 @@
             android:layout_width="60dp"
             android:layout_height="40dp"
             android:layout_marginEnd="23dp"
-            android:background="@color/Main_green_color"
+            android:background="@color/green_color"
             android:clickable="true"
             android:focusable="true"
             app:carbon_cornerRadius="10dp"
+            app:carbon_stroke="@color/purple_color"
+            app:carbon_strokeWidth="1.5dp"
             app:carbon_rippleColor="@color/rippleColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/et_EnterWinnerNum"
@@ -138,7 +145,7 @@
                 android:gravity="center"
                 android:text="تم"
                 android:textColor="@color/purple_color"
-                android:textSize="18sp" />
+                android:textSize="13sp" />
         </carbon.widget.FrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -111,6 +111,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="3dp"
+        android:background="@drawable/roundedcorner"
         android:hint="مثال: 20 ج.م"
         android:inputType="text"
         android:padding="7dp"

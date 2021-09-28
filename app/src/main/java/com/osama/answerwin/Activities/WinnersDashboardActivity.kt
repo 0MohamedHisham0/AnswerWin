@@ -146,12 +146,24 @@ class WinnersDashboardActivity : BaseActivity() {
 
     fun addWinners(model: UserModel, id: String, nPrize: String) {
         val userData_ = mutableMapOf<String, String>()
-        userData_["userName"] = model.name.toString()
+            userData_["userName"] = model.name.toString()
         userData_["prize"] = nPrize
+
+          val userData_MyPrize = mutableMapOf<String, String>()
+        userData_MyPrize["date"] = Constants.getCurrentTimestamp().toString()
+        userData_MyPrize["prize"] = nPrize
+
+        //Winners
         Constants.GetFireStoneDb().collection("WinnerUsers").document(id)
             .set(userData_)
-        Constants.GetFireStoneDb().collection(id).add(userData_)
+
+        //My Prize
+        Constants.GetFireStoneDb().collection(id).add(userData_MyPrize)
+
+        //User Data
         Constants.GetRef().child("Users").child(id).child("prize").setValue(nPrize)
+
+        //Delete Pending
         Constants.GetFireStoneDb().collection("PendingUsers").document(id)
             .delete()
 
