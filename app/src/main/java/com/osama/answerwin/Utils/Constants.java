@@ -125,8 +125,8 @@ public class Constants {
             public void onSuccess(DataSnapshot dataSnapshot) {
 
                 if (dataSnapshot != null) {
-                    int jewels = dataSnapshot.child("jewels").getValue(Integer.class);
-                    GetRef().child("Users").child(userId).child("jewels").setValue(jewels - 1);
+                    String jewels = dataSnapshot.child("jewels").getValue(String.class);
+                    GetRef().child("Users").child(userId).child("jewels").setValue(Integer.parseInt(jewels) - 1 + "");
                 }
 
             }

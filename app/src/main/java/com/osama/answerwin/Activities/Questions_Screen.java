@@ -211,7 +211,7 @@ public class Questions_Screen extends AppCompatActivity {
                         //Bool
                         if (Score > 1) {
                             //Winner
-                            GetUserData(Constants.GetAuth().getCurrentUser().getUid());
+                            sendUserToBoolUsers(Constants.GetAuth().getCurrentUser().getUid());
 
                         } else {
                             //Losers
@@ -264,7 +264,7 @@ public class Questions_Screen extends AppCompatActivity {
                 });
     }
 
-    public void GetUserData(String userId) {
+    public void sendUserToBoolUsers(String userId) {
         Constants.GetRef().child("Users").child(userId).get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
             @Override
             public void onSuccess(DataSnapshot dataSnapshot) {
@@ -275,10 +275,13 @@ public class Questions_Screen extends AppCompatActivity {
                 Long tsLong = System.currentTimeMillis() / 1000;
 
                 MapUser.put("userName", userModel.getName());
+                MapUser.put("UserID", Constants.GetAuth().getCurrentUser().getUid());
                 MapUser.put("date", tsLong);
 
-                //AddBoolUsers
+                //Change User status to inPending
+                Constants.GetRef().child("Users").child(userId).child("status").setValue("داخل السحب");
 
+                //AddBoolUsers
                 Constants.GetFireStoneDb().collection("BoolUsers").document(userId).set(MapUser).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
@@ -405,7 +408,7 @@ public class Questions_Screen extends AppCompatActivity {
             public void onClick(View view) {
                 //Go to profile Screen
                 dialog.dismiss();
-                startActivity(new Intent(Questions_Screen.this, HomeActivity.class));
+                startActivity(new Intent(Questions_Screen.this, ProfileActivity.class));
             }
         });
 

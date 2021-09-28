@@ -4,14 +4,11 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.google.common.collect.Lists
 import com.osama.answerwin.Adapters.BoolUsersAdapter
-import com.osama.answerwin.Adapters.MyPrizeAdapter
 import com.osama.answerwin.Models.BooledModel
 import com.osama.answerwin.R
 import com.osama.answerwin.Utils.Constants
 import kotlinx.android.synthetic.main.activity_bool_users.*
-import kotlinx.android.synthetic.main.activity_my_prize.*
 import java.util.*
 
 class BoolUsersActivity : AppCompatActivity() {
@@ -42,7 +39,7 @@ class BoolUsersActivity : AppCompatActivity() {
             if (!et_EnterWinnerNum.isEmpty) {
                 if (et_EnterWinnerNum.text.toString().toInt() <= boolUsers.size) {
                     getRandomNumFromList(et_EnterWinnerNum.text.toString().toInt())
-                    addWinners(winnersList)
+                    addUsersToPending(winnersList)
                     Toast.makeText(
                         this,
                         "لقد اخترت عدد " + winnersList.size + " فائزين ",
@@ -73,9 +70,12 @@ class BoolUsersActivity : AppCompatActivity() {
                         val user = documentSnapshot.toObject(BooledModel::class.java)
                         boolUsers.add(user)
                     }
+                    if (boolUsers.size == 0){
+                        toast("الفتره التي ادخلتها لا يوجدها بها مستخدمين")
+                    }
+
                     rv_BoolUsers.adapter = BoolUsersAdapter(boolUsers, this)
                     rv_BoolUsers.isNestedScrollingEnabled = false;
-
 
                 } else {
                     Toast.makeText(context, "" + task.exception!!.message, Toast.LENGTH_SHORT)
@@ -84,13 +84,15 @@ class BoolUsersActivity : AppCompatActivity() {
             }
     }
 
-    fun addWinners(list: MutableList<BooledModel?>) {
+    private fun addUsersToPending(list: MutableList<BooledModel?>) {
         for (i in list) {
             if (i != null) {
                 val userData_ = mutableMapOf<String, String>()
                 userData_["UserID"] = i.userID.toString()
                 Constants.GetFireStoneDb().collection("PendingUsers").document(i.userID)
                     .set(userData_)
+                Constants.GetFireStoneDb().collection("BoolUsers").document(i.userID)
+                    .delete()
             }
         }
 

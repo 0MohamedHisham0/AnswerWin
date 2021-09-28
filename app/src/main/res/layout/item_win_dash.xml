@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <carbon.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="100dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
     android:layout_margin="10dp"
-    android:padding="15dp"
     android:background="@color/green_color"
+    android:padding="15dp"
     app:carbon_cornerRadius="15sp"
     app:carbon_stroke="@color/purple_color"
     app:carbon_strokeWidth="2dp">
@@ -17,8 +17,7 @@
         android:layout_height="30dp"
         android:src="@drawable/emoji"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_price_item_name_dash"
@@ -31,7 +30,7 @@
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@id/ivEmo"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_price_item_phone_dash"
@@ -39,11 +38,11 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
         android:text="01117716297"
-        android:textStyle="bold"
         android:textColor="#6E6969"
         android:textSize="15sp"
-        app:layout_constraintTop_toBottomOf="@id/tv_price_item_name_dash"
-        app:layout_constraintEnd_toStartOf="@id/ivEmo"/>
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/ivEmo"
+        app:layout_constraintTop_toBottomOf="@id/tv_price_item_name_dash" />
 
     <ImageView
         android:id="@+id/ivJewelsW"
@@ -59,9 +58,9 @@
         android:id="@+id/tvJewelsW"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
         android:layout_marginEnd="15dp"
         android:textColor="@color/purple_color"
-        android:layout_marginTop="7dp"
         android:textSize="12dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@id/ivJewelsW"
@@ -72,8 +71,8 @@
         android:id="@+id/ivPointsW"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginEnd="10dp"
         android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
         android:src="@drawable/point_icon"
         app:layout_constraintEnd_toStartOf="@id/ivEmo"
         app:layout_constraintTop_toBottomOf="@id/tv_price_item_phone_dash" />
@@ -82,8 +81,8 @@
         android:id="@+id/tvPointsW"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="15dp"
         android:layout_marginTop="7dp"
+        android:layout_marginEnd="15dp"
         android:textColor="@color/purple_color"
         android:textSize="12dp"
         android:textStyle="bold"
@@ -95,29 +94,30 @@
         android:id="@+id/buDone"
         android:layout_width="45dp"
         android:layout_height="45dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:background="@color/purple_color"
+        android:clickable="true"
+        android:focusable="true"
         android:text="تم"
-        android:textStyle="bold"
         android:textColor="@color/green_color"
-        app:carbon_cornerRadius="23dp"/>
+        android:textStyle="bold"
+        app:carbon_cornerRadius="23dp"
+        app:carbon_rippleColor="@color/rippleColor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/etPrize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/buDone"
-        android:hint="مثال: 20 ج.م"
-        android:layout_marginTop="3dp"
-        android:padding="7dp"
-        android:inputType="text"
-        android:background="@drawable/roundedcorner"
         android:layout_marginStart="10dp"
-        android:textDirection="rtl"
-        android:textSize="15dp"
-        android:textColor="@color/purple_color"/>
+        android:layout_marginTop="3dp"
+        android:hint="مثال: 20 ج.م"
+        android:inputType="text"
+        android:padding="7dp"
+        android:textColor="@color/purple_color"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@id/buDone"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </carbon.widget.ConstraintLayout>

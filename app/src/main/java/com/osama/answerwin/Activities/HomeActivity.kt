@@ -13,6 +13,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.github.ybq.android.spinkit.SpinKitView
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -102,7 +103,19 @@ class HomeActivity : BaseActivity() {
         }
 
         buEnterToWin.setOnClickListener {
-            openDialogDetail()
+
+            Constants.GetRef().child("Users").child(userId).get()
+                .addOnSuccessListener { dataSnapshot ->
+                    val userModel = dataSnapshot.getValue(UserModel::class.java)
+                    if (userModel != null) {
+                        if (userModel.status == "خارج السحب"){
+                            openDialogDetail()}
+                        else{
+                            toast("انت داخل السحب بالفعل")
+                        }
+                    }
+
+                }
         }
 
         buProfile.setOnClickListener {
@@ -157,19 +170,10 @@ class HomeActivity : BaseActivity() {
         dialog.setCanceledOnTouchOutside(true)
     }
 
-    fun getUserData(userId: String?) {
-        var userModel: UserModel
-        Constants.GetRef().child("Users").child(userId!!).get()
-            .addOnSuccessListener { dataSnapshot ->
-                userModel = dataSnapshot.getValue(UserModel::class.java)!!
-
-            }
-    }
 
     fun toast(message: String) {
         Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()
     }
-
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -189,8 +193,9 @@ class HomeActivity : BaseActivity() {
         dialog.setCanceledOnTouchOutside(true)
     }
 
-    fun facebookPage(){
-        val uriUrl = Uri.parse("https://www.facebook.com/%D8%AC%D8%A7%D9%88%D8%A8-%D9%88%D8%A7%D8%B1%D8%A8%D8%AD-101808732270696/")
+    fun facebookPage() {
+        val uriUrl =
+            Uri.parse("https://www.facebook.com/%D8%AC%D8%A7%D9%88%D8%A8-%D9%88%D8%A7%D8%B1%D8%A8%D8%AD-101808732270696/")
         val launchBrowser = Intent(Intent.ACTION_VIEW, uriUrl)
         startActivity(launchBrowser)
     }

@@ -4,7 +4,10 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -39,9 +42,17 @@ public class WinnersDashAdapter extends RecyclerView.Adapter<WDVH> {
 
         holder.tv_Name.setText(model.getName());
         holder.tv_Phone.setText(model.getPhone());
-        holder.tv_Points.setText(model.getPoints()+"");
-        holder.tv_Jewels.setText(model.getJewels()+"");
+        holder.tv_Points.setText(model.getPoints() + "");
+        holder.tv_Jewels.setText(model.getJewels() + "");
 
+        holder.buDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (holder.etWinners.getText() == null){
+                    Toast.makeText(context, "من فضلك اكتب السعر اولا", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @Override
@@ -52,10 +63,14 @@ public class WinnersDashAdapter extends RecyclerView.Adapter<WDVH> {
 }
 
 class WDVH extends RecyclerView.ViewHolder {
-     TextView tv_Name, tv_Phone, tv_Points, tv_Jewels;
+    TextView tv_Name, tv_Phone, tv_Points, tv_Jewels;
+    Button buDone;
+    EditText etWinners;
 
     public WDVH(@NonNull View itemView) {
         super(itemView);
+        buDone = itemView.findViewById(R.id.buDone);
+        etWinners = itemView.findViewById(R.id.etPrize);
         tv_Name = itemView.findViewById(R.id.tv_price_item_name_dash);
         tv_Phone = itemView.findViewById(R.id.tv_price_item_phone_dash);
         tv_Points = itemView.findViewById(R.id.tvPointsW);
