@@ -15,6 +15,9 @@ public class Questions_Model {
         this.f_answer_4 = f_answer_4;
     }
 
+    public Questions_Model() {
+    }
+
     public String getMain_question() {
         return main_question;
     }

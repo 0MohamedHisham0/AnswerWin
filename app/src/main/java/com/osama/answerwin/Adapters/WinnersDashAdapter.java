@@ -1,28 +1,21 @@
 package com.osama.answerwin.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.osama.answerwin.Activities.Add_Questions_Screen;
 import com.osama.answerwin.Models.UserModel;
 import com.osama.answerwin.R;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
 import carbon.widget.Button;
-import kotlin.Unit;
-import kotlin.jvm.functions.Function0;
 
 public class WinnersDashAdapter extends RecyclerView.Adapter<WDVH> {
 

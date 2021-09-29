@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:text="2/20"
         android:textColor="@color/green_color"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,7 +66,7 @@
             android:ellipsize="end"
             android:maxLines="4"
             android:textColor="@color/purple_color"
-            android:textSize="22sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
     </carbon.widget.FrameLayout>
 
@@ -74,11 +74,10 @@
         android:id="@+id/linearLayout_Answers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
         android:gravity="center"
         android:orientation="vertical"
+        android:layout_marginTop="20dp"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/frameLayoutBtnBack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout_Question"
@@ -96,10 +95,8 @@
             android:padding="10dp"
             app:carbon_cornerRadius="20dp"
             app:layout_constraintEnd_toStartOf="@+id/frameLayoutAnswer2"
-            app:layout_constraintHorizontal_bias="0.233"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/frameLayout_Question"
-            tools:ignore="MissingConstraints">
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout_Question">
 
             <TextView
                 android:id="@+id/TXT_Answer1"
@@ -110,7 +107,7 @@
                 android:maxLines="1"
                 android:text=""
                 android:textColor="@color/green_color"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
         </carbon.widget.FrameLayout>
@@ -137,11 +134,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:ellipsize="end"
-
                 android:maxLines="1"
                 android:text=""
                 android:textColor="@color/green_color"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
         </carbon.widget.FrameLayout>
@@ -170,7 +166,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textColor="@color/green_color"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
         </carbon.widget.FrameLayout>
@@ -201,7 +197,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textColor="@color/green_color"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
         </carbon.widget.FrameLayout>
@@ -215,7 +211,7 @@
         android:background="@color/purple_color"
         android:clickable="true"
         android:focusable="true"
-        android:padding="15dp"
+        android:padding="10dp"
         app:carbon_cornerRadius="20dp"
         app:carbon_rippleColor="@color/rippleColor"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -233,7 +229,7 @@
                 android:layout_height="wrap_content"
                 android:text="التالي"
                 android:textColor="@color/green_color"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:textStyle="bold" />
 
             <ImageView
@@ -253,14 +249,13 @@
         android:background="@color/green_color"
         android:clickable="true"
         android:focusable="true"
-        android:padding="15dp"
+        android:padding="10dp"
         app:carbon_cornerRadius="20dp"
         app:carbon_rippleColor="@color/rippleColor"
         app:carbon_stroke="@color/purple_color"
         app:carbon_strokeWidth="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         tools:ignore="MissingConstraints">
 
         <TextView
@@ -269,7 +264,7 @@
             android:layout_height="wrap_content"
             android:text="عوده للرئيسية"
             android:textColor="@color/purple_color"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
     </carbon.widget.FrameLayout>

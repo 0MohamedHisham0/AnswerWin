@@ -21,8 +21,13 @@ class AdminHomeActivity : BaseActivity() {
         buWinDash.setOnClickListener {
             startActivity(Intent(this, WinnersDashboardActivity::class.java))
         }
-             buBooled.setOnClickListener {
+        buBooled.setOnClickListener {
             startActivity(Intent(this, BoolUsersActivity::class.java))
+        }
+
+        buQuDash.setOnClickListener {
+            startActivity(Intent(this, QuestionsDashboard::class.java))
+
         }
 
     }

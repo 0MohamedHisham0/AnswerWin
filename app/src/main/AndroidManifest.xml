@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
+            android:name=".Activities.QuestionsDashboard"
+            android:exported="true" />
+        <activity
             android:name=".Activities.WinnersDashboardActivity"
             android:exported="true" />
         <activity
@@ -50,7 +53,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.Add_Questions_Screen"
+            android:name=".Activities.AddQuestions_Dashboard"
             android:exported="true" />
         <activity
             android:name=".Activities.HomeActivity"
