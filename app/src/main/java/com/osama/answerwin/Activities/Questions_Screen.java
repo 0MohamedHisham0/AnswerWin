@@ -394,7 +394,6 @@ public class Questions_Screen extends AppCompatActivity {
 
     }
 
-
     //Dialogs
     private void openDialogYouEnteredBool() {
         Dialog dialog = new Dialog(this); // Context, this, etc.
@@ -408,13 +407,13 @@ public class Questions_Screen extends AppCompatActivity {
             public void onClick(View view) {
                 //Go to profile Screen
                 dialog.dismiss();
-                startActivity(new Intent(Questions_Screen.this, ProfileActivity.class));
+                finish();
             }
         });
 
         dialog.setTitle("EnteredBool");
         dialog.show();
-        dialog.setCanceledOnTouchOutside(true);
+        dialog.setCanceledOnTouchOutside(false);
 
     }
 

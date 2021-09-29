@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <carbon.widget.ImageView
-        android:id="@+id/backJewelQ_AddQDash"
+        android:id="@+id/backJewelQ_QDash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -44,10 +44,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_QsDash"
         android:layout_width="match_parent"
+        android:layout_marginBottom="10dp"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bu_fa_QuestionDashboard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/logoQDash" />
 

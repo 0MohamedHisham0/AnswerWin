@@ -29,6 +29,9 @@ class AdminHomeActivity : BaseActivity() {
             startActivity(Intent(this, QuestionsDashboard::class.java))
 
         }
+        buPlayerHome.setOnClickListener {
+            startActivity(Intent(this, HomeActivity::class.java))
 
+        }
     }
 }

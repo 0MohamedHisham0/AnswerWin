@@ -1,5 +1,6 @@
 package com.osama.answerwin.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -84,6 +85,7 @@ public class AddQuestions_Dashboard extends AppCompatActivity {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Toast.makeText(AddQuestions_Dashboard.this, "تم حفظ سؤالك", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(AddQuestions_Dashboard.this, QuestionsDashboard.class));
                         finish();
                     }
                 })

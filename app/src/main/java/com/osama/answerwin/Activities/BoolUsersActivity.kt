@@ -40,12 +40,13 @@ class BoolUsersActivity : AppCompatActivity() {
                 if (et_EnterWinnerNum.text.toString().toInt() <= boolUsers.size) {
                     getRandomNumFromList(et_EnterWinnerNum.text.toString().toInt())
                     addUsersToPending(winnersList)
+                    changeUserDateInRT(boolUsers ,winnersList )
                     Toast.makeText(
                         this,
                         "لقد اخترت عدد " + winnersList.size + " فائزين ",
                         Toast.LENGTH_SHORT
                     ).show()
-
+                    recreate()
                 } else {
                     Toast.makeText(
                         this,
@@ -57,6 +58,22 @@ class BoolUsersActivity : AppCompatActivity() {
                 Toast.makeText(this, "من فضلك ادخل عدد الفائزين!", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun changeUserDateInRT(boolUsers:List<BooledModel>, winnerUsers: MutableList<BooledModel?>) {
+        for (i in boolUsers){
+            Constants.GetRef().child("Users").child(i.userID).child("status").setValue("خارج السحب")
+        }
+
+        for (i in winnerUsers){
+
+            if (i != null) {
+                Constants.GetRef().child("Users").child(i.userID).child("status").setValue("رابح")
+            }
+
+
+        }
+
     }
 
     //FireBase

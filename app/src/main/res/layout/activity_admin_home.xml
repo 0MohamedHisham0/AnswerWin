@@ -97,6 +97,25 @@
             app:layout_constraintTop_toBottomOf="@id/buWinDash" />
 
         <carbon.widget.Button
+            android:id="@+id/buPlayerHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/green_color"
+            android:paddingStart="35dp"
+            android:paddingEnd="35dp"
+            android:text="الدخول كلاعب"
+            android:textColor="@color/purple_color"
+            android:textStyle="bold"
+            app:carbon_cornerRadius="25dp"
+            app:carbon_rippleColor="@color/rippleColor"
+            app:carbon_stroke="@color/purple_color"
+            app:carbon_strokeWidth="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buQuDash" />
+
+        <carbon.widget.Button
             android:id="@+id/buAdminLogout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -113,7 +132,7 @@
             app:carbon_strokeWidth="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/buQuDash" />
+            app:layout_constraintTop_toBottomOf="@id/buPlayerHome" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

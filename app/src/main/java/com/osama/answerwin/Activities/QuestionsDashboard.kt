@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.osama.answerwin.Adapters.QuestionsAdapter
 import com.osama.answerwin.Models.Questions_Model
 import com.osama.answerwin.R
 import com.osama.answerwin.Utils.Constants
@@ -20,8 +21,15 @@ class QuestionsDashboard : AppCompatActivity() {
 
         bu_fa_QuestionDashboard.setOnClickListener {
             startActivity(Intent(this, AddQuestions_Dashboard::class.java))
+            finish()
         }
+        backJewelQ_QDash.setOnClickListener {
+            startActivity(Intent(this, AdminHomeActivity::class.java))
+            finish()
+        }
+
         getQuestions()
+
     }
 
     private fun getQuestions() {
@@ -34,13 +42,9 @@ class QuestionsDashboard : AppCompatActivity() {
 
                         questionsUidList.add(documentSnapshot.id)
                         questionsList.add(questionModel)
-
                     }
-                    Toast.makeText(
-                        this,
-                        "" + questionsList.size + "//" + questionsUidList.size,
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    //Rv init
+                    rv_QsDash.adapter = QuestionsAdapter(questionsList, questionsUidList, this)
 
                 } else {
                     Toast.makeText(this, "" + task.exception!!.message, Toast.LENGTH_SHORT)
@@ -49,8 +53,5 @@ class QuestionsDashboard : AppCompatActivity() {
             }
     }
 
-    private fun deleteQuestion(position: Int) {
-        Constants.GetFireStoneDb().collection("Questions").document(questionsUidList[position])
-            .delete()
-    }
+
 }

@@ -2,11 +2,11 @@ package com.osama.answerwin.Activities;
 
 import static com.osama.answerwin.Utils.Constants.GetRef;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,24 +31,6 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
         new Handler().postDelayed(new Runnable() {
-
-            public FirebaseAuth GetAuth() {
-
-                if (mAut == null)
-                    mAut = FirebaseAuth.getInstance();
-
-                return mAut;
-            }
-
-            public DatabaseReference GetRef() {
-
-                if (databaseReference == null || dbReal == null)
-                    dbReal = FirebaseDatabase.getInstance();
-                databaseReference = dbReal.getReference();
-
-
-                return databaseReference;
-            }
 
             public void run() {
                 //This method will be executed once the timer is over

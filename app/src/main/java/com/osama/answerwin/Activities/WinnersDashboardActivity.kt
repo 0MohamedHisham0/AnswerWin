@@ -51,11 +51,6 @@ class WinnersDashboardActivity : BaseActivity() {
 
                                     if (userModel != null) {
                                         pWinnersList.add(userModel)
-                                        Toast.makeText(
-                                            this,
-                                            "" + pWinnersList.size,
-                                            Toast.LENGTH_SHORT
-                                        ).show()
                                         if (document == task.result!!.last()) {
                                             initRV(pWinnersList, BUsersIDList)
                                         }

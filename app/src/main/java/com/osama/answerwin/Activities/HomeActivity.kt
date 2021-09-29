@@ -108,10 +108,10 @@ class HomeActivity : BaseActivity() {
                 .addOnSuccessListener { dataSnapshot ->
                     val userModel = dataSnapshot.getValue(UserModel::class.java)
                     if (userModel != null) {
-                        if (userModel.status == "خارج السحب"){
-                            openDialogDetail()}
-                        else{
+                        if (userModel.status == "داخل السحب") {
                             toast("انت داخل السحب بالفعل")
+                        } else {
+                            openDialogDetail()
                         }
                     }
 
@@ -151,7 +151,7 @@ class HomeActivity : BaseActivity() {
                                 Constants.SubValueFromJewel(1, applicationContext)
 
                                 dialog.dismiss()
-                                val intent = Intent(this, Questions_Screen::class.java)
+                                val intent = Intent(applicationContext, Questions_Screen::class.java)
                                 intent.putExtra("path", "Bool")
                                 startActivity(intent)
 

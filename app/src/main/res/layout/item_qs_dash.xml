@@ -5,9 +5,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/green_color"
-    android:layout_margin="20dp"
+    android:layout_margin="13dp"
     android:padding="15dp"
     app:carbon_cornerRadius="15sp"
+    app:carbon_rippleColor="@color/rippleColor"
+    android:clickable="true"
+    android:focusable="true"
     app:carbon_stroke="@color/purple_color"
     app:carbon_strokeWidth="2dp">
 
@@ -30,7 +33,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="7dp"
         tools:text="أ. معرفش"
-        android:textColor="@color/purple_color"
+        android:textColor="@color/GreenColor"
         android:textStyle="bold"
         android:textSize="15dp"/>
 
