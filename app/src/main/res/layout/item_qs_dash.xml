@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<carbon.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/green_color"
+    android:layout_margin="20dp"
+    android:padding="15dp"
+    app:carbon_cornerRadius="15sp"
+    app:carbon_stroke="@color/purple_color"
+    app:carbon_strokeWidth="2dp">
+
+    <TextView
+        android:id="@+id/tvQDash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="كيف بدأ الخلق؟"
+        android:textColor="@color/purple_color"
+        android:textStyle="bold"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:id="@+id/tvAns1Dash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvQDash"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="7dp"
+        tools:text="أ. معرفش"
+        android:textColor="@color/purple_color"
+        android:textStyle="bold"
+        android:textSize="15dp"/>
+
+    <TextView
+        android:id="@+id/tvAns2Dash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvAns1Dash"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="3dp"
+        tools:text="ب. معرفش"
+        android:textColor="@color/purple_color"
+        android:textStyle="bold"
+        android:textSize="15dp"/>
+
+    <TextView
+        android:id="@+id/tvAns3Dash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvQDash"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="7dp"
+        tools:text="ج. معرفش"
+        android:textColor="@color/purple_color"
+        android:textStyle="bold"
+        android:textSize="15dp"/>
+
+    <TextView
+        android:id="@+id/tvAns4Dash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvAns1Dash"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="3dp"
+        tools:text="د. معرفش"
+        android:textColor="@color/purple_color"
+        android:textStyle="bold"
+        android:textSize="15dp"/>
+
+</carbon.widget.ConstraintLayout>
