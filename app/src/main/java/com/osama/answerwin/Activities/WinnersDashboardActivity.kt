@@ -81,11 +81,6 @@ class WinnersDashboardActivity : BaseActivity() {
     }
 
     private fun initRV(winnerList: List<UserModel>, bUserID: List<String>) {
-        Toast.makeText(
-            this@WinnersDashboardActivity,
-            "بلح ${winnerList.size}",
-            Toast.LENGTH_SHORT
-        ).show()
         rv_WinnersDash.adapter =
             WinnersDashAdapter(
                 winnerList, this
