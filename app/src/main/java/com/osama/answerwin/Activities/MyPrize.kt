@@ -36,11 +36,12 @@ class MyPrize : AppCompatActivity() {
                         for (document in task.result!!) {
                             myPrize = document.data
 
-                            var model: myPrizeModel = myPrizeModel()
+                            val model: myPrizeModel = myPrizeModel()
                             model.prize = myPrize.get("prize").toString()
                             model.date = myPrize.get("date").toString()
 
                             prizeList.add(model)
+
                         }
                         initRV(prizeList)
                     } else {
