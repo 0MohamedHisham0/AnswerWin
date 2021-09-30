@@ -431,7 +431,7 @@ public class Questions_Screen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
-                startActivity(new Intent(Questions_Screen.this, HomeActivity.class));
+                finish();
             }
         });
 

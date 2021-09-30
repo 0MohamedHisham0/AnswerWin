@@ -51,6 +51,15 @@ public class AddQuestions_Dashboard extends AppCompatActivity {
                 saveQu();
             }
         });
+
+        bu_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AddQuestions_Dashboard.this, QuestionsDashboard.class));
+                finish();
+            }
+        });
+
     }
 
     private void saveQu() {
@@ -65,7 +74,7 @@ public class AddQuestions_Dashboard extends AppCompatActivity {
             AddNewQuestion(Q, sTrue, sFalse1, sFalse2, sFalse3);
 
         } else {
-            Toast.makeText(this, "املاء اليينات اولا", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "املأ اليينات اولا", Toast.LENGTH_SHORT).show();
 
         }
     }
@@ -92,7 +101,7 @@ public class AddQuestions_Dashboard extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(AddQuestions_Dashboard.this, "هناك مشكله في البينات", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddQuestions_Dashboard.this, "هناك مشكلة في البيانات", Toast.LENGTH_SHORT).show();
 
                     }
                 });

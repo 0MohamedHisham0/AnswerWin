@@ -21,10 +21,9 @@ class QuestionsDashboard : AppCompatActivity() {
 
         bu_fa_QuestionDashboard.setOnClickListener {
             startActivity(Intent(this, AddQuestions_Dashboard::class.java))
-            finish()
+            finishAffinity()
         }
         backJewelQ_QDash.setOnClickListener {
-            startActivity(Intent(this, AdminHomeActivity::class.java))
             finish()
         }
 
