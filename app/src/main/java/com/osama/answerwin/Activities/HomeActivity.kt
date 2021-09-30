@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
@@ -13,6 +14,10 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.github.ybq.android.spinkit.SpinKitView
+import com.google.android.gms.ads.*
+import com.google.android.gms.ads.rewarded.RewardItem
+import com.google.android.gms.ads.rewarded.RewardedAd
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.DataSnapshot
@@ -27,6 +32,9 @@ import kotlinx.android.synthetic.main.dialog_enter_bool.*
 
 class HomeActivity : BaseActivity() {
 
+    lateinit var mAdView : AdView
+    private var TAG = "MainActivity"
+    private var mRewardedAd: RewardedAd? = null
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var spin_kit_QS: SpinKitView
     //Var
@@ -59,6 +67,90 @@ class HomeActivity : BaseActivity() {
             drawerLayout.openDrawer(GravityCompat.END)
         }
 
+        MobileAds.initialize(this) {}
+
+        mAdView = findViewById(R.id.adView)
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
+
+        clWatchAndWin.setOnClickListener {
+            RewardedAd.load(this, getString(R.string.rewarded_ad_unit_id), adRequest, object : RewardedAdLoadCallback() {
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    Toast.makeText(
+                        applicationContext, "فشل عرض الاعلان.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    mRewardedAd = null
+                }
+
+                override fun onAdLoaded(rewardedAd: RewardedAd) {
+                    Toast.makeText(
+                        applicationContext, "تم تحميل الاعلان.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    mRewardedAd = rewardedAd
+                }
+            })
+
+            mRewardedAd?.fullScreenContentCallback = object: FullScreenContentCallback() {
+                override fun onAdShowedFullScreenContent() {
+                    // Called when ad is shown.
+                    Toast.makeText(
+                        applicationContext, "تم فتح الاعلان.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                override fun onAdFailedToShowFullScreenContent(adError: AdError?) {
+                    // Called when ad fails to show.
+                    Toast.makeText(
+                        applicationContext, "فشل فتح الاعلان.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                override fun onAdDismissedFullScreenContent() {
+                    // Called when ad is dismissed.
+                    // Set the ad reference to null so you don't show the ad a second time.
+                    Constants.GetAuth().currentUser?.uid?.let {
+                        Constants.GetRef().child("Users").child(it).get()
+                            .addOnSuccessListener { dataSnapshot ->
+                                Constants.AddValueTOPoints(5, this@HomeActivity)
+                                Toast.makeText(
+                                    applicationContext, "تم استلام الجائزة.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                    }
+                    mRewardedAd = null
+                }
+            }
+
+            if (mRewardedAd != null) {
+                mRewardedAd?.show(this, OnUserEarnedRewardListener {
+                    fun onUserEarnedReward(rewardItem: RewardItem) {
+                        var rewardAmount = rewardItem.amount
+                        var rewardType = rewardItem.type
+                        Constants.GetAuth().currentUser?.uid?.let {
+                            Constants.GetRef().child("Users").child(it).get()
+                                .addOnSuccessListener { dataSnapshot ->
+                                    Constants.AddValueTOPoints(5, this)
+                                    Toast.makeText(
+                                        applicationContext, "تم استلام الجائزة.",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                        }
+                    }
+                })
+            } else {
+                Toast.makeText(
+                    applicationContext, "لا توجد اعلانات حاليا للمشاهدة.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+
         val userId = mAuth!!.currentUser!!.uid
 
         spin_kit_QS = findViewById(R.id.spin_kit_QS_home)
@@ -81,16 +173,12 @@ class HomeActivity : BaseActivity() {
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(
-                        applicationContext, "فشل استقبال البيانات.",
-                        Toast.LENGTH_SHORT
-                    ).show()
                     spin_kit_QS.visibility = View.GONE
                     clHome.visibility = View.VISIBLE
                 }
 
 
-            });
+            })
 
         buLogout.setOnClickListener {
             mAuth?.signOut()
@@ -154,6 +242,7 @@ class HomeActivity : BaseActivity() {
                                 val intent = Intent(applicationContext, Questions_Screen::class.java)
                                 intent.putExtra("path", "Bool")
                                 startActivity(intent)
+                                finishAffinity()
 
                             } else {
                                 //You don't have enough jewels to go
