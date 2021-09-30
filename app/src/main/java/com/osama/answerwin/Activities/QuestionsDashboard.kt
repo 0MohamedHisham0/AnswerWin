@@ -3,6 +3,7 @@ package com.osama.answerwin.Activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import com.osama.answerwin.Adapters.QuestionsAdapter
 import com.osama.answerwin.Models.Questions_Model
@@ -44,7 +45,7 @@ class QuestionsDashboard : AppCompatActivity() {
                     }
                     //Rv init
                     rv_QsDash.adapter = QuestionsAdapter(questionsList, questionsUidList, this)
-
+                    spin_kit_QSD.visibility = View.INVISIBLE
                 } else {
                     Toast.makeText(this, "" + task.exception!!.message, Toast.LENGTH_SHORT)
                         .show()
