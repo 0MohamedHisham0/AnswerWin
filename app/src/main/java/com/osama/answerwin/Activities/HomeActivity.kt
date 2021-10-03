@@ -188,7 +188,7 @@ class HomeActivity : BaseActivity() {
             Constants.GetAuth().currentUser?.uid?.let {
                 Constants.GetRef().child("Users").child(it).get()
                     .addOnSuccessListener { dataSnapshot ->
-                        var userModel = dataSnapshot.getValue(UserModel::class.java)
+                        val userModel = dataSnapshot.getValue(UserModel::class.java)
                         var jewels: String? = userModel?.jewels.toString()
                         var jewelsInt: Int? = jewels?.toInt()
 

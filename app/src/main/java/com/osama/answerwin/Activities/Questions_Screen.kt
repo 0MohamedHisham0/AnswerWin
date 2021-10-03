@@ -215,7 +215,7 @@ class Questions_Screen : AppCompatActivity() {
     }
 
     private fun showAd() {
-        initAd("ca-app-pub-3940256099942544/1033173712")
+        initAd(resources.getString(R.string.rewarded_ad_interstitial))
         if (mInterstitialAd != null) {
             mInterstitialAd?.show(this)
 
