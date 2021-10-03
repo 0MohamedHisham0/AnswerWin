@@ -217,6 +217,8 @@ class HomeActivity : BaseActivity() {
         dialog.setTitle("EnterBool")
         dialog.show()
         dialog.setCanceledOnTouchOutside(true)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
     }
 
     private fun openDialogWatch() {
