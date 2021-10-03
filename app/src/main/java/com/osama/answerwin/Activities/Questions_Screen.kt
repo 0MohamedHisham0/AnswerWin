@@ -149,8 +149,16 @@ class Questions_Screen : AppCompatActivity() {
             }
         })
         frameLayoutBtnBack.setOnClickListener(View.OnClickListener {
+        if(IntentResult == "Bool")
+        {
+            Toast.makeText(this, "لقد خرجت من السحب حاول مره اخري", Toast.LENGTH_SHORT).show()
+            toggle = true
+            startActivity(Intent(this, HomeActivity::class.java))
+            finish()
 
+        }else  {
             openDialogWinPoints()
+        }
 
 
         })
