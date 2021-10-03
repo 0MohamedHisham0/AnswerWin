@@ -283,7 +283,7 @@ class HomeActivity : BaseActivity() {
         }
         dialog.setTitle("Watch&Win")
         dialog.show()
-        dialog.setCanceledOnTouchOutside(false)
+        dialog.setCanceledOnTouchOutside(true)
     }
 
     fun toast(message: String) {
