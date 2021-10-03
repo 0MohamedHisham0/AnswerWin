@@ -3,6 +3,8 @@ package com.osama.answerwin.Activities
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -74,6 +76,28 @@ class HomeActivity : BaseActivity() {
         mAdView.loadAd(adRequest)
 
         clWatchAndWin.setOnClickListener {
+            RewardedAd.load(
+                this,
+                getString(R.string.rewarded_ad_unit_id),
+                adRequest,
+                object : RewardedAdLoadCallback() {
+                    override fun onAdFailedToLoad(adError: LoadAdError) {
+                        Toast.makeText(
+                            applicationContext, "فشل تحميل الاعلان.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        mRewardedAd = null
+                    }
+
+                    override fun onAdLoaded(rewardedAd: RewardedAd) {
+                        Toast.makeText(
+                            applicationContext, "تم تحميل الاعلان.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        mRewardedAd = rewardedAd
+                    }
+                })
+
             openDialogWatch()
         }
 
@@ -200,27 +224,6 @@ class HomeActivity : BaseActivity() {
         dialog.setContentView(R.layout.dialog_watch_win)
 
         dialog.bu_dialogWin.setOnClickListener {
-            RewardedAd.load(
-                this,
-                getString(R.string.rewarded_ad_unit_id),
-                adRequest,
-                object : RewardedAdLoadCallback() {
-                    override fun onAdFailedToLoad(adError: LoadAdError) {
-                        Toast.makeText(
-                            applicationContext, "فشل تحميل الاعلان.",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        mRewardedAd = null
-                    }
-
-                    override fun onAdLoaded(rewardedAd: RewardedAd) {
-                        Toast.makeText(
-                            applicationContext, "تم تحميل الاعلان.",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        mRewardedAd = rewardedAd
-                    }
-                })
 
             mRewardedAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
                 override fun onAdShowedFullScreenContent() {
@@ -284,6 +287,8 @@ class HomeActivity : BaseActivity() {
         dialog.setTitle("Watch&Win")
         dialog.show()
         dialog.setCanceledOnTouchOutside(true)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
     }
 
     fun toast(message: String) {

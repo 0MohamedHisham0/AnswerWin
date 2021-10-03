@@ -2,6 +2,7 @@ package com.osama.answerwin.Adapters;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -101,6 +102,7 @@ public class QuestionsAdapter extends RecyclerView.Adapter<quVH> {
         dialog.setTitle("Delete");
         dialog.show();
         dialog.setCanceledOnTouchOutside(true);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
     }
 

@@ -11,13 +11,7 @@
         <entry key="..\:/Freelance/AnswerAndWin/AnswerWin/app/src/main/res/layout/activity_qustions_screen.xml" value="0.22" />
         <entry key="..\:/Freelance/AnswerAndWin/AnswerWin/app/src/main/res/layout/activity_register.xml" value="0.22" />
         <entry key="..\:/Freelance/AnswerAndWin/AnswerWin/app/src/main/res/layout/activity_splash_screen.xml" value="0.22" />
-        <entry key="..\:/Freelance/AnswerAndWin/AnswerWin/app/src/main/res/layout/dialog_delete_qu.xml" value="0.18" />
-        <entry key="..\:/Freelance/AnswerAndWin/AnswerWin/app/src/main/res/layout/dialog_enter_bool.xml" value="0.25" />
         <entry key="..\:/Freelance/AnswerAndWin/AnswerWin/app/src/main/res/layout/dialog_entered_bool.xml" value="0.33" />
-        <entry key="..\:/Freelance/AnswerAndWin/AnswerWin/app/src/main/res/layout/dialog_failed_in_bool.xml" value="0.10190217391304347" />
-        <entry key="..\:/Freelance/AnswerAndWin/AnswerWin/app/src/main/res/layout/dialog_points_win.xml" value="0.25" />
-        <entry key="..\:/Freelance/AnswerAndWin/AnswerWin/app/src/main/res/layout/dialog_watch_win.xml" value="0.22" />
-        <entry key="..\:/Freelance/AnswerAndWin/AnswerWin/app/src/main/res/layout/dialog_welcome.xml" value="0.1" />
         <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.15104166666666666" />
         <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/drawable/icon_next.xml" value="0.15104166666666666" />
         <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/drawable/roundedcorner.xml" value="0.146875" />
@@ -30,7 +24,7 @@
         <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/layout/activity_my_prize.xml" value="0.264" />
         <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/layout/activity_profile.xml" value="0.264" />
         <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/layout/activity_questions_dashboard.xml" value="0.264" />
-        <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/layout/activity_qustions_screen.xml" value="0.264" />
+        <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/layout/activity_qustions_screen.xml" value="0.4" />
         <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/layout/activity_register.xml" value="0.25905797101449274" />
         <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/layout/activity_splash_screen.xml" value="0.25905797101449274" />
         <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/layout/activity_store.xml" value="0.264" />
@@ -42,6 +36,7 @@
         <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/layout/dialog_entered_bool.xml" value="0.4" />
         <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/layout/dialog_failed_in_bool.xml" value="0.259375" />
         <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/layout/dialog_points_win.xml" value="0.259375" />
+        <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/layout/dialog_watch_win.xml" value="0.259375" />
         <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/layout/dialog_welcome.xml" value="0.259375" />
         <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/layout/item_bool_users.xml" value="0.4" />
         <entry key="..\:/Users/Moham/AndroidStudioProjects/AnswerWin/app/src/main/res/layout/item_my_prize.xml" value="0.4" />

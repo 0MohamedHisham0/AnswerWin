@@ -6,6 +6,8 @@ import com.osama.answerwin.Models.Questions_Model
 import android.os.Bundle
 import com.osama.answerwin.R
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.util.Log
 import android.view.View
 import android.widget.*
@@ -37,7 +39,6 @@ class Questions_Screen : AppCompatActivity() {
         setContentView(R.layout.activity_qustions_screen)
         initViews()
         GetQuFromFB()
-        initAd("ca-app-pub-3940256099942544/1033173712")
     }
 
     private fun initViews() {
@@ -214,8 +215,10 @@ class Questions_Screen : AppCompatActivity() {
     }
 
     private fun showAd() {
+        initAd("ca-app-pub-3940256099942544/1033173712")
         if (mInterstitialAd != null) {
             mInterstitialAd?.show(this)
+
         }
     }
 
@@ -402,7 +405,7 @@ class Questions_Screen : AppCompatActivity() {
         frameLayoutAnswer4!!.isClickable = false
     }
 
-    fun makeCurrentButtonRed(text: TextView) {
+    private fun makeCurrentButtonRed(text: TextView) {
 
         if (text == TXT_Answer1) {
             frameLayoutAnswer1.background = getDrawable(R.color.RedColor)
@@ -440,6 +443,8 @@ class Questions_Screen : AppCompatActivity() {
         dialog.setTitle("EnteredBool")
         dialog.show()
         dialog.setCanceledOnTouchOutside(false)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
     }
 
     private fun openDialogWinPoints() {
@@ -460,6 +465,8 @@ class Questions_Screen : AppCompatActivity() {
         dialog.setTitle("winPoints")
         dialog.show()
         dialog.setCanceledOnTouchOutside(true)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
     }
 
     private fun openDialogFailedBool() {
@@ -475,6 +482,8 @@ class Questions_Screen : AppCompatActivity() {
         dialog.setTitle("FailedBool")
         dialog.show()
         dialog.setCanceledOnTouchOutside(true)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
     }
 
     override fun onStop() {
