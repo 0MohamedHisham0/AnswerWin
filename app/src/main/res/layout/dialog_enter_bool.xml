@@ -15,7 +15,7 @@
         android:gravity="center"
         android:padding="20dp"
         android:text="لدخول السحب عليك بالاجابه
-علي الاسئلة التالية كاملة"
+علي عشر اسئلة اجابات صحيحة من الاسئلة التالية كاملة"
         android:textColor="@color/purple_color"
         android:textSize="22sp"
         android:textStyle="bold"

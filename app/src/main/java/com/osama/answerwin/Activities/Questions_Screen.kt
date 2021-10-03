@@ -149,9 +149,9 @@ class Questions_Screen : AppCompatActivity() {
             }
         })
         frameLayoutBtnBack.setOnClickListener(View.OnClickListener {
-            toggle = true
-            startActivity(Intent(this, HomeActivity::class.java))
-            finishAffinity()
+
+            openDialogWinPoints()
+
 
         })
 
@@ -444,7 +444,6 @@ class Questions_Screen : AppCompatActivity() {
         dialog.show()
         dialog.setCanceledOnTouchOutside(false)
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
     }
 
     private fun openDialogWinPoints() {
@@ -464,10 +463,11 @@ class Questions_Screen : AppCompatActivity() {
 
         dialog.setTitle("winPoints")
         dialog.show()
-        dialog.setCanceledOnTouchOutside(true)
+        dialog.setCanceledOnTouchOutside(false)
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
     }
+
 
     private fun openDialogFailedBool() {
         val dialog = Dialog(this) // Context, this, etc.
@@ -481,7 +481,7 @@ class Questions_Screen : AppCompatActivity() {
         }
         dialog.setTitle("FailedBool")
         dialog.show()
-        dialog.setCanceledOnTouchOutside(true)
+        dialog.setCanceledOnTouchOutside(false)
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
     }

@@ -14,7 +14,7 @@
         android:layout_margin="20dp"
         android:gravity="center"
         android:padding="20dp"
-        android:text="حاول مره اخري انت لم تجتاز اسأله دخول السحب"
+        android:text="حاول مره اخري انت لم تجتاز اسئله دخول السحب"
         android:textColor="@color/purple_color"
         android:textSize="20sp"
         android:textStyle="bold"
