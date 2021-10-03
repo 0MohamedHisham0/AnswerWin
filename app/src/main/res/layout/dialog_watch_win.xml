@@ -8,11 +8,12 @@
     android:background="@color/green_color">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewW"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:text="لقد فزت بعدد "
+        android:gravity="center"
+        android:text="هل ترغب في مشاهدة اعلان وربح عدد "
         android:textColor="@color/purple_color"
         android:textSize="25sp"
         android:textStyle="bold"
@@ -24,10 +25,10 @@
         android:id="@+id/constraintLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textViewW"
+        app:layout_constraintBottom_toTopOf="@id/bu_dialogWin"
         tools:ignore="MissingConstraints">
 
         <TextView
@@ -35,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text="10"
+            android:text="5"
             android:textColor="@color/purple_color"
             android:textSize="25sp"
             android:textStyle="bold"
@@ -54,7 +55,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/tvPoints"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/textViewW"
             app:layout_constraintVertical_bias="0.414"
             tools:ignore="NotSibling" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -64,7 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/purple_color"
-        android:text="تم"
+        android:text="نعم"
         android:textColor="@color/green_color"
         android:textStyle="bold"
         app:carbon_cornerRadius="25dp"

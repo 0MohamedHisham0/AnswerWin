@@ -29,6 +29,7 @@ import com.osama.answerwin.R
 import com.osama.answerwin.Utils.Constants
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.dialog_enter_bool.*
+import kotlinx.android.synthetic.main.dialog_watch_win.*
 
 class HomeActivity : BaseActivity() {
 
@@ -36,6 +37,7 @@ class HomeActivity : BaseActivity() {
     private var mRewardedAd: RewardedAd? = null
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var spin_kit_QS: SpinKitView
+    val adRequest = AdRequest.Builder().build()
     //Var
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,89 +71,10 @@ class HomeActivity : BaseActivity() {
         MobileAds.initialize(this) {}
 
         mAdView = findViewById(R.id.adView)
-        val adRequest = AdRequest.Builder().build()
         mAdView.loadAd(adRequest)
 
         clWatchAndWin.setOnClickListener {
-            RewardedAd.load(
-                this,
-                getString(R.string.rewarded_ad_unit_id),
-                adRequest,
-                object : RewardedAdLoadCallback() {
-                    override fun onAdFailedToLoad(adError: LoadAdError) {
-                        Toast.makeText(
-                            applicationContext, "فشل عرض الاعلان.",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        mRewardedAd = null
-                    }
-
-                    override fun onAdLoaded(rewardedAd: RewardedAd) {
-                        Toast.makeText(
-                            applicationContext, "تم تحميل الاعلان.",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        mRewardedAd = rewardedAd
-                    }
-                })
-
-            mRewardedAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
-                override fun onAdShowedFullScreenContent() {
-                    // Called when ad is shown.
-                    Toast.makeText(
-                        applicationContext, "تم فتح الاعلان.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-
-                override fun onAdFailedToShowFullScreenContent(adError: AdError?) {
-                    // Called when ad fails to show.
-                    Toast.makeText(
-                        applicationContext, "فشل فتح الاعلان.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-
-                override fun onAdDismissedFullScreenContent() {
-                    // Called when ad is dismissed.
-                    // Set the ad reference to null so you don't show the ad a second time.
-                    Constants.GetAuth().currentUser?.uid?.let {
-                        Constants.GetRef().child("Users").child(it).get()
-                            .addOnSuccessListener { dataSnapshot ->
-                                Constants.AddValueTOPoints(5, this@HomeActivity)
-                                Toast.makeText(
-                                    applicationContext, "تم استلام الجائزة.",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
-                    }
-                    mRewardedAd = null
-                }
-            }
-
-            if (mRewardedAd != null) {
-                mRewardedAd?.show(this, OnUserEarnedRewardListener {
-                    fun onUserEarnedReward(rewardItem: RewardItem) {
-                        var rewardAmount = rewardItem.amount
-                        var rewardType = rewardItem.type
-                        Constants.GetAuth().currentUser?.uid?.let {
-                            Constants.GetRef().child("Users").child(it).get()
-                                .addOnSuccessListener { dataSnapshot ->
-                                    Constants.AddValueTOPoints(5, this)
-                                    Toast.makeText(
-                                        applicationContext, "تم استلام الجائزة.",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                }
-                        }
-                    }
-                })
-            } else {
-                Toast.makeText(
-                    applicationContext, "لا توجد اعلانات حاليا للمشاهدة.",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+            openDialogWatch()
         }
 
         val userId = mAuth!!.currentUser!!.uid
@@ -272,6 +195,96 @@ class HomeActivity : BaseActivity() {
         dialog.setCanceledOnTouchOutside(true)
     }
 
+    private fun openDialogWatch() {
+        val dialog = Dialog(this) // Context, this, etc.
+        dialog.setContentView(R.layout.dialog_watch_win)
+
+        dialog.bu_dialogWin.setOnClickListener {
+            RewardedAd.load(
+                this,
+                getString(R.string.rewarded_ad_unit_id),
+                adRequest,
+                object : RewardedAdLoadCallback() {
+                    override fun onAdFailedToLoad(adError: LoadAdError) {
+                        Toast.makeText(
+                            applicationContext, "فشل تحميل الاعلان.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        mRewardedAd = null
+                    }
+
+                    override fun onAdLoaded(rewardedAd: RewardedAd) {
+                        Toast.makeText(
+                            applicationContext, "تم تحميل الاعلان.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        mRewardedAd = rewardedAd
+                    }
+                })
+
+            mRewardedAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
+                override fun onAdShowedFullScreenContent() {
+                    // Called when ad is shown.
+                    Toast.makeText(
+                        applicationContext, "تم فتح الاعلان.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                override fun onAdFailedToShowFullScreenContent(adError: AdError?) {
+                    // Called when ad fails to show.
+                    Toast.makeText(
+                        applicationContext, "فشل فتح الاعلان.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                override fun onAdDismissedFullScreenContent() {
+                    // Called when ad is dismissed.
+                    // Set the ad reference to null so you don't show the ad a second time.
+                    Constants.GetAuth().currentUser?.uid?.let {
+                        Constants.GetRef().child("Users").child(it).get()
+                            .addOnSuccessListener { dataSnapshot ->
+                                Constants.AddValueTOPoints(5, this@HomeActivity)
+                                Toast.makeText(
+                                    applicationContext, "تم استلام الجائزة.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                    }
+                    dialog.dismiss()
+                    mRewardedAd = null
+                }
+            }
+
+            if (mRewardedAd != null) {
+                mRewardedAd?.show(this, OnUserEarnedRewardListener {
+                    fun onUserEarnedReward(rewardItem: RewardItem) {
+                        var rewardAmount = rewardItem.amount
+                        var rewardType = rewardItem.type
+                        Constants.GetAuth().currentUser?.uid?.let {
+                            Constants.GetRef().child("Users").child(it).get()
+                                .addOnSuccessListener { dataSnapshot ->
+                                    Constants.AddValueTOPoints(5, this)
+                                    Toast.makeText(
+                                        applicationContext, "تم استلام الجائزة.",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                        }
+                    }
+                })
+            } else {
+                Toast.makeText(
+                    applicationContext, "لا توجد اعلانات حاليا للمشاهدة.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+        dialog.setTitle("Watch&Win")
+        dialog.show()
+        dialog.setCanceledOnTouchOutside(false)
+    }
 
     fun toast(message: String) {
         Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()
