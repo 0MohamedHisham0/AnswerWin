@@ -15,39 +15,51 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
             android:name=".Activities.QuestionsDashboard"
-            android:exported="true" android:screenOrientation="portrait"/>
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.WinnersDashboardActivity"
-            android:exported="true" android:screenOrientation="portrait"/>
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.AdminHomeActivity"
-            android:exported="true" android:screenOrientation="portrait"/>
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.WinnersActivity"
-            android:exported="true" android:screenOrientation="portrait"/>
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.MyPrize"
-            android:exported="true" android:screenOrientation="portrait"/>
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.StoreActivity"
-            android:exported="true" android:screenOrientation="portrait"/>
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.ProfileActivity"
-            android:exported="true" android:screenOrientation="portrait"/>
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.RegisterActivity"
-            android:exported="true" android:screenOrientation="portrait"/>
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.LoginActivity"
-            android:exported="true" android:screenOrientation="portrait"/>
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.BoolUsersActivity"
-            android:exported="true" android:screenOrientation="portrait"/>
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.SplashScreen"
-            android:exported="true" android:screenOrientation="portrait">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -55,17 +67,29 @@
 
         <activity
             android:name=".Activities.AddQuestions_Dashboard"
-            android:exported="true" android:screenOrientation="portrait"/>
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.HomeActivity"
-            android:exported="true" android:screenOrientation="portrait"/>
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.APP_MAPS" />
+
+            </intent-filter>
+
+        </activity>
         <activity
             android:name=".Activities.Questions_Screen"
-            android:exported="true" android:screenOrientation="portrait"/>
+            android:exported="true"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-4475284696301186~1660020975"/>
+            android:value="ca-app-pub-4475284696301186~1660020975" />
 
     </application>
 

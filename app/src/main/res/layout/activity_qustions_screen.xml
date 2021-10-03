@@ -8,7 +8,6 @@
     android:padding="20dp"
     tools:context=".Activities.Questions_Screen">
 
-
     <com.github.ybq.android.spinkit.SpinKitView
         android:id="@+id/spin_kit_QS"
         style="@style/SpinKitView.Large.Circle"
@@ -32,23 +31,51 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/TXT_CurrentQuestionNumber"
-        android:layout_width="wrap_content"
+    <carbon.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="2/20"
-        android:textColor="@color/green_color"
-        android:textSize="18sp"
-        android:textStyle="bold"
+        android:background="@color/green_color"
+        app:carbon_cornerRadius="10dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:paddingEnd="6dp"
+        android:paddingStart="6dp"
+        android:id="@+id/cl_Score"
+        android:layout_marginTop="7dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+        <TextView
+            android:id="@+id/TXT_CurrentQuestionNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="عدد الاسئلة 0/20"
+            android:textColor="@color/purple_color"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+             />
+
+
+        <TextView
+            android:id="@+id/tv_TrueAnswersNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="اجاباتك الصحيحة : 0/20"
+            android:textColor="@color/GreenColor"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginTop="3dp"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+    </carbon.widget.ConstraintLayout>
 
     <carbon.widget.FrameLayout
         android:id="@+id/frameLayout_Question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="20dp"
         android:background="@color/green_color"
         android:minWidth="150dp"
         android:padding="15dp"
@@ -56,7 +83,7 @@
         app:carbon_cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TXT_CurrentQuestionNumber">
+        app:layout_constraintTop_toBottomOf="@+id/cl_Score">
 
         <TextView
             android:id="@+id/TXT_MainQuestion"
@@ -74,9 +101,9 @@
         android:id="@+id/linearLayout_Answers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:orientation="vertical"
-        android:layout_marginTop="20dp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -58,6 +58,7 @@ class ProfileActivity : BaseActivity() {
 
 
         ivBackP.setOnClickListener {
+            Constants.makeIntent(this, HomeActivity::class.java)
             finish()
         }
     }

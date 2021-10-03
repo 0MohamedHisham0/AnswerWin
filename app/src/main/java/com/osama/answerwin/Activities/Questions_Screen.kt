@@ -1,473 +1,488 @@
-package com.osama.answerwin.Activities;
+package com.osama.answerwin.Activities
 
+import android.app.Dialog
+import androidx.appcompat.app.AppCompatActivity
+import com.osama.answerwin.Models.Questions_Model
+import android.os.Bundle
+import com.osama.answerwin.R
+import android.content.Intent
+import android.util.Log
+import android.view.View
+import android.widget.*
+import com.google.android.gms.ads.AdError
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.FullScreenContentCallback
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import com.osama.answerwin.Models.UserModel
+import com.osama.answerwin.Utils.Constants
+import kotlinx.android.synthetic.main.activity_qustions_screen.*
+import java.util.*
 
-import android.app.Dialog;
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.github.ybq.android.spinkit.SpinKitView;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.osama.answerwin.Models.Questions_Model;
-import com.osama.answerwin.Models.UserModel;
-import com.osama.answerwin.R;
-import com.osama.answerwin.Utils.Constants;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-
-public class Questions_Screen extends AppCompatActivity {
-    private static final String TAG = "RandN";
-
-    //Views
-    TextView TXT_QuestionNumber, TXT_QuestionMain, TXT_Answer1, TXT_Answer2, TXT_Answer3, TXT_Answer4;
-    FrameLayout Frame_QuestionMain, Frame_Answer1, Frame_Answer2, Frame_Answer3, Frame_Answer4, Frame_BtnNext, Frame_BtnBackHome;
-    SpinKitView spin_kit_QS;
-    LinearLayout linearLayout_Answers;
-
+class Questions_Screen : AppCompatActivity() {
     //Var
-    private Map<String, Object> Question = new HashMap<>();
-    private List<Questions_Model> Questions_List = new ArrayList<>();
-    private TextView ClickedAnswer;
-    private List<Integer> UsedQuList = new ArrayList<>();
-    private Questions_Model CurrentModel;
-    public int Score = 0;
-    private int CurrentQuNumber = 1;
-    private String IntentResult = "";
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_qustions_screen);
-
-        initViews();
-
-        GetQuFromFB();
-
+    private var mInterstitialAd: InterstitialAd? = null
+    private var Question: Map<String, Any> = HashMap()
+    private val Questions_List: MutableList<Questions_Model> = ArrayList()
+    private var ClickedAnswer: TextView? = null
+    private val UsedQuList: MutableList<Int> = ArrayList()
+    private var CurrentModel: Questions_Model? = null
+    var Score = 0
+    private var CurrentQuNumber = 0
+    private var toggle = false
+    private var IntentResult: String? = ""
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_qustions_screen)
+        initViews()
+        GetQuFromFB()
+        initAd("ca-app-pub-3940256099942544/1033173712")
     }
 
-    private void initViews() {
-
-
-        Bundle extras = getIntent().getExtras();
+    private fun initViews() {
+        val extras = intent.extras
         if (extras != null) {
-            IntentResult = extras.getString("path");
+            IntentResult = extras.getString("path")
             //The key argument here must match that used in the other activity
         } else {
-            Constants.openWelcomeDialog(this);
+            Constants.openWelcomeDialog(this)
         }
-
-        //TextViews
-        TXT_QuestionNumber = findViewById(R.id.TXT_CurrentQuestionNumber);
-        TXT_QuestionMain = findViewById(R.id.TXT_MainQuestion);
-        TXT_Answer1 = findViewById(R.id.TXT_Answer1);
-        TXT_Answer2 = findViewById(R.id.TXT_Answer2);
-        TXT_Answer3 = findViewById(R.id.TXT_Answer3);
-        TXT_Answer4 = findViewById(R.id.TXT_Answer4);
-
-        //Frames
-        Frame_QuestionMain = findViewById(R.id.frameLayout_Question);
-        Frame_Answer1 = findViewById(R.id.frameLayoutAnswer1);
-        Frame_Answer2 = findViewById(R.id.frameLayoutAnswer2);
-        Frame_Answer3 = findViewById(R.id.frameLayoutAnswer3);
-        Frame_Answer4 = findViewById(R.id.frameLayoutAnswer4);
-        Frame_BtnNext = findViewById(R.id.frameLayout_BtnNext);
-        Frame_BtnBackHome = findViewById(R.id.frameLayoutBtnBack);
-
-        spin_kit_QS = findViewById(R.id.spin_kit_QS);
-
-        linearLayout_Answers = findViewById(R.id.linearLayout_Answers);
-
-        TXT_QuestionNumber.setText(CurrentQuNumber + "/" + "20");
-
         //ClicksListener
-        Frame_Answer1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ClickedAnswer = TXT_Answer1;
+        frameLayoutAnswer1.setOnClickListener(View.OnClickListener {
+            makeButtonsUnClickable()
 
-                if (CheckIFAnswerIsTrue()) {
-                    Score++;
-                    Frame_Answer1.setBackground(getDrawable(R.color.GreenColor));
-                } else {
-                    TrueQu(Frame_Answer1, Frame_Answer2, Frame_Answer3, Frame_Answer4, TXT_Answer1, TXT_Answer2, TXT_Answer3, TXT_Answer4);
+            ClickedAnswer = TXT_Answer1
+            if (CheckIFAnswerIsTrue()) {
+                Score++
+                tv_TrueAnswersNumber.text = "اجاباتك الصحيحة :" + Score + "/20"
+                frameLayoutAnswer1.setBackground(getDrawable(R.color.GreenColor))
 
-                }
-
-
+            } else {
+                TrueQu(
+                    frameLayoutAnswer1,
+                    frameLayoutAnswer2,
+                    frameLayoutAnswer3,
+                    frameLayoutAnswer4,
+                    TXT_Answer1,
+                    TXT_Answer2,
+                    TXT_Answer3,
+                    TXT_Answer4
+                )
             }
-        });
+        })
+        frameLayoutAnswer2.setOnClickListener(View.OnClickListener {
+            ClickedAnswer = TXT_Answer2
+            makeButtonsUnClickable()
 
-        Frame_Answer2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ClickedAnswer = TXT_Answer2;
+            if (CheckIFAnswerIsTrue()) {
 
-                if (CheckIFAnswerIsTrue()) {
-                    Score++;
-                    Frame_Answer2.setBackground(getDrawable(R.color.GreenColor));
+                Score++
+                tv_TrueAnswersNumber.text = "اجاباتك الصحيحة :" + Score + "/20"
 
-                } else {
-                    TrueQu(Frame_Answer1, Frame_Answer2, Frame_Answer3, Frame_Answer4, TXT_Answer1, TXT_Answer2, TXT_Answer3, TXT_Answer4);
-
-                }
-
-
+                frameLayoutAnswer2.setBackground(getDrawable(R.color.GreenColor))
+            } else {
+                TrueQu(
+                    frameLayoutAnswer1,
+                    frameLayoutAnswer2,
+                    frameLayoutAnswer3,
+                    frameLayoutAnswer4,
+                    TXT_Answer1,
+                    TXT_Answer2,
+                    TXT_Answer3,
+                    TXT_Answer4
+                )
             }
-        });
+        })
+        frameLayoutAnswer3.setOnClickListener(View.OnClickListener {
+            makeButtonsUnClickable()
 
-        Frame_Answer3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ClickedAnswer = TXT_Answer3;
+            ClickedAnswer = TXT_Answer3
+            if (CheckIFAnswerIsTrue()) {
+                Score++
+                tv_TrueAnswersNumber.text = "اجاباتك الصحيحة :" + Score + "/20"
 
-                if (CheckIFAnswerIsTrue()) {
-                    Score++;
-                    Frame_Answer3.setBackground(getDrawable(R.color.GreenColor));
-
-                } else {
-                    TrueQu(Frame_Answer1, Frame_Answer2, Frame_Answer3, Frame_Answer4, TXT_Answer1, TXT_Answer2, TXT_Answer3, TXT_Answer4);
-
-                }
-
-
+                frameLayoutAnswer3.setBackground(getDrawable(R.color.GreenColor))
+            } else {
+                TrueQu(
+                    frameLayoutAnswer1,
+                    frameLayoutAnswer2,
+                    frameLayoutAnswer3,
+                    frameLayoutAnswer4,
+                    TXT_Answer1,
+                    TXT_Answer2,
+                    TXT_Answer3,
+                    TXT_Answer4
+                )
             }
-        });
+        })
+        frameLayoutAnswer4.setOnClickListener(View.OnClickListener {
+            makeButtonsUnClickable()
 
-        Frame_Answer4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ClickedAnswer = TXT_Answer4;
+            ClickedAnswer = TXT_Answer4
+            if (CheckIFAnswerIsTrue()) {
+                Score++
+                tv_TrueAnswersNumber.text = "اجاباتك الصحيحة :" + Score + "/20"
 
-                if (CheckIFAnswerIsTrue()) {
-                    Score++;
-                    Frame_Answer4.setBackground(getDrawable(R.color.GreenColor));
-
-                } else {
-                    TrueQu(Frame_Answer1, Frame_Answer2, Frame_Answer3, Frame_Answer4, TXT_Answer1, TXT_Answer2, TXT_Answer3, TXT_Answer4);
-
-                }
-
-
+                frameLayoutAnswer4.setBackground(getDrawable(R.color.GreenColor))
+            } else {
+                TrueQu(
+                    frameLayoutAnswer1,
+                    frameLayoutAnswer2,
+                    frameLayoutAnswer3,
+                    frameLayoutAnswer4,
+                    TXT_Answer1,
+                    TXT_Answer2,
+                    TXT_Answer3,
+                    TXT_Answer4
+                )
             }
-        });
-
-        Frame_BtnNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (ClickedAnswer != null) {
-                    DefaultColorViews();
-                    DataToViews();
-                    ClickedAnswer = null;
-                } else {
-                    Toast.makeText(Questions_Screen.this, "اختر اجابتك اولا", Toast.LENGTH_SHORT).show();
-                }
+        })
+        frameLayout_BtnNext.setOnClickListener(View.OnClickListener {
+            if (ClickedAnswer != null) {
+                DefaultColorViews()
+                DataToViews()
+                ClickedAnswer = null
+            } else {
+                Toast.makeText(this@Questions_Screen, "اختر اجابتك اولا", Toast.LENGTH_SHORT).show()
             }
-        });
+        })
+        frameLayoutBtnBack.setOnClickListener(View.OnClickListener {
+            toggle = true
+            startActivity(Intent(this, HomeActivity::class.java))
+            finishAffinity()
 
-        Frame_BtnBackHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Questions_Screen.this, HomeActivity.class));
-            }
-        });
+        })
 
     }
 
-    private void DataToViews() {
-        if (Questions_List != null) {
-            int randN = getRandomNumber(0, Questions_List.size());
-
-            if (!UsedQuList.contains(randN)) {
-                TXT_QuestionNumber.setText(CurrentQuNumber + "/" + "20");
-
-                CurrentQuNumber++;
-                CurrentModel = Questions_List.get(randN);
-                ModelToView(Questions_List.get(randN));
-                UsedQuList.add(randN);
-            } else {
+    private fun DataToViews() {
+        if (Questions_List.size < 20) {
+            Toast.makeText(
+                this,
+                "عفوا لا يوجد عدد اسائله كافي حاليا جرب مره اخره" + Questions_List.size,
+                Toast.LENGTH_SHORT
+            ).show()
+        } else {
+            //limit Qu
+            if (UsedQuList.size == 20) {
                 //MaxQuestions
-                if (Questions_List.size() == UsedQuList.size()) {
-
-                    //Check What is incoming he is in bool or in QuAndWin
-                    if (IntentResult.equals("Bool")) {
-                        //Bool
-                        if (Score > 1) {
-                            //Winner
-                            sendUserToBoolUsers(Constants.GetAuth().getCurrentUser().getUid());
-
-                        } else {
-                            //Losers
-                            openDialogFailedBool();
-                        }
-
+                //Check What is incoming he is in bool or in QuAndWin
+                if (IntentResult == "Bool") {
+                    //Bool
+                    if (Score >= 10) {
+                        //Winner
+                        sendUserToBoolUsers(
+                            Constants.GetAuth().currentUser!!.uid
+                        )
                     } else {
-                        //Qu and win
-                        CurrentQuNumber = 0;
-                        openDialogWinPoints();
+                        //Losers
+                        openDialogFailedBool()
                     }
-                } else
-                    //Go To Next Question
-                    DataToViews();
+                } else {
+                    //Coming from home
+                    openDialogWinPoints()
+                }
+            } else {  //Go To Next Question
+                getRandomQuestion()
+
             }
 
+
+        }
+
+    }
+
+    private fun getRandomQuestion() {
+        val randN = getRandomNumber(0, Questions_List.size)
+        if (!UsedQuList.contains(randN)) {
+            //ShowAdd
+            showAd()
+            //Add Question number
+            CurrentQuNumber++
+            TXT_CurrentQuestionNumber!!.text = " عدد الاسئلة : $CurrentQuNumber/20 "
+
+            //Get Rand Model
+            CurrentModel = Questions_List[randN]
+            getAnswersRand(CurrentModel!!)
+            UsedQuList.add(randN)
+
+        } else {
+            getRandomQuestion()
+        }
+
+    }
+
+    private fun showAd() {
+        if (mInterstitialAd != null) {
+            mInterstitialAd?.show(this)
         }
     }
 
+    fun initAd(UnitID: String) {
+        var adRequest = AdRequest.Builder().build()
+
+        InterstitialAd.load(this, UnitID, adRequest, object : InterstitialAdLoadCallback() {
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                mInterstitialAd = null
+
+            }
+
+            override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                mInterstitialAd = interstitialAd
+
+                mInterstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
+                    override fun onAdDismissedFullScreenContent() {
+                    }
+
+                    override fun onAdFailedToShowFullScreenContent(adError: AdError?) {
+                    }
+
+                    override fun onAdShowedFullScreenContent() {
+                        mInterstitialAd = null
+                    }
+                }
+            }
+        })
+    }
 
     // Firebase
-    private void GetQuFromFB() {
+    private fun GetQuFromFB() {
         Constants.GetFireStoneDb().collection("Questions")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            spin_kit_QS.setVisibility(View.GONE);
-                            linearLayout_Answers.setVisibility(View.VISIBLE);
-                            Frame_QuestionMain.setVisibility(View.VISIBLE);
-                            for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
-
-                                Question = document.getData();
-                                Questions_Model questions_model = new Questions_Model(
-                                        Question.get("main_question").toString(),
-                                        Question.get("t_answer_1").toString(),
-                                        Question.get("f_answer_2").toString(),
-                                        Question.get("f_answer_3").toString(),
-                                        Question.get("f_answer_4").toString());
-
-                                Questions_List.add(questions_model);
-                            }
-                            DataToViews();
-
-                        } else {
-                            Toast.makeText(Questions_Screen.this, "" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                        }
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    spin_kit_QS!!.visibility = View.GONE
+                    linearLayout_Answers!!.visibility = View.VISIBLE
+                    frameLayout_Question!!.visibility = View.VISIBLE
+                    for (document in Objects.requireNonNull(task.result)!!) {
+                        Question = document.data
+                        val questions_model = Questions_Model(
+                            Question["main_question"].toString(),
+                            Question["t_answer_1"].toString(),
+                            Question["f_answer_2"].toString(),
+                            Question["f_answer_3"].toString(),
+                            Question["f_answer_4"].toString()
+                        )
+                        Questions_List!!.add(questions_model)
                     }
-                });
+                    DataToViews()
+                } else {
+                    Toast.makeText(
+                        this@Questions_Screen,
+                        "" + task.exception!!.message,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
     }
 
-    public void sendUserToBoolUsers(String userId) {
-        Constants.GetRef().child("Users").child(userId).get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
-            @Override
-            public void onSuccess(DataSnapshot dataSnapshot) {
-                UserModel userModel = dataSnapshot.getValue(UserModel.class);
+    fun sendUserToBoolUsers(userId: String?) {
+        Constants.GetRef().child("Users").child(userId!!).get()
+            .addOnSuccessListener { dataSnapshot ->
+                val userModel = dataSnapshot.getValue(UserModel::class.java)
 
                 //Add boolUsers Var
-                Map<String, Object> MapUser = new HashMap<>();
-                Long tsLong = System.currentTimeMillis() / 1000;
-
-                MapUser.put("userName", userModel.getName());
-                MapUser.put("UserID", Constants.GetAuth().getCurrentUser().getUid());
-                MapUser.put("date", tsLong);
+                val MapUser: MutableMap<String, Any> = HashMap()
+                val tsLong = System.currentTimeMillis() / 1000
+                MapUser["userName"] = userModel!!.name
+                MapUser["UserID"] = Constants.GetAuth().currentUser!!
+                    .uid
+                MapUser["date"] = tsLong
 
                 //Change User status to inPending
-                Constants.GetRef().child("Users").child(userId).child("status").setValue("داخل السحب");
+                Constants.GetRef().child("Users").child(userId).child("status")
+                    .setValue("داخل السحب")
 
                 //AddBoolUsers
-                Constants.GetFireStoneDb().collection("BoolUsers").document(userId).set(MapUser).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        openDialogYouEnteredBool();
-                    }
-                });
+                Constants.GetFireStoneDb().collection("BoolUsers").document(
+                    userId
+                ).set(MapUser).addOnSuccessListener { openDialogYouEnteredBool() }
             }
-        });
     }
 
     //Small Fun
-    public Boolean CheckIFAnswerIsTrue() {
-        return ClickedAnswer.getText().toString().equals(CurrentModel.getT_answer_1());
+    fun CheckIFAnswerIsTrue(): Boolean {
+        return ClickedAnswer!!.text.toString() == CurrentModel!!.t_answer_1
     }
 
-    public Boolean CheckIFBuIsTrueOrFalse(TextView textView) {
-        return textView.getText().toString().equals(CurrentModel.getT_answer_1());
+    fun CheckIFBuIsTrueOrFalse(textView: TextView?): Boolean {
+        return textView!!.text.toString() == CurrentModel!!.t_answer_1
     }
 
-    public void ModelToView(Questions_Model model) {
-        int randN = getRandomNumber(1, 4);
-        switch (randN) {
-            case 1:
-                TXT_QuestionMain.setText(model.getMain_question());
-                TXT_Answer1.setText(model.getT_answer_1());
-                Log.i(TAG, "ModelToView: " + randN);
-                TXT_Answer2.setText(model.getF_answer_2());
-                TXT_Answer3.setText(model.getF_answer_3());
-                TXT_Answer4.setText(model.getF_answer_4());
-                break;
-            case 2:
-                TXT_QuestionMain.setText(model.getMain_question());
-                TXT_Answer1.setText(model.getF_answer_2());
-                TXT_Answer2.setText(model.getT_answer_1());
-                TXT_Answer3.setText(model.getF_answer_3());
-                TXT_Answer4.setText(model.getF_answer_4());
-                break;
-
-            case 3:
-                TXT_QuestionMain.setText(model.getMain_question());
-                TXT_Answer1.setText(model.getF_answer_2());
-                TXT_Answer2.setText(model.getF_answer_3());
-                TXT_Answer3.setText(model.getT_answer_1());
-                TXT_Answer4.setText(model.getF_answer_4());
-                break;
-
-            case 4:
-                TXT_QuestionMain.setText(model.getMain_question());
-                TXT_Answer1.setText(model.getF_answer_2());
-                TXT_Answer2.setText(model.getF_answer_4());
-                TXT_Answer3.setText(model.getF_answer_3());
-                TXT_Answer4.setText(model.getT_answer_1());
-                break;
-
+    fun getAnswersRand(model: Questions_Model) {
+        val randN = getRandomNumber(1, 4)
+        when (randN) {
+            1 -> {
+                TXT_MainQuestion!!.text = model.main_question
+                TXT_Answer1!!.text = model.t_answer_1
+                TXT_Answer2!!.text = model.f_answer_2
+                TXT_Answer3!!.text = model.f_answer_3
+                TXT_Answer4!!.text = model.f_answer_4
+            }
+            2 -> {
+                TXT_MainQuestion!!.text = model.main_question
+                TXT_Answer1!!.text = model.f_answer_2
+                TXT_Answer2!!.text = model.t_answer_1
+                TXT_Answer3!!.text = model.f_answer_3
+                TXT_Answer4!!.text = model.f_answer_4
+            }
+            3 -> {
+                TXT_MainQuestion!!.text = model.main_question
+                TXT_Answer1!!.text = model.f_answer_2
+                TXT_Answer2!!.text = model.f_answer_3
+                TXT_Answer3!!.text = model.t_answer_1
+                TXT_Answer4!!.text = model.f_answer_4
+            }
+            4 -> {
+                TXT_MainQuestion!!.text = model.main_question
+                TXT_Answer1!!.text = model.f_answer_2
+                TXT_Answer2!!.text = model.f_answer_4
+                TXT_Answer3!!.text = model.f_answer_3
+                TXT_Answer4!!.text = model.t_answer_1
+            }
         }
-
     }
 
-    public void DefaultColorViews() {
-        Frame_Answer1.setBackground(getDrawable(R.color.purple_color));
-        Frame_Answer2.setBackground(getDrawable(R.color.purple_color));
-        Frame_Answer3.setBackground(getDrawable(R.color.purple_color));
-        Frame_Answer4.setBackground(getDrawable(R.color.purple_color));
-
-        TXT_Answer1.setTextColor(getResources().getColor(R.color.green_color));
-        TXT_Answer2.setTextColor(getResources().getColor(R.color.green_color));
-        TXT_Answer3.setTextColor(getResources().getColor(R.color.green_color));
-        TXT_Answer4.setTextColor(getResources().getColor(R.color.green_color));
-
-        Frame_Answer1.setClickable(true);
-        Frame_Answer2.setClickable(true);
-        Frame_Answer3.setClickable(true);
-        Frame_Answer4.setClickable(true);
+    fun DefaultColorViews() {
+        frameLayoutAnswer1!!.background = getDrawable(R.color.purple_color)
+        frameLayoutAnswer2!!.background = getDrawable(R.color.purple_color)
+        frameLayoutAnswer3!!.background = getDrawable(R.color.purple_color)
+        frameLayoutAnswer4!!.background = getDrawable(R.color.purple_color)
+        TXT_Answer1!!.setTextColor(resources.getColor(R.color.green_color))
+        TXT_Answer2!!.setTextColor(resources.getColor(R.color.green_color))
+        TXT_Answer3!!.setTextColor(resources.getColor(R.color.green_color))
+        TXT_Answer4!!.setTextColor(resources.getColor(R.color.green_color))
+        frameLayoutAnswer1!!.isClickable = true
+        frameLayoutAnswer2!!.isClickable = true
+        frameLayoutAnswer3!!.isClickable = true
+        frameLayoutAnswer4!!.isClickable = true
     }
 
-    public int getRandomNumber(int min, int max) {
-        return (int) ((Math.random() * (max - min)) + min);
+    fun getRandomNumber(min: Int, max: Int): Int {
+        return (Math.random() * (max - min) + min).toInt()
     }
 
-    public void TrueQu(FrameLayout Qu1, FrameLayout Qu2, FrameLayout Qu3, FrameLayout Qu4, TextView TxtQu1, TextView TxtQu2, TextView TxtQu3, TextView TxtQu4) {
+    fun TrueQu(
+        Qu1: FrameLayout?,
+        Qu2: FrameLayout?,
+        Qu3: FrameLayout?,
+        Qu4: FrameLayout?,
+        TxtQu1: TextView?,
+        TxtQu2: TextView?,
+        TxtQu3: TextView?,
+        TxtQu4: TextView?
+    ) {
+        makeCurrentButtonRed(ClickedAnswer!!)
+
         if (CheckIFBuIsTrueOrFalse(TxtQu1)) {
-            Qu1.setBackground(getDrawable(R.color.GreenColor));
-            Qu2.setBackground(getDrawable(R.color.RedColor));
-            Qu3.setBackground(getDrawable(R.color.RedColor));
-            Qu4.setBackground(getDrawable(R.color.RedColor));
+            Qu1!!.background = getDrawable(R.color.GreenColor)
+
+
         }
         if (CheckIFBuIsTrueOrFalse(TxtQu2)) {
-            Qu1.setBackground(getDrawable(R.color.RedColor));
-            Qu2.setBackground(getDrawable(R.color.GreenColor));
-            Qu3.setBackground(getDrawable(R.color.RedColor));
-            Qu4.setBackground(getDrawable(R.color.RedColor));
+            Qu2!!.background = getDrawable(R.color.GreenColor)
+
         }
         if (CheckIFBuIsTrueOrFalse(TxtQu3)) {
-            Qu1.setBackground(getDrawable(R.color.RedColor));
-            Qu2.setBackground(getDrawable(R.color.RedColor));
-            Qu3.setBackground(getDrawable(R.color.GreenColor));
-            Qu4.setBackground(getDrawable(R.color.RedColor));
+
+            Qu3!!.background = getDrawable(R.color.GreenColor)
         }
         if (CheckIFBuIsTrueOrFalse(TxtQu4)) {
-            Qu1.setBackground(getDrawable(R.color.RedColor));
-            Qu2.setBackground(getDrawable(R.color.RedColor));
-            Qu3.setBackground(getDrawable(R.color.RedColor));
-            Qu4.setBackground(getDrawable(R.color.GreenColor));
+
+            Qu4!!.background = getDrawable(R.color.GreenColor)
         }
 
-        Qu1.setClickable(false);
-        Qu2.setClickable(false);
-        Qu3.setClickable(false);
-        Qu4.setClickable(false);
+    }
 
+    private fun makeButtonsUnClickable() {
+        frameLayoutAnswer1!!.isClickable = false
+        frameLayoutAnswer2!!.isClickable = false
+        frameLayoutAnswer3!!.isClickable = false
+        frameLayoutAnswer4!!.isClickable = false
+    }
+
+    fun makeCurrentButtonRed(text: TextView) {
+
+        if (text == TXT_Answer1) {
+            frameLayoutAnswer1.background = getDrawable(R.color.RedColor)
+            frameLayoutAnswer1.isClickable = false
+        }
+        if (text == TXT_Answer2) {
+            frameLayoutAnswer2.background = getDrawable(R.color.RedColor)
+            frameLayoutAnswer2.isClickable = false
+
+        }
+        if (text == TXT_Answer3) {
+            frameLayoutAnswer3.background = getDrawable(R.color.RedColor)
+            frameLayoutAnswer3.isClickable = false
+
+        }
+        if (text == TXT_Answer4) {
+            frameLayoutAnswer4.background = getDrawable(R.color.RedColor)
+            frameLayoutAnswer4.isClickable = false
+
+        }
     }
 
     //Dialogs
-    private void openDialogYouEnteredBool() {
-        Dialog dialog = new Dialog(this); // Context, this, etc.
-        dialog.setContentView(R.layout.dialog_entered_bool);
-
-        Button button = dialog.findViewById(R.id.bu_dialogBool);
+    private fun openDialogYouEnteredBool() {
+        val dialog = Dialog(this) // Context, this, etc.
+        dialog.setContentView(R.layout.dialog_entered_bool)
+        val button = dialog.findViewById<Button>(R.id.bu_dialogBool)
         //Edit User Status to pending
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Go to profile Screen
-                dialog.dismiss();
-                finish();
-            }
-        });
-
-        dialog.setTitle("EnteredBool");
-        dialog.show();
-        dialog.setCanceledOnTouchOutside(false);
-
+        button.setOnClickListener { //Go to profile Screen
+            dialog.dismiss()
+            toggle = true
+            startActivity(Intent(this, ProfileActivity::class.java))
+            finish()
+        }
+        dialog.setTitle("EnteredBool")
+        dialog.show()
+        dialog.setCanceledOnTouchOutside(false)
     }
 
-    private void openDialogWinPoints() {
-        Dialog dialog = new Dialog(this); // Context, this, etc.
-        dialog.setContentView(R.layout.dialog_points_win);
+    private fun openDialogWinPoints() {
+        val dialog = Dialog(this) // Context, this, etc.
+        dialog.setContentView(R.layout.dialog_points_win)
+        val textView = dialog.findViewById<TextView>(R.id.tv_score_dialogWin)
+        val button = dialog.findViewById<Button>(R.id.bu_dialogWin)
+        Constants.AddValueTOPoints(Score, applicationContext)
+        textView.text = Score.toString() + ""
 
-        TextView textView = dialog.findViewById(R.id.tv_score_dialogWin);
-        Button button = dialog.findViewById(R.id.bu_dialogWin);
+        button.setOnClickListener {
+            dialog.dismiss()
+            toggle = true
+            startActivity(Intent(this, HomeActivity::class.java))
+            finish()
+        }
 
-//        Constants.GetRef().child("Users").child(userId).child("points").setValue(Score + "");
-        Constants.AddValueTOPoints(Score, getApplicationContext());
-        textView.setText(Score + "");
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-                finish();
-            }
-        });
-
-        dialog.setTitle("winPoints");
-        dialog.show();
-        dialog.setCanceledOnTouchOutside(true);
-
-
+        dialog.setTitle("winPoints")
+        dialog.show()
+        dialog.setCanceledOnTouchOutside(true)
     }
 
-    private void openDialogFailedBool() {
-        Dialog dialog = new Dialog(this); // Context, this, etc.
-        dialog.setContentView(R.layout.dialog_failed_in_bool);
-
-        TextView textView = dialog.findViewById(R.id.tv_score_dialogWin);
-        Button button = dialog.findViewById(R.id.bu_dialogFailedBool);
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-                startActivity(new Intent(Questions_Screen.this, HomeActivity.class));
-            }
-        });
-
-        dialog.setTitle("FailedBool");
-        dialog.show();
-        dialog.setCanceledOnTouchOutside(true);
-
-
+    private fun openDialogFailedBool() {
+        val dialog = Dialog(this) // Context, this, etc.
+        dialog.setContentView(R.layout.dialog_failed_in_bool)
+        val button = dialog.findViewById<Button>(R.id.bu_dialogFailedBool)
+        button.setOnClickListener {
+            dialog.dismiss()
+            toggle = true
+            startActivity(Intent(this@Questions_Screen, HomeActivity::class.java))
+            finishAffinity()
+        }
+        dialog.setTitle("FailedBool")
+        dialog.show()
+        dialog.setCanceledOnTouchOutside(true)
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        startActivity(new Intent(Questions_Screen.this, HomeActivity.class));
-        finishAffinity();
+    override fun onStop() {
+        super.onStop()
+        if (!toggle) {
+            startActivity(Intent(this@Questions_Screen, HomeActivity::class.java))
+            finishAffinity()
+        }
     }
+
 }

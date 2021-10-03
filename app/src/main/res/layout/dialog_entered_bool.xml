@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:background="@color/purple_color"
         android:padding="15dp"
-        android:text="العوده الى الرئيسية"
+        android:text="الذهاب الى الصفحة الشخصية"
         android:textColor="@color/green_color"
         android:textStyle="bold"
         app:carbon_cornerRadius="25dp"

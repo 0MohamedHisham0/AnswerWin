@@ -32,8 +32,7 @@ import kotlinx.android.synthetic.main.dialog_enter_bool.*
 
 class HomeActivity : BaseActivity() {
 
-    lateinit var mAdView : AdView
-    private var TAG = "MainActivity"
+    lateinit var mAdView: AdView
     private var mRewardedAd: RewardedAd? = null
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var spin_kit_QS: SpinKitView
@@ -74,25 +73,29 @@ class HomeActivity : BaseActivity() {
         mAdView.loadAd(adRequest)
 
         clWatchAndWin.setOnClickListener {
-            RewardedAd.load(this, getString(R.string.rewarded_ad_unit_id), adRequest, object : RewardedAdLoadCallback() {
-                override fun onAdFailedToLoad(adError: LoadAdError) {
-                    Toast.makeText(
-                        applicationContext, "فشل عرض الاعلان.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    mRewardedAd = null
-                }
+            RewardedAd.load(
+                this,
+                getString(R.string.rewarded_ad_unit_id),
+                adRequest,
+                object : RewardedAdLoadCallback() {
+                    override fun onAdFailedToLoad(adError: LoadAdError) {
+                        Toast.makeText(
+                            applicationContext, "فشل عرض الاعلان.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        mRewardedAd = null
+                    }
 
-                override fun onAdLoaded(rewardedAd: RewardedAd) {
-                    Toast.makeText(
-                        applicationContext, "تم تحميل الاعلان.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    mRewardedAd = rewardedAd
-                }
-            })
+                    override fun onAdLoaded(rewardedAd: RewardedAd) {
+                        Toast.makeText(
+                            applicationContext, "تم تحميل الاعلان.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        mRewardedAd = rewardedAd
+                    }
+                })
 
-            mRewardedAd?.fullScreenContentCallback = object: FullScreenContentCallback() {
+            mRewardedAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
                 override fun onAdShowedFullScreenContent() {
                     // Called when ad is shown.
                     Toast.makeText(
@@ -168,6 +171,10 @@ class HomeActivity : BaseActivity() {
                     tvJewels.text = snapshot.child("jewels").value.toString()
                     tvPoints.text = snapshot.child("points").value.toString()
 
+                    if (snapshot.child("role").value.toString() == "admin") {
+                        ivBackP_Home.visibility = View.VISIBLE
+                    }
+
                     spin_kit_QS.visibility = View.GONE
                     clHome.visibility = View.VISIBLE
                 }
@@ -180,6 +187,7 @@ class HomeActivity : BaseActivity() {
 
             })
 
+        //button CLicks
         buLogout.setOnClickListener {
             mAuth?.signOut()
             startActivity(Intent(this, LoginActivity::class.java))
@@ -188,10 +196,10 @@ class HomeActivity : BaseActivity() {
 
         buAnsAndWin.setOnClickListener {
             startActivity(Intent(this, Questions_Screen::class.java))
+            finish()
         }
 
         buEnterToWin.setOnClickListener {
-
             Constants.GetRef().child("Users").child(userId).get()
                 .addOnSuccessListener { dataSnapshot ->
                     val userModel = dataSnapshot.getValue(UserModel::class.java)
@@ -217,6 +225,10 @@ class HomeActivity : BaseActivity() {
             startActivity(intent)
         }
 
+        ivBackP_Home.setOnClickListener {
+            startActivity(Intent(this, AdminHomeActivity::class.java))
+            finish()
+        }
 
     }
 
@@ -239,7 +251,8 @@ class HomeActivity : BaseActivity() {
                                 Constants.SubValueFromJewel(1, applicationContext)
 
                                 dialog.dismiss()
-                                val intent = Intent(applicationContext, Questions_Screen::class.java)
+                                val intent =
+                                    Intent(applicationContext, Questions_Screen::class.java)
                                 intent.putExtra("path", "Bool")
                                 startActivity(intent)
                                 finishAffinity()

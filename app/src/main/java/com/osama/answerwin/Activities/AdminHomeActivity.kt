@@ -31,7 +31,7 @@ class AdminHomeActivity : BaseActivity() {
         }
         buPlayerHome.setOnClickListener {
             startActivity(Intent(this, HomeActivity::class.java))
-
+            finish()
         }
     }
 }

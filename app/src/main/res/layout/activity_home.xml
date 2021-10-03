@@ -1,278 +1,289 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.HomeActivity"
-    >
-
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/background2"
-    >
-    <!--Home-->
-
-    <com.github.ybq.android.spinkit.SpinKitView
-        android:id="@+id/spin_kit_QS_home"
-        style="@style/SpinKitView.Large.Circle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:visibility="gone"
-        app:SpinKit_Color="@color/purple_color"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+    tools:context=".Activities.HomeActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clHome"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="0dp">
+        android:background="@drawable/background2">
+        <!--Home-->
 
-        <ImageView
-            android:id="@+id/ivmenu"
-            android:layout_width="50dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="13dp"
-            android:padding="10dp"
-            android:src="@drawable/menu"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/ivToolbarLogo"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/ivToolbarLogo"
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:id="@+id/spin_kit_QS_home"
+            style="@style/SpinKitView.Large.Circle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/text_pink"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            app:SpinKit_Color="@color/purple_color"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
 
-        <carbon.widget.Button
-            android:id="@+id/buProfile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/green_color"
-            android:paddingStart="40dp"
-            android:paddingEnd="40dp"
-            android:text="الصفحة الشخصية"
-            android:textColor="@color/purple_color"
-            android:textStyle="bold"
-            app:carbon_cornerRadius="25dp"
-            app:carbon_rippleColor="@color/rippleColor"
-            app:carbon_stroke="@color/purple_color"
-            app:carbon_strokeWidth="2dp"
-            app:layout_constraintEnd_toStartOf="@id/buStore"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/buEnterToWin" />
-
-        <carbon.widget.Button
-            android:id="@+id/buAnsAndWin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:background="@color/green_color"
-            android:paddingStart="56dp"
-            android:paddingEnd="56dp"
-            android:text="جاوب واربح"
-            android:textColor="@color/purple_color"
-            android:textStyle="bold"
-            app:carbon_cornerRadius="25dp"
-            app:carbon_rippleColor="@color/rippleColor"
-            app:carbon_stroke="@color/purple_color"
-            app:carbon_strokeWidth="2dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivToolbarLogo" />
-
-        <carbon.widget.Button
-            android:id="@+id/buEnterToWin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/green_color"
-            android:paddingStart="54dp"
-            android:paddingEnd="54dp"
-            android:text="ادخل السحب"
-            android:textColor="@color/purple_color"
-            android:textStyle="bold"
-            app:carbon_cornerRadius="25dp"
-            app:carbon_rippleColor="@color/rippleColor"
-            app:carbon_stroke="@color/purple_color"
-            app:carbon_strokeWidth="2dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/buAnsAndWin" />
-
-        <carbon.widget.Button
-            android:id="@+id/buStore"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/green_color"
-            android:paddingStart="70dp"
-            android:paddingEnd="70dp"
-            android:text="المتجر"
-            android:textColor="@color/purple_color"
-            android:textStyle="bold"
-            app:carbon_cornerRadius="25dp"
-            app:carbon_rippleColor="@color/rippleColor"
-            app:carbon_stroke="@color/purple_color"
-            app:carbon_strokeWidth="2dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/buProfile"
-            app:layout_constraintTop_toBottomOf="@id/buEnterToWin" />
-
-        <carbon.widget.Button
-            android:id="@+id/buLogout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/green_color"
-            android:paddingStart="35dp"
-            android:paddingEnd="35dp"
-            android:text="تسجيل خروج"
-            android:textColor="@color/purple_color"
-            android:textStyle="bold"
-            app:carbon_cornerRadius="25dp"
-            app:carbon_rippleColor="@color/rippleColor"
-            app:carbon_stroke="@color/purple_color"
-            app:carbon_strokeWidth="2dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/buStore" />
-
-        <carbon.widget.ConstraintLayout
-            android:id="@+id/clJsAndPs"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clHome"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="10dp"
-            android:background="@color/purple_color"
-
-            android:padding="8dp"
-            app:carbon_cornerRadius="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/clWatchAndWin"
-            app:layout_constraintTop_toBottomOf="@+id/ivToolbarLogo">
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="37dp"
+            tools:layout_editor_absoluteY="0dp">
 
             <ImageView
-                android:id="@+id/ivJewels"
+                android:id="@+id/ivBackP_Home"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="20dp"
-                android:src="@drawable/jewel_purple"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="10dp"
+                android:src="@drawable/back_jewel_icon"
+                android:visibility="gone"
+                app:layout_constraintEnd_toStartOf="@+id/ivToolbarLogo"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tvJewels"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:textColor="@color/green_color"
-                android:textSize="17dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/ivJewels"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="4" />
+            <ImageView
+                android:id="@+id/ivmenu"
+                android:layout_width="50dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="13dp"
+                android:padding="10dp"
+                android:src="@drawable/menu"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivToolbarLogo"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/ivPoints"
+                android:id="@+id/ivToolbarLogo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/text_pink"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <carbon.widget.Button
+                android:id="@+id/buProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/green_color"
+                android:paddingStart="40dp"
+                android:paddingEnd="40dp"
+                android:text="الصفحة الشخصية"
+                android:textColor="@color/purple_color"
+                android:textStyle="bold"
+                app:carbon_cornerRadius="25dp"
+                app:carbon_rippleColor="@color/rippleColor"
+                app:carbon_stroke="@color/purple_color"
+                app:carbon_strokeWidth="2dp"
+                app:layout_constraintEnd_toStartOf="@id/buStore"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/buEnterToWin" />
+
+            <carbon.widget.Button
+                android:id="@+id/buAnsAndWin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:background="@color/green_color"
+                android:paddingStart="56dp"
+                android:paddingEnd="56dp"
+                android:text="جاوب واربح"
+                android:textColor="@color/purple_color"
+                android:textStyle="bold"
+                app:carbon_cornerRadius="25dp"
+                app:carbon_rippleColor="@color/rippleColor"
+                app:carbon_stroke="@color/purple_color"
+                app:carbon_strokeWidth="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivToolbarLogo" />
+
+            <carbon.widget.Button
+                android:id="@+id/buEnterToWin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/green_color"
+                android:paddingStart="54dp"
+                android:paddingEnd="54dp"
+                android:text="ادخل السحب"
+                android:textColor="@color/purple_color"
+                android:textStyle="bold"
+                app:carbon_cornerRadius="25dp"
+                app:carbon_rippleColor="@color/rippleColor"
+                app:carbon_stroke="@color/purple_color"
+                app:carbon_strokeWidth="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/buAnsAndWin" />
+
+            <carbon.widget.Button
+                android:id="@+id/buStore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/green_color"
+                android:paddingStart="70dp"
+                android:paddingEnd="70dp"
+                android:text="المتجر"
+                android:textColor="@color/purple_color"
+                android:textStyle="bold"
+                app:carbon_cornerRadius="25dp"
+                app:carbon_rippleColor="@color/rippleColor"
+                app:carbon_stroke="@color/purple_color"
+                app:carbon_strokeWidth="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/buProfile"
+                app:layout_constraintTop_toBottomOf="@id/buEnterToWin" />
+
+            <carbon.widget.Button
+                android:id="@+id/buLogout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/green_color"
+                android:paddingStart="35dp"
+                android:paddingEnd="35dp"
+                android:text="تسجيل خروج"
+                android:textColor="@color/purple_color"
+                android:textStyle="bold"
+                app:carbon_cornerRadius="25dp"
+                app:carbon_rippleColor="@color/rippleColor"
+                app:carbon_stroke="@color/purple_color"
+                app:carbon_strokeWidth="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/buStore" />
+
+            <carbon.widget.ConstraintLayout
+                android:id="@+id/clJsAndPs"
+                android:layout_width="match_parent"
+                android:layout_height="68dp"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="10dp"
-                android:src="@drawable/point_icon"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/tvPoints"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:background="@color/purple_color"
 
-            <TextView
-                android:id="@+id/tvPoints"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="5dp"
-                android:textColor="@color/green_color"
-                android:textSize="17dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:padding="8dp"
+                app:carbon_cornerRadius="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="300" />
+                app:layout_constraintStart_toEndOf="@+id/clWatchAndWin"
+                app:layout_constraintTop_toBottomOf="@+id/ivToolbarLogo">
 
-        </carbon.widget.ConstraintLayout>
+                <ImageView
+                    android:id="@+id/ivJewels"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:src="@drawable/jewel_purple"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <carbon.widget.ConstraintLayout
-            android:id="@+id/clWatchAndWin"
-            android:layout_width="58dp"
-            android:layout_height="68dp"
-            android:layout_marginStart="10dp"
-            android:background="@color/purple_color"
-            android:clickable="true"
-            android:focusable="true"
-            android:padding="8dp"
-            app:carbon_cornerRadius="10dp"
-            app:carbon_rippleColor="@color/rippleColor"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivToolbarLogo">
+                <TextView
+                    android:id="@+id/tvJewels"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:textColor="@color/green_color"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/ivJewels"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="4" />
 
-            <TextView
+                <ImageView
+                    android:id="@+id/ivPoints"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/point_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/tvPoints"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvPoints"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:textColor="@color/green_color"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="300" />
+
+            </carbon.widget.ConstraintLayout>
+
+            <carbon.widget.ConstraintLayout
+                android:id="@+id/clWatchAndWin"
+                android:layout_width="58dp"
+                android:layout_height="68dp"
+                android:layout_marginStart="10dp"
+                android:background="@color/purple_color"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginTop="12dp"
+                android:padding="8dp"
+                app:carbon_cornerRadius="10dp"
+                app:carbon_rippleColor="@color/rippleColor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivToolbarLogo">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="شاهد واربح"
+                    android:textColor="@color/green_color"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </carbon.widget.ConstraintLayout>
+
+            <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/adView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="شاهد واربح"
-                android:textColor="@color/green_color"
-                android:textSize="17sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                ads:adSize="BANNER"
+                ads:adUnitId="@string/banner_ad_unit_id"
+                ads:layout_constraintBottom_toBottomOf="parent"
+                ads:layout_constraintEnd_toEndOf="parent"
+                ads:layout_constraintStart_toStartOf="parent"></com.google.android.gms.ads.AdView>
+            ...
 
-        </carbon.widget.ConstraintLayout>
-
-        <com.google.android.gms.ads.AdView
-            xmlns:ads="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/adView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            ads:layout_constraintBottom_toBottomOf="parent"
-            ads:layout_constraintStart_toStartOf="parent"
-            ads:layout_constraintEnd_toEndOf="parent"
-            ads:adSize="BANNER"
-            ads:adUnitId="@string/banner_ad_unit_id">
-        </com.google.android.gms.ads.AdView>
-        ...
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:background="@drawable/splash_background"
-        app:itemIconTint="@color/purple_color"
         android:layout_gravity="end"
+        android:background="@drawable/splash_background"
+        android:fitsSystemWindows="true"
         android:layoutDirection="rtl"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/nav_menu"
-        android:fitsSystemWindows="true"/>
+        app:itemIconTint="@color/purple_color"
+        app:menu="@menu/nav_menu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

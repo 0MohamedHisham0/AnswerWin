@@ -2,6 +2,7 @@ package com.osama.answerwin.Utils;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.Button;
@@ -170,4 +171,9 @@ public class Constants {
         Long tsLong = System.currentTimeMillis() / 1000;
         return tsLong;
     }
+
+    public static void makeIntent(Context context1 , Class<?> context2){
+        context1.startActivity(new Intent(context1, context2));
+    }
+
 }
