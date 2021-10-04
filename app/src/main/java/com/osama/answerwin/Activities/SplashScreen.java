@@ -5,6 +5,7 @@ import static com.osama.answerwin.Utils.Constants.GetRef;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,26 +27,32 @@ public class SplashScreen extends AppCompatActivity {
     private static FirebaseDatabase dbReal;
     private static DatabaseReference databaseReference;
     private static FirebaseAuth mAut;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-        new Handler().postDelayed(new Runnable() {
+        if (Constants.checkInternetConnection(this)) {
 
-            public void run() {
-                //This method will be executed once the timer is over
-                // Start your app main activity
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                if (user != null) {
-                    GetUserData(Objects.requireNonNull(Constants.GetAuth().getCurrentUser()).getUid());
-                } else {
-                    Intent i = new Intent(SplashScreen.this, LoginActivity.class);
-                    startActivity(i);
-                    // close this activity
-                    finishAffinity();
+            new Handler().postDelayed(new Runnable() {
+
+                public void run() {
+                    //This method will be executed once the timer is over
+                    // Start your app main activity
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    if (user != null) {
+                        GetUserData(Objects.requireNonNull(Constants.GetAuth().getCurrentUser()).getUid());
+                    } else {
+                        Intent i = new Intent(SplashScreen.this, LoginActivity.class);
+                        startActivity(i);
+                        // close this activity
+                        finishAffinity();
+                    }
                 }
-            }
-        }, 2000);
+            }, 2000);
+        } else {
+            Toast.makeText(this, "لا يوجد اتصال بالانترنت, تأكد من اتصالك", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void GetUserData(String userId) {
@@ -58,7 +65,7 @@ public class SplashScreen extends AppCompatActivity {
                     startActivity(i);
                     // close this activity
                     finishAffinity();
-                }else {
+                } else {
                     Intent i = new Intent(SplashScreen.this, HomeActivity.class);
                     startActivity(i);
                     // close this activity

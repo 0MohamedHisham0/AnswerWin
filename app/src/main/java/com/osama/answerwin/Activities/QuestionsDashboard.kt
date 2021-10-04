@@ -12,7 +12,7 @@ import com.osama.answerwin.Utils.Constants
 import kotlinx.android.synthetic.main.activity_questions_dashboard.*
 import java.util.*
 
-class QuestionsDashboard : AppCompatActivity() {
+class QuestionsDashboard : BaseActivity() {
     private val questionsList: MutableList<Questions_Model> = ArrayList()
     private val questionsUidList: MutableList<String> = ArrayList()
 

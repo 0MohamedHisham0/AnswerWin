@@ -22,7 +22,7 @@ import com.osama.answerwin.Utils.Constants
 import kotlinx.android.synthetic.main.activity_qustions_screen.*
 import java.util.*
 
-class Questions_Screen : AppCompatActivity() {
+class Questions_Screen : BaseActivity() {
     //Var
     private var mInterstitialAd: InterstitialAd? = null
     private var Question: Map<String, Any> = HashMap()

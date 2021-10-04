@@ -12,7 +12,7 @@ import com.osama.answerwin.Utils.Constants
 import kotlinx.android.synthetic.main.activity_my_prize.*
 import java.util.*
 
-class MyPrize : AppCompatActivity() {
+class MyPrize : BaseActivity() {
 
     private var myPrize: Map<String, Any> = HashMap()
     private val prizeList = mutableListOf<myPrizeModel>()

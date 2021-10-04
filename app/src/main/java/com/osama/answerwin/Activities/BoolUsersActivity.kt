@@ -11,7 +11,7 @@ import com.osama.answerwin.Utils.Constants
 import kotlinx.android.synthetic.main.activity_bool_users.*
 import java.util.*
 
-class BoolUsersActivity : AppCompatActivity() {
+class BoolUsersActivity : BaseActivity() {
     val winnersList: MutableList<BooledModel?> = ArrayList()
     val boolUsers: MutableList<BooledModel> = ArrayList()
 
