@@ -29,7 +29,18 @@ public class ExampleUnitTest {
         }
     }
 
+    @Test
+    public void convertToAllString(String s) {
+        String newString = "";
+        String newString2 = "";
 
+        for (int i = 0; i < 4; i++) {
+            newString = s.charAt(i) + newString;
+        }
+
+        newString2 = newString.replaceAll("\\d", "") + s.substring(4, s.length());
+        System.out.println(newString2);
+    }
 
 
 }

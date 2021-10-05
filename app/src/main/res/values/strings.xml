@@ -6,12 +6,15 @@
     <!--    <string name="rewarded_ad_unit_id_test">ca-app-pub-3940256099942544/5224354917</string>-->
     <!--    <string name="rewarded_ad_interstitial_test">ca-app-pub-3940256099942544/1033173712</string>-->
     //Org
-    <string name="banner_ad_unit_id">ca-app-pub-4475284696301186/5346122726</string>
-    <string name="rewarded_ad_unit_id">ca-app-pub-4475284696301186/4638455373</string>
-    <string name="rewarded_ad_interstitial">ca-app-pub-4475284696301186/7282142033</string>
+<!--    <string name="banner_ad_unit_id">ca-app-pub-4475284696301186/5346122726</string>-->
+<!--    <string name="rewarded_ad_unit_id">ca-app-pub-4475284696301186/4638455373</string>-->
+<!--    <string name="rewarded_ad_interstitial">ca-app-pub-4475284696301186/7282142033</string>-->
+<!--    -->
+
     //Test
-    <!--    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>-->
-    <!--    <string name="rewarded_ad_unit_id">ca-app-pub-3940256099942544/5224354917</string>-->
-    <!--    <string name="rewarded_ad_interstitial">ca-app-pub-3940256099942544/1033173712</string>-->
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="rewarded_ad_unit_id">ca-app-pub-3940256099942544/5224354917</string>
+    <string name="rewarded_ad_interstitial">ca-app-pub-3940256099942544/1033173712</string>
+
 
 </resources>

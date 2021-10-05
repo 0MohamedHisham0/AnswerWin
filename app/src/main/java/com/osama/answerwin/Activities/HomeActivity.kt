@@ -108,7 +108,6 @@ class HomeActivity : BaseActivity() {
         spin_kit_QS.visibility = View.VISIBLE
         clHome.visibility = View.GONE
 
-
         mDatabaseReference = FirebaseDatabase.getInstance().reference
 
         mDatabaseReference?.child("Users")?.child(userId)
@@ -305,7 +304,7 @@ class HomeActivity : BaseActivity() {
         return true
     }
 
-    fun openWelcomeDialog(context: Context?) {
+    private fun openWelcomeDialog(context: Context?) {
         val dialog = Dialog(context!!) // Context, this, etc.
         dialog.setContentView(R.layout.dialog_welcome)
         val button = dialog.findViewById<Button>(R.id.bu_dialog_welcome)
@@ -315,7 +314,7 @@ class HomeActivity : BaseActivity() {
         dialog.setCanceledOnTouchOutside(true)
     }
 
-    fun facebookPage() {
+    private fun facebookPage() {
         val uriUrl =
             Uri.parse("https://www.facebook.com/%D8%AC%D8%A7%D9%88%D8%A8-%D9%88%D8%A7%D8%B1%D8%A8%D8%AD-101808732270696/")
         val launchBrowser = Intent(Intent.ACTION_VIEW, uriUrl)
@@ -323,3 +322,5 @@ class HomeActivity : BaseActivity() {
     }
 
 }
+
+

@@ -3,9 +3,7 @@ package com.osama.answerwin.Utils;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.graphics.drawable.ColorDrawable;
-import android.inputmethodservice.Keyboard;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.text.format.DateFormat;
@@ -29,31 +27,27 @@ import com.osama.answerwin.Models.BooledModel;
 import com.osama.answerwin.Models.UserModel;
 import com.osama.answerwin.R;
 
-import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
 
-
 public class Constants {
 
+    private static final String TAG = "excel";
     private static FirebaseFirestore db;
     private static FirebaseDatabase dbReal;
     private static DatabaseReference databaseReference;
     private static FirebaseAuth mAut;
 
     //Text
-
     private static final String userId = Objects.requireNonNull(Objects.requireNonNull(Constants.GetAuth()).getCurrentUser()).getUid();
 
     public static FirebaseAuth GetAuth() {
-
         if (mAut == null)
             mAut = FirebaseAuth.getInstance();
 
@@ -142,7 +136,7 @@ public class Constants {
         return tsLong;
     }
 
-    public static void makeIntent(Context context1 , Class<?> context2){
+    public static void makeIntent(Context context1, Class<?> context2) {
         context1.startActivity(new Intent(context1, context2));
     }
 
@@ -176,6 +170,7 @@ public class Constants {
             }
         });
     }
+
     public static void GetSortedQ(String startAt, String endAt, Context context) {
         GetFireStoneDb().collection("BoolUsers").orderBy("date", com.google.firebase.firestore.Query.Direction.ASCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -200,9 +195,6 @@ public class Constants {
             }
         });
 
-
     }
-
-
 
 }

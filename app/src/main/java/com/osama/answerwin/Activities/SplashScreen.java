@@ -22,6 +22,7 @@ import com.osama.answerwin.Utils.Constants;
 
 import java.util.Objects;
 
+
 public class SplashScreen extends AppCompatActivity {
     private static FirebaseFirestore db;
     private static FirebaseDatabase dbReal;
@@ -33,11 +34,8 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-//        if (Constants.checkInternetConnection(this)) {
-//
-//        } else {
-//            Toast.makeText(this, "لا يوجد اتصال بالانترنت, تأكد من اتصالك", Toast.LENGTH_SHORT).show();
-//        }
+        if (Constants.checkInternetConnection(this)) {
+
             new Handler().postDelayed(new Runnable() {
 
                 public void run() {
@@ -54,6 +52,10 @@ public class SplashScreen extends AppCompatActivity {
                     }
                 }
             }, 2000);
+        } else {
+            Toast.makeText(this, "لا يوجد اتصال بالانترنت, تأكد من اتصالك", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     public void GetUserData(String userId) {
@@ -75,6 +77,5 @@ public class SplashScreen extends AppCompatActivity {
             }
         });
     }
-
 
 }

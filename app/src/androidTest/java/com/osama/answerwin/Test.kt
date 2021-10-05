@@ -13,27 +13,27 @@ import java.util.*
 class Test {
     @RunWith(AndroidJUnit4::class)
      class ExampleInstrumentedTest {
+
         @Test
-        fun getRandomWinners() {
-            val rand = Random()
+        fun convertToAllString(s : String) {
 
-            var list: MutableList<String> = ArrayList()
-            list.add("one")
-            list.add("two")
-            list.add("there")
-            list.add("four")
+            for (i in s){
+                var b  = 0
 
-            val numberOfElements = 2
-            for (i in 0 until numberOfElements) {
-                val randomIndex = rand.nextInt(list.size)
-                val randomElement = list[randomIndex]
-                list.removeAt(randomIndex)
-                println(randomElement +"HI")
+                when(b){
+                    0 -> if (i.equals(0..9) ) {s.set(b,"") }
+                    1-> if (i.equals(0..9) ) {s.set(b,"") }
+                    2 -> if (i.equals(0..9) ) {s.set(b,"") }
+                    3 -> if (i.equals(0..9) ) {s.set(b,"") }
+                }
+                b++
             }
         }
 
 
-
-
     }
+}
+
+private operator fun String.set(b: Int, value: String) {
+
 }
