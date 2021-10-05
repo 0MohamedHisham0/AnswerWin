@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android/AndroidProjects/Modern Apps/AnswerWin/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.15" />
+        <entry key="..\:/Android/AndroidProjects/Modern Apps/AnswerWin/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.15" />
         <entry key="..\:/Freelance/AnswerAndWin/AnswerWin/app/src/main/res/drawable/roundedcorner.xml" value="0.19375" />
         <entry key="..\:/Freelance/AnswerAndWin/AnswerWin/app/src/main/res/layout/activity_home.xml" value="0.22" />
         <entry key="..\:/Freelance/AnswerAndWin/AnswerWin/app/src/main/res/layout/activity_login.xml" value="0.22" />

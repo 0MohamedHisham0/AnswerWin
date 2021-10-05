@@ -17,10 +17,9 @@ open class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mAuth = FirebaseAuth.getInstance()
-        mDatabaseReference = FirebaseDatabase.getInstance().reference
         if (checkInternetConnection(this)){
-
+            mAuth = FirebaseAuth.getInstance()
+            mDatabaseReference = FirebaseDatabase.getInstance().reference
         }
         else
         {
@@ -29,8 +28,7 @@ open class BaseActivity : AppCompatActivity() {
 
     }
 
-
-    open fun checkInternetConnection(context: Context): Boolean {
+    private fun checkInternetConnection(context: Context): Boolean {
         val connectivity = context
             .getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
         if (connectivity == null) {
