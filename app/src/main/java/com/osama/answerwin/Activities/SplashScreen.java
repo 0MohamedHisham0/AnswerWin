@@ -33,8 +33,11 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        if (Constants.checkInternetConnection(this)) {
-
+//        if (Constants.checkInternetConnection(this)) {
+//
+//        } else {
+//            Toast.makeText(this, "لا يوجد اتصال بالانترنت, تأكد من اتصالك", Toast.LENGTH_SHORT).show();
+//        }
             new Handler().postDelayed(new Runnable() {
 
                 public void run() {
@@ -51,9 +54,6 @@ public class SplashScreen extends AppCompatActivity {
                     }
                 }
             }, 2000);
-        } else {
-            Toast.makeText(this, "لا يوجد اتصال بالانترنت, تأكد من اتصالك", Toast.LENGTH_SHORT).show();
-        }
     }
 
     public void GetUserData(String userId) {

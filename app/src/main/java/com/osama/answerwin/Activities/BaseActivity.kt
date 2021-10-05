@@ -17,11 +17,11 @@ open class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mAuth = FirebaseAuth.getInstance()
         mDatabaseReference = FirebaseDatabase.getInstance().reference
-        if ( Constants.checkInternetConnection(this)){
-
-        }else{
-            Toast.makeText(this, "لا يوجد اتصال بالانترنت, تأكد من اتصالك", Toast.LENGTH_SHORT).show()
-        }
+//        if ( Constants.checkInternetConnection(this)){
+//
+//        }else{
+//            Toast.makeText(this, "لا يوجد اتصال بالانترنت, تأكد من اتصالك", Toast.LENGTH_SHORT).show()
+//        }
 
     }
 }
