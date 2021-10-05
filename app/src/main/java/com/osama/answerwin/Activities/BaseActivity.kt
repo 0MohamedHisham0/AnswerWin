@@ -1,12 +1,14 @@
 package com.osama.answerwin.Activities
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.osama.answerwin.Utils.Constants
 
 open class BaseActivity : AppCompatActivity() {
     var mDatabaseReference: DatabaseReference? = null
@@ -17,11 +19,33 @@ open class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mAuth = FirebaseAuth.getInstance()
         mDatabaseReference = FirebaseDatabase.getInstance().reference
-        if ( Constants.checkInternetConnection(this)){
+        if (checkInternetConnection(this)){
 
-        }else{
+        }
+        else
+        {
             Toast.makeText(this, "لا يوجد اتصال بالانترنت, تأكد من اتصالك", Toast.LENGTH_SHORT).show()
         }
 
     }
+
+
+    open fun checkInternetConnection(context: Context): Boolean {
+        val connectivity = context
+            .getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (connectivity == null) {
+            return false
+        } else {
+            val info = connectivity.allNetworkInfo
+            if (info != null) {
+                for (i in info.indices) {
+                    if (info[i].state == NetworkInfo.State.CONNECTED) {
+                        return true
+                    }
+                }
+            }
+        }
+        return false
+    }
+
 }
